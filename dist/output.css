@@ -556,28 +556,12 @@ video {
   }
 }
 
-.absolute {
-  position: absolute;
-}
-
-.relative {
-  position: relative;
-}
-
 .sticky {
   position: sticky;
 }
 
 .top-0 {
   top: 0px;
-}
-
-.top-1\/2 {
-  top: 50%;
-}
-
-.m-0 {
-  margin: 0px;
 }
 
 .mx-auto {
@@ -667,16 +651,20 @@ video {
   padding-right: 1rem;
 }
 
-.align-baseline {
-  vertical-align: baseline;
+.pr-4 {
+  padding-right: 1rem;
+}
+
+.pl-12 {
+  padding-left: 3rem;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .align-middle {
   vertical-align: middle;
-}
-
-.align-bottom {
-  vertical-align: bottom;
 }
 
 .text-3xl {
