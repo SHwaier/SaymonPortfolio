@@ -564,6 +564,10 @@ video {
   top: 0px;
 }
 
+.right-0 {
+  right: 0px;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -595,6 +599,10 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-1\/2 {
+  width: 50%;
 }
 
 .grow {
@@ -636,6 +644,10 @@ video {
   padding: 1.25rem;
 }
 
+.p-12 {
+  padding: 3rem;
+}
+
 .px-12 {
   padding-left: 3rem;
   padding-right: 3rem;
@@ -651,12 +663,12 @@ video {
   padding-right: 1rem;
 }
 
-.pr-4 {
-  padding-right: 1rem;
-}
-
 .pl-12 {
   padding-left: 3rem;
+}
+
+.pr-4 {
+  padding-right: 1rem;
 }
 
 .text-center {
@@ -670,6 +682,11 @@ video {
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .font-bold {
