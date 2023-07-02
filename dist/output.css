@@ -577,6 +577,10 @@ video {
   margin-left: 2rem;
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
 }
@@ -605,6 +609,10 @@ video {
   width: 100%;
 }
 
+.w-10 {
+  width: 2.5rem;
+}
+
 .grow {
   flex-grow: 1;
 }
@@ -619,6 +627,14 @@ video {
 
 .rounded {
   border-radius: 0.25rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
 }
 
 .border-2 {
@@ -650,6 +666,22 @@ video {
 
 .p-5 {
   padding: 1.25rem;
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.p-\[\] {
+  padding: ;
+}
+
+.p-\[0\.1\] {
+  padding: 0.1;
+}
+
+.p-\[0\.1rem\] {
+  padding: 0.1rem;
 }
 
 .px-12 {
