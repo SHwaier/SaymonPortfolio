@@ -21,7 +21,7 @@ export default function Home() {
               </a>
               <a href="#" className="border-indigo-500 border rounded-xl mr-5">
                 <article data-glow className="p-2 px-3 bg-indigo-500 border-slate-700 shadow-md border-2">
-                  Let's Talk
+                  Let&apos;s Talk
                 </article>
               </a>
               <Socials />
