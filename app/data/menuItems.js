@@ -2,7 +2,7 @@ const menuItems = [
   {
     id: 1,
     text: "Home",
-    link: "#",
+    link: "saymon.vercel.app",
   },
   {
     id: 2,
