@@ -1,0 +1,43 @@
+const projectsData = [
+  {
+    id: 1,
+    img: "/assets/img/placeholderImg.jpg",
+    tech: ["C#", "Google API"],
+    title: "The Home of the Future could bebes",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    hasLink: true,
+    link: "#",
+    linkText: "GitHub",
+    hasEndDate: false,
+    startDate: "Jan 2024",
+    endDate: "",
+  },
+  {
+    id: 2,
+    img: "/assets/img/placeholderImg.jpg",
+    tech: ["C#", "Google API"],
+    title: "The Home of the Future could bebes",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    hasLink: true,
+    link: "#",
+    linkText: "GitHub",
+    hasEndDate: true,
+    startDate: "Aug 2023",
+    endDate: "Dec 2023",
+  },
+  {
+    id: 3,
+    img: "/assets/img/placeholderImg.jpg",
+    tech: ["C#", "Google API"],
+    title: "The Home of the Future could bebes",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    hasLink: true,
+    link: "#",
+    linkText: "GitHub",
+    hasEndDate: false,
+    startDate: "Aug 2024",
+    endDate: "",
+  },
+];
+
+export default projectsData;
