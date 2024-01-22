@@ -10,7 +10,8 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center text-center">
             <div className="flex-shrink-0">
-              <a href="saymon.vercel.app">
+              <a href="saymon.vercel.app" className="flex items-center gap-2">
+                <img src="/assets/img/Saymon Hwaier Logo.webp" alt="Saymon Hwaier Portfolio Logo" width={50}/>
                 <h1 className="text-xl font-bold text-slate-950 dark:text-slate-50">Saymon Hwaier</h1>
               </a>
             </div>
