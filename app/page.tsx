@@ -1,3 +1,4 @@
+import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import Socials from "./components/Socials";
 import Footer from "./components/common/Footer";
@@ -31,7 +32,7 @@ export default function Home() {
           </div>
         </div>
         {/* body end */}
-        <h2>test</h2>
+        <Experience/>
         <Footer />
       </div>
     </>
