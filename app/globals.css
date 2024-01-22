@@ -127,7 +127,7 @@ article {
   );
 }
 [data-glow] [data-glow] {
-  position: absolute;
+  /* position: absolute; */
   inset: 0;
   will-change: filter;
   opacity: var(--outer, 1);

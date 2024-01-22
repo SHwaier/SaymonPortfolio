@@ -9,20 +9,19 @@ export default function Projects() {
     const monthIndex = months.indexOf(month);
     return new Date(parseInt(year), monthIndex);
   }
-  
+
   let sortedProjects = projectsData.sort((a, b) => parseDateString(b.startDate).getTime() - parseDateString(a.startDate).getTime());
-  sortedProjects = sortedProjects.slice(0,3);
+  sortedProjects = sortedProjects.slice(0, 3);
   return (
     <>
-      <div className="row">
-        <h2 className="text-2xl p-2">Latest Projects</h2>
+      <div className="block">
         {sortedProjects.map((item) => (
           <div key={item.id} className="p-2">
             <article data-glow className=" md:max-w-2xl">
-              <div className="max-w-md bg-[var(--background)] rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+              <div className=" bg-[rgba(255,255,255,0.01)] rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                 <div className="md:flex">
                   <div className="md:shrink-0">
-                    <img className="h-48 w-full object-cover md:h-full md:w-48" src={item.img} alt=""/>
+                    <img className="h-48 w-full object-cover md:h-full md:w-48" src={item.img} alt="" />
                   </div>
                   <div className="p-8">
                     <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
@@ -33,7 +32,7 @@ export default function Projects() {
                       {item.title}
                     </a>
                     <p className="mt-2 text-slate-500">{item.description}</p>
-                    <div className="row flex items-start py-2 w-full justify-start">
+                    <div className="row flex items-start py-2 w-full justify-start items-center">
                       <div className="w-4/5 row flex items-start justify-start">
                         {item.tech.map((tech) => (
                           <div key={tech} className="rounded px-2 bg-indigo-500 mr-1">
@@ -41,6 +40,7 @@ export default function Projects() {
                           </div>
                         ))}
                       </div>
+                      {/* if the project doesn't have a link to and external source, then don't display the following text */}
                       {item.hasLink && (
                         <div className="text-indigo-500 flex items-end justify-end w-1/5">
                           <a href={item.link} className="flex group">
