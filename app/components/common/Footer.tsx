@@ -7,8 +7,8 @@ export default function Footer() {
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
-              <a href="#" className="flex items-center">
-                {/* <img src="#" className="h-8 me-3" alt="Saymon Hwaier Logo" /> */}
+              <a href="https://saymon.vercel.app" className="flex items-center">
+                <img src="/assets/img/Saymon Hwaier Logo.webp" className="h-8 me-3" alt="Saymon Hwaier Logo" />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Saymon Hwaier</span>
               </a>
             </div>
@@ -17,38 +17,8 @@ export default function Footer() {
                 <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>
                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                   <li className="mb-4">
-                    <a href="#" className="hover:underline">
+                    <a href="https://github.com/SHwaier/SaymonPortfolio" className="hover:underline">
                       Source Code
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Reach Out</h2>
-                <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                  <li className="mb-4">
-                    <a href="#" className="hover:underline ">
-                      Email
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:underline">
-                      Discord
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
-                <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                  <li className="mb-4">
-                    <a href="#" className="hover:underline">
-                      Privacy Policy
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:underline">
-                      Terms &amp; Conditions
                     </a>
                   </li>
                 </ul>
@@ -64,7 +34,7 @@ export default function Footer() {
               </a>
             </span>
             <div className="flex mt-4 sm:justify-center sm:mt-0">
-              <Socials/>
+              <Socials />
             </div>
           </div>
         </div>
