@@ -59,7 +59,7 @@ article:first-of-type {
 article:last-of-type {
 	--outer: 1;
 	--base: 220;
-	--spread: 50;
+	--spread: 25;
 }
 
 article {
