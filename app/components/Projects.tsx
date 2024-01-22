@@ -32,17 +32,17 @@ export default function Projects() {
                       {item.title}
                     </a>
                     <p className="mt-2 text-slate-500">{item.description}</p>
-                    <div className="row flex items-start py-2 w-full justify-start items-center">
-                      <div className="w-4/5 row flex items-start justify-start">
+                    <div className="row md:flex py-2 w-full justify-start items-center">
+                      <div className="md:w-4/5 w-full row flex items-start justify-start">
                         {item.tech.map((tech) => (
                           <div key={tech} className="rounded px-2 bg-indigo-500 mr-1">
-                            <p className="text-indigo-50">{tech}</p>
+                            <p className="text-indigo-50 text-sm">{tech}</p>
                           </div>
                         ))}
                       </div>
                       {/* if the project doesn't have a link to and external source, then don't display the following text */}
                       {item.hasLink && (
-                        <div className="text-indigo-500 flex items-end justify-end w-1/5">
+                        <div className="text-indigo-500 flex items-end md:justify-end justify-center md:p-0 pt-2 md:w-1/5 w-full">
                           <a href={item.link} className="flex group">
                             {item.linkText}
                             <FontAwesomeIcon className="w-4 pl-1 group-hover:translate-x-1" icon={faArrowRight} />
