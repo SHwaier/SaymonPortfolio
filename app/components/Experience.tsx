@@ -12,10 +12,14 @@ export default function Experience() {
 
   return (
     <>
-        
+        <p>-----still in development (dummy data)-----</p>
           {sortedExperience.map((item) => (
-            <div key={item.id}>
-              
+            <div key={item.id} >
+              <article data-glow className="p-10 shadow-md bg-[rgba(255,255,255,0.01)]">
+              <h3>{item.title}</h3>
+              <span>{item.startDate} - {item.endDate}</span>
+              <p>{item.description}</p>
+              </article>
             </div>
           ))}
     </>
