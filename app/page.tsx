@@ -8,8 +8,6 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col min-h-screen">
-        <Header />
-        {/* body */}
         <div className="p-12 flex flex-col md:flex-row">
           <div className="flex flex-col w-full md:w-1/3 justify-center h-screen">
             <p className="text-indigo-500">Hello I am =&gt; &#123;</p>
@@ -22,7 +20,7 @@ export default function Home() {
                 </article>
               </a>
               <a href="#" className="border-indigo-500 border p-2 px-3 rounded-xl shadow-md mr-5 hover:bg-indigo-500">
-                Let&apos;s Talk 
+                Let&apos;s Talk
               </a>
               <Socials />
             </div>
@@ -31,8 +29,6 @@ export default function Home() {
             <Projects />
           </div>
         </div>
-        {/* body end */}
-        <Footer />
       </div>
     </>
   );
