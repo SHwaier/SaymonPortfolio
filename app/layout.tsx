@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import Header from "./components/common/Header";
+import Footer from "./components/common/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,13 +17,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
+
   return (
     <html lang="en">
       <head>
-      <Script src="/cursorPosition.js"/>
+        <Script src="/cursorPosition.js" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Header />
+        <div className="site-content">
+          {children}
+        </div>
+        <Footer />
+      </body>
     </html>
   );
 }

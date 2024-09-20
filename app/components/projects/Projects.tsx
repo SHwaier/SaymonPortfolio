@@ -1,6 +1,7 @@
-import projectsData from "../data/projectsData";
+import projectsData from "../../data/projectsData";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 
 export default function Projects() {
   function parseDateString(dateString: string): Date {
@@ -28,9 +29,9 @@ export default function Projects() {
                       {item.startDate}
                       {item.hasEndDate && " - "} {item.hasEndDate && item.endDate}
                     </div>
-                    <a href="#" className="block mt-1 text-lg leading-tight font-medium text-[var(--foreground)] hover:underline">
+                    <Link href={`/projects/${item.id}`} className="block mt-1 text-lg leading-tight font-medium text-[var(--foreground)] hover:underline">
                       {item.title}
-                    </a>
+                    </Link>
                     <p className="mt-2 text-slate-500">{item.description}</p>
                     <div className="row md:flex py-2 w-full justify-start items-center">
                       <div className="md:w-4/5 w-full row flex items-start justify-start">
