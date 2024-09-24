@@ -17,7 +17,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
       <head>
@@ -25,9 +24,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Header />
-        <div className="site-content">
-          {children}
-        </div>
+        <div className="site-content">{children}</div>
         <Footer />
       </body>
     </html>
