@@ -1,29 +1,34 @@
 "use client";
 import { useState } from "react";
 import menuItems from "@/data/menuItems";
+import { ModeToggle } from "@/components/ModeToggle";
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="shadow-md text-white bg-violet-100 dark:bg-gray-900">
+    <nav className="shadow-md bg-card">
       <div className="max-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center text-center">
             <div className="flex-shrink-0">
               <a href="/" className="flex items-center gap-2">
                 <img src="/assets/img/Saymon Hwaier Logo.webp" alt="Saymon Hwaier Portfolio Logo" width={50} />
-                <h1 className="text-xl font-bold text-slate-950 dark:text-slate-50">Saymon Hwaier</h1>
+                <h1 className="text-xl font-bold text-foreground">Saymon Hwaier</h1>
               </a>
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 {menuItems.map((item) => (
-                  <a key={item.id} href={item.link} className="hover:text-indigo-500 text-slate-950 dark:text-slate-50 px-3 py-2 rounded-md text-sm font-medium">
+                  <a key={item.id} href={item.link} className="hover:text-primary text-foreground px-3 py-2 rounded-md text-sm font-medium">
                     {item.text}
                   </a>
                 ))}
               </div>
             </div>
+          </div>
+          <div className="">
+            <ModeToggle/>
           </div>
           <div className="md:hidden">
             <button
@@ -32,7 +37,7 @@ export default function Header() {
             >
               {/* Hamburger Icon */}
               <svg
-                className="h-6 w-6 text-slate-950 dark:text-slate-50"
+                className="h-6 w-6 text-foreground"
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -48,10 +53,10 @@ export default function Header() {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`${isOpen ? "block" : "hidden"} md:hidden`}>
+      <div className={`${isOpen ? "block" : "hidden"} md:hidden bg-popover`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {menuItems.map((item) => (
-            <a key={item.id} href={item.link} className="hover:text-indigo-500 text-slate-950 dark:text-slate-50 block px-3 py-2 rounded-md text-base font-medium">
+            <a key={item.id} href={item.link} className="hover:text-primary text-foreground block px-3 py-2 rounded-md text-base font-medium">
               {item.text}
             </a>
           ))}

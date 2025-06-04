@@ -9,17 +9,15 @@ export default function Home() {
     <>
       <div className="flex flex-col min-h-screen">
         <div className="p-12 flex flex-col md:flex-row relative overflow-hidden ">
-          <div className="absolute inset-0 w-full h-full bg-primary opacity-75 z-20 mask-r-from-20% mask-r-to-90% pointer-events-none" />
+          <div className="absolute inset-0 w-full h-full bg-background z-20 mask-r-from-20% mask-r-to-90% pointer-events-none" />
 
           <Boxes />
 
           <div className="flex flex-col w-full md:w-1/3 justify-center h-screen relative z-30">
-
-
-
-            <p className="text-indigo-500">Hello I am =&gt; &#123;</p>
+            <p className="text-primary">Hello I am =&gt; &#123;</p>
             <h2 className="text-4xl sm:text-7xl">Saymon Hwaier</h2>
-            <p className="text-indigo-500">&#125;</p> <p className="text-sm text-indigo-500">{"//"}Welcome to my custom syntax world</p>
+            <p className="text-primary">&#125;</p> 
+            <p className="text-sm text-primary">{"//"}Welcome to my custom syntax world</p>
             <div className="py-2 w-full flex items-center">
               <Button asChild variant="default" className="shadow-md mr-5">
                 <Link href="/resume">
@@ -38,7 +36,7 @@ export default function Home() {
           <div className=" w-full md:w-2/3 md:justify-end flex flex-col md:flex-row ">
 
             <BentoGrid className="max-w-4xl md:auto-rows-[20rem] m-0">
-              {projects.splice(0, 7).map((item, i) => (
+              {projects.slice(0, 7).map((item, i) => (
                 <BentoGridItem
                   key={i}
                   title={item.title}
