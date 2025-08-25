@@ -13,41 +13,58 @@ export default function Header() {
           <div className="flex items-center text-center">
             <div className="flex-shrink-0">
               <a href="/" className="flex items-center gap-2">
-                <img src="/assets/img/Saymon Hwaier Logo.webp" alt="Saymon Hwaier Portfolio Logo" width={50} />
-                <h1 className="text-xl font-bold text-foreground">Saymon Hwaier</h1>
+                <img
+                  src="/assets/img/Saymon Hwaier Logo.webp"
+                  alt="Saymon Hwaier Portfolio Logo"
+                  width={50}
+                />
+                <h1 className="text-xl font-bold text-foreground">
+                  Saymon Hwaier
+                </h1>
               </a>
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 {menuItems.map((item) => (
-                  <a key={item.id} href={item.link} className="hover:text-primary text-foreground px-3 py-2 rounded-md text-sm font-medium">
+                  <a
+                    key={item.id}
+                    href={item.link}
+                    className="hover:text-primary text-foreground px-3 py-2 rounded-md text-sm font-medium"
+                  >
                     {item.text}
                   </a>
                 ))}
               </div>
             </div>
           </div>
-          <div className="">
-            <ModeToggle/>
-          </div>
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md hover:bg-violet-100 dark:hover:bg-slate-900 focus:outline-none"
-            >
-              {/* Hamburger Icon */}
-              <svg
-                className="h-6 w-6 text-foreground"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+          
+          <div className="flex flex-row space-x-4 items-center">
+            <ModeToggle />
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="inline-flex items-center justify-center p-2 rounded-md hover:bg-violet-100 dark:hover:bg-slate-900 focus:outline-none"
               >
-                <path d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-              </svg>
-            </button>
+                {/* Hamburger Icon */}
+                <svg
+                  className="h-6 w-6 text-foreground"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    d={
+                      isOpen
+                        ? "M6 18L18 6M6 6l12 12"
+                        : "M4 6h16M4 12h16M4 18h16"
+                    }
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -56,7 +73,11 @@ export default function Header() {
       <div className={`${isOpen ? "block" : "hidden"} md:hidden bg-popover`}>
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {menuItems.map((item) => (
-            <a key={item.id} href={item.link} className="hover:text-primary text-foreground block px-3 py-2 rounded-md text-base font-medium">
+            <a
+              key={item.id}
+              href={item.link}
+              className="hover:text-primary text-foreground block px-3 py-2 rounded-md text-base font-medium"
+            >
               {item.text}
             </a>
           ))}

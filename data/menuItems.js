@@ -2,22 +2,22 @@ const menuItems = [
   {
     id: 1,
     text: "Home",
-    link: "https://saymon.vercel.app",
+    link: "/",
   },
   {
     id: 2,
     text: "Projects",
-    link: "#",
+    link: "/projects",
   },
   {
     id: 3,
     text: "Experience",
-    link: "#",
+    link: "#experience",
   },
   {
     id: 4,
     text: "Contact",
-    link: "#",
+    link: "#contact",
   },
 ];
 
