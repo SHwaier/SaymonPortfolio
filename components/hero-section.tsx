@@ -21,7 +21,7 @@ export function HeroSection() {
             <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-primary mb-2 leading-tight">
               Saymon Hwaier
             </h1>
-            <div className="text-2xl md:text-3xl text-accent font-medium mb-4">Full-Stack Developer</div>
+            <div className="text-2xl md:text-3xl text-accent font-medium mb-4">Software Engineer</div>
           </div>
 
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -46,7 +46,7 @@ export function HeroSection() {
               className="px-8 py-3 rounded-full border-2 hover:bg-accent/5 transition-all duration-300 bg-transparent"
               asChild
             >
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="/resume" target="_blank" rel="noopener noreferrer">
                 <Download className="mr-2 h-4 w-4" />
                 Download Resume
               </a>
@@ -90,10 +90,13 @@ export function HeroSection() {
                   <div className="text-sm text-muted-foreground">Projects Completed</div>
                 </div>
                 <div className="bg-card border rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="text-2xl font-bold text-secondary">3+</div>
+                  <div className="text-2xl font-bold text-secondary">5+</div>
                   <div className="text-sm text-muted-foreground">Years Experience</div>
                 </div>
               </div>
+
+
+
             </div>
           </div>
         </div>
