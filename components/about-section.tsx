@@ -9,11 +9,11 @@ export function AboutSection() {
                     <div className="text-center mb-16">
                         <div className="inline-flex items-center gap-2 bg-secondary/10 text-secondary px-4 py-2 rounded-full text-sm font-medium mb-4">
                             <Coffee className="h-4 w-4" />
-                            Getting to know me
+                            Get to know me
                         </div>
                         <h2 className="font-serif text-3xl md:text-5xl font-bold text-primary mb-4">About Me</h2>
                         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                            Passionate developer with a love for creating meaningful digital experiences
+                            Passionate developer with a love for technology.
                         </p>
                     </div>
 
@@ -23,12 +23,12 @@ export function AboutSection() {
                                 <div className="absolute -left-4 top-0 w-1 h-16 bg-accent rounded-full"></div>
                                 <h3 className="font-serif text-2xl font-semibold text-primary mb-4">My Journey</h3>
                                 <p className="text-muted-foreground leading-relaxed mb-4">
-                                    What started as curiosity about "how websites work" has evolved into a deep passion for crafting
+                                    What started as curiosity about "how Minecraft mods worked" has evolved into a deep passion for crafting
                                     digital experiences that make a difference. I believe great code is like poetry—elegant, purposeful,
                                     and impactful.
                                 </p>
                                 <p className="text-muted-foreground leading-relaxed">
-                                    Beyond the screen, I'm an avid reader of tech blogs, a weekend hiker, and someone who genuinely enjoys
+                                    Beyond the screen, I'm an avid reader of tech blogs, a Minecraft player, and someone who genuinely enjoys
                                     debugging (yes, really!). I find inspiration in everything from minimalist design to complex
                                     algorithms.
                                 </p>
