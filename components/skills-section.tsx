@@ -1,45 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Code2, Database, Wrench, Star } from "lucide-react"
-
-const skillCategories = [
-  {
-    title: "Frontend Development",
-    icon: Code2,
-    color: "text-accent",
-    bgColor: "bg-accent/10",
-    skills: [
-      { name: "React/Next.js", level: "Expert", years: "3+" },
-      { name: "TypeScript", level: "Advanced", years: "2+" },
-      { name: "Tailwind CSS", level: "Advanced", years: "2+" },
-      { name: "Vue.js", level: "Intermediate", years: "1+" },
-    ],
-  },
-  {
-    title: "Backend Development",
-    icon: Database,
-    color: "text-secondary",
-    bgColor: "bg-secondary/10",
-    skills: [
-      { name: "Node.js", level: "Expert", years: "3+" },
-      { name: "Python", level: "Advanced", years: "2+" },
-      { name: "PostgreSQL", level: "Advanced", years: "2+" },
-      { name: "MongoDB", level: "Intermediate", years: "1+" },
-    ],
-  },
-  {
-    title: "Tools & DevOps",
-    icon: Wrench,
-    color: "text-accent",
-    bgColor: "bg-accent/10",
-    skills: [
-      { name: "Git/GitHub", level: "Expert", years: "3+" },
-      { name: "Docker", level: "Advanced", years: "1+" },
-      { name: "AWS", level: "Intermediate", years: "1+" },
-      { name: "CI/CD", level: "Intermediate", years: "1+" },
-    ],
-  },
-]
+import { Star } from "lucide-react"
+import { skillCategories, otherSkills, learningSkills } from "@/data/skills"
 
 export function SkillsSection() {
   return (
@@ -62,9 +24,8 @@ export function SkillsSection() {
             return (
               <Card
                 key={index}
-                className={`p-6 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 ${
-                  index === 1 ? "md:mt-8" : ""
-                }`}
+                className={`p-6 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 ${index === 1 ? "md:mt-8" : ""
+                  }`}
               >
                 <CardHeader className="pb-6">
                   <div className="flex items-center gap-3 mb-2">
@@ -94,11 +55,10 @@ export function SkillsSection() {
                         {[...Array(5)].map((_, i) => (
                           <div
                             key={i}
-                            className={`h-1.5 w-full rounded-full transition-all duration-300 ${
-                              i < (skill.level === "Expert" ? 5 : skill.level === "Advanced" ? 4 : 3)
-                                ? `${category.color.replace("text-", "bg-")}`
-                                : "bg-muted"
-                            }`}
+                            className={`h-1.5 w-full rounded-full transition-all duration-300 ${i < (skill.level === "Expert" ? 5 : skill.level === "Advanced" ? 4 : skill.level === "Intermediate" ? 3 : 2)
+                              ? `${category.color.replace("text-", "bg-")}`
+                              : "bg-muted"
+                              }`}
                           />
                         ))}
                       </div>
@@ -113,20 +73,25 @@ export function SkillsSection() {
         <div className="mt-16 text-center">
           <h3 className="font-serif text-xl font-semibold text-primary mb-6">Also experienced with</h3>
           <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-            {[
-              "GraphQL",
-              "Redis",
-              "Prisma",
-              "Supabase",
-              "Vercel",
-              "Figma",
-              "Jest",
-              "Cypress",
-              "Webpack",
-              "Vite",
-              "Sass",
-              "Framer Motion",
-            ].map((tech, index) => (
+            {otherSkills.map((tech, index) => (
+              <Badge
+                key={index}
+                variant="outline"
+                className="px-3 py-1 hover:bg-accent hover:text-accent-foreground transition-colors cursor-default"
+              >
+                {tech}
+              </Badge>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-16 text-center border-2 rounded-2xl p-8 max-w-4xl mx-auto bg-background/50">
+          <div className="mb-6">
+            <h3 className="font-serif text-xl font-semibold text-primary">Learning</h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto">Skills I am currently learning, because tech is awesome.</p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+            {learningSkills.map((tech, index) => (
               <Badge
                 key={index}
                 variant="outline"

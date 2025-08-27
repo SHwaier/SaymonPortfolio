@@ -37,7 +37,7 @@ export function AboutSection() {
                             <div className="flex flex-wrap gap-3 pt-4">
                                 <div className="flex items-center gap-2 bg-accent/10 text-accent px-3 py-1 rounded-full text-sm">
                                     <BookOpen className="h-3 w-3" />
-                                    Tech Blogger
+                                    Tech Enthusiast
                                 </div>
                                 <div className="flex items-center gap-2 bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm">
                                     <Code className="h-3 w-3" />

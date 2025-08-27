@@ -2,36 +2,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink, Github, Code2 } from "lucide-react"
+import { projects } from "@/data/projects"
 
-const projects = [
-  {
-    title: "E-Commerce Platform",
-    description:
-      "Full-stack e-commerce solution with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.",
-    image: "/mockup.jpg",
-    technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "Tailwind CSS"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/alexchen/ecommerce",
-  },
-  {
-    title: "Task Management App",
-    description:
-      "Collaborative project management tool with real-time updates, drag-and-drop functionality, and team collaboration features.",
-    image: "/mockup.jpg",
-    technologies: ["Next.js", "TypeScript", "Prisma", "Socket.io", "shadcn/ui"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/alexchen/taskmanager",
-  },
-  {
-    title: "Weather Analytics Dashboard",
-    description:
-      "Data visualization dashboard that aggregates weather data from multiple APIs and presents insights through interactive charts.",
-    image: "/mockup.jpg",
-    technologies: ["Vue.js", "D3.js", "Express", "MongoDB", "Chart.js"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/alexchen/weather-dashboard",
-  },
-]
 
 export function ProjectsSection() {
   return (
@@ -83,29 +55,33 @@ export function ProjectsSection() {
                     </Badge>
                   ))}
                 </div>
-                <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1 hover:bg-accent hover:text-accent-foreground transition-colors bg-transparent"
-                    asChild
-                  >
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-3 w-3 mr-1" />
-                      Live Demo
-                    </a>
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1 hover:bg-secondary hover:text-secondary-foreground transition-colors bg-transparent"
-                    asChild
-                  >
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-3 w-3 mr-1" />
-                      Code
-                    </a>
-                  </Button>
+                <div className="flex gap-2 justify-between">
+                  {project.liveUrl &&
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="flex-1 hover:bg-accent hover:text-accent-foreground transition-colors bg-transparent"
+                      asChild
+                    >
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="h-3 w-3 mr-1" />
+                        Live Demo
+                      </a>
+                    </Button>
+                  }
+                  {project.githubUrl &&
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="flex-1 hover:bg-secondary hover:text-secondary-foreground transition-colors bg-transparent"
+                      asChild
+                    >
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <Github className="h-3 w-3 mr-1" />
+                        Code
+                      </a>
+                    </Button>
+                  }
                 </div>
               </CardContent>
             </Card>
