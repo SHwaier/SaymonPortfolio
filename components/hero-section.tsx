@@ -101,7 +101,7 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-      <div className="absolute z-10 w-11/12 h-12 mt-4 rounded-t-2xl border-t border-x justify-self-center bg-background"></div>
+      <div className="absolute z-10 w-full h-12 mt-4 rounded-t-2xl border-t border-x justify-self-center bg-background shadow-[0_-8px_24px_-8px_rgba(0,0,0,0.15)]"></div>
     </section>
   )
 }
