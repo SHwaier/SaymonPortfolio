@@ -1,0 +1,7 @@
+# Robots.txt for Saymon's Portfolio Website - DEVELOPMENT
+# Disallow all indexing during development
+User-agent: *
+Disallow: /
+
+# This file is used during development (npm run dev)
+# The production robots.txt allows indexing and is copied during deployment

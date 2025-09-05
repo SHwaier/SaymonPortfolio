@@ -1,5 +1,7 @@
+'use client'
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Download, Code2, Zap, Heart } from "lucide-react"
+import { sendGTMEvent } from '@next/third-parties/google'
 
 export function HeroSection() {
   return (
@@ -46,7 +48,8 @@ export function HeroSection() {
               className="px-8 py-3 rounded-full border-2 hover:bg-accent/5 transition-all duration-300 bg-transparent"
               asChild
             >
-              <a href="/resume" target="_blank" rel="noopener noreferrer">
+              <a onClick={() => sendGTMEvent({ event: 'Download Resume Button Clicked', value: 'xyz' })}
+                href="/resume" target="_blank" rel="noopener noreferrer">
                 <Download className="mr-2 h-4 w-4" />
                 Download Resume
               </a>
@@ -73,7 +76,7 @@ export function HeroSection() {
               <div className="relative">
                 <div className="aspect-square bg-card rounded-2xl border shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-500">
                   <img
-                    src="/assets/img/Saymon - Software Engineer.jpg"
+                    src="/assets/img/Saymon - Software Engineer.webp"
                     alt="Saymon - Software Engineer Profile Picture"
                     className="w-full h-full object-cover"
                     width={959}

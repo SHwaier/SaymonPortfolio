@@ -32,7 +32,10 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${sourceSans.variable} antialiased`}>
       <GoogleTagManager gtmId="GTM-NZNK8HRT" />
       <body>
-        {/* <noscript children={ `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-GTM-NZNK8HRT" height="0" width="0" style="display:none;visibility:hidden"></iframe>` } /> */}
+        {/* Google Tag Manager (noscript)  */}
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZNK8HRT"
+          height="0" width="0" style={{ display: "none", visibility: "hidden" }}></iframe></noscript>
+        {/* End Google Tag Manager (noscript) */}
         {children}</body>
     </html>
   )

@@ -14,7 +14,7 @@ export function Footer() {
               <span className="font-serif text-xl font-bold">Saymon Hwaier</span>
             </div>
             <p className="text-sm text-primary-foreground/80 leading-relaxed">
-              Love creating solutions that bring vlue and happiness to users. Let's build something amazing together!
+              Love creating solutions that bring value and happiness to users. Let's build something amazing together!
             </p>
           </div>
           <div></div>
