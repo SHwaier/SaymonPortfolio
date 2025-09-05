@@ -10,7 +10,8 @@ export const skillCategories = [
             { name: "React/Next.js", level: "Expert", years: "3+" },
             { name: "TypeScript", level: "Advanced", years: "2+" },
             { name: "Tailwind CSS", level: "Expert", years: "3+" },
-            { name: "NEXT.js", level: "Intermediate", years: "1+" },
+            { name: "SCSS", level: "Intermediate", years: "1+" },
+            { name: "UI/UX (Figma)", level: "Advanced", years: "2+" },
         ],
     },
     {
@@ -19,41 +20,36 @@ export const skillCategories = [
         color: "text-secondary",
         bgColor: "bg-secondary/10",
         skills: [
-            { name: "Node.js", level: "Expert", years: "3+" },
-            { name: "Python", level: "Advanced", years: "2+" },
-            { name: "PostgreSQL", level: "Advanced", years: "1+" },
-            { name: "MongoDB", level: "Intermediate", years: "1+" },
+            { name: "Node.js / PHP", level: "Expert", years: "3+" },
+            { name: "C# / .NET Framework", level: "Advanced", years: "5+" },
+            { name: "Java", level: "Advanced", years: "3+" },
+            { name: "SQL / MongoDB", level: "Advanced", years: "1+" },
+            { name: "REST APIs", level: "Advanced", years: "2+" },
         ],
     },
     {
         title: "Tools & DevOps",
         icon: Wrench,
-        color: "text-accent",
-        bgColor: "bg-accent/10",
+        color: "text-primary",
+        bgColor: "bg-primary/10",
         skills: [
             { name: "Git/GitHub", level: "Expert", years: "3+" },
-            { name: "Docker", level: "Advanced", years: "1+" },
-            { name: "GCP", level: "Begginer", years: "1+" },
+            { name: "Linux", level: "Advanced", years: "2+" },
+            { name: "Cloudflare", level: "Intermediate", years: "1+" },
+            { name: "Gradle", level: "Advanced", years: "2+" },
+            { name: "JUnit Testing", level: "Advanced", years: "2+" },
             { name: "CI/CD", level: "Intermediate", years: "1+" },
         ],
     },
 ]
-
 export const otherSkills = [
-    "GraphQL",
-    "Redis",
-    "Prisma",
-    "Supabase",
-    "Vercel",
-    "Figma",
-    "Jest",
-    "Cypress",
-    "Webpack",
-    "Vite",
-    "Sass",
-    "Framer Motion",
+    "WordPress",
+    "NextAuth (OAuth 2.0)",
+    "2FA",
+    "JWT Tokens",
+    "REST APIs",
 ]
-
 export const learningSkills = [
-    "Rust",
+    "Graph Theory",
+    "Design & Analysis of Computer Algorithms"
 ]

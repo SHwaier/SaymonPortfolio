@@ -85,7 +85,7 @@ export function SkillsSection() {
           </div>
         </div>
 
-        <div className="mt-16 text-center border-2 rounded-2xl p-8 max-w-4xl mx-auto bg-background/50">
+        <div className="mt-16 text-center border-2 border-secondary rounded-2xl p-8 max-w-4xl mx-auto bg-background/50">
           <div className="mb-6">
             <h3 className="font-serif text-xl font-semibold text-primary">Learning</h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">Skills I am currently learning, because tech is awesome.</p>
@@ -95,7 +95,7 @@ export function SkillsSection() {
               <Badge
                 key={index}
                 variant="outline"
-                className="px-3 py-1 hover:bg-accent hover:text-accent-foreground transition-colors cursor-default"
+                className="px-3 py-1 hover:bg-accent hover:text-accent-foreground transition-colors cursor-default shadow"
               >
                 {tech}
               </Badge>

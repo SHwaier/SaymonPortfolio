@@ -57,25 +57,27 @@ export function HeroSection() {
             <div className="grid md:grid-cols-3 gap-4 items-center">
               {/* Side accent cards */}
               <div className="hidden md:block space-y-4">
-                <div className="bg-card border rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
+                <p className="bg-card border rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center">
                   <Code2 className="h-8 w-8 text-accent mb-2" />
-                  <div className="text-sm font-medium">Clean Code</div>
-                  <div className="text-xs text-muted-foreground">Maintainable & Scalable</div>
-                </div>
-                <div className="bg-card border rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow ml-8">
+                  <span className="text-sm font-medium">Clean Code</span>
+                  <span className="text-xs text-muted-foreground">Maintainable & Scalable</span>
+                </p>
+                <p className="bg-card border rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow ml-8 flex flex-col items-center">
                   <Zap className="h-8 w-8 text-secondary mb-2" />
-                  <div className="text-sm font-medium">Fast Performance</div>
-                  <div className="text-xs text-muted-foreground">Optimized Solutions</div>
-                </div>
+                  <span className="text-sm font-medium">Fast Performance</span>
+                  <span className="text-xs text-muted-foreground">Optimized Solutions</span>
+                </p>
               </div>
 
               {/* Main image */}
               <div className="relative">
                 <div className="aspect-square bg-card rounded-2xl border shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-500">
                   <img
-                    src="/mockup.jpg"
-                    alt="Code Editor Workspace"
+                    src="/assets/img/Saymon - Software Engineer.jpg"
+                    alt="Saymon - Software Engineer Profile Picture"
                     className="w-full h-full object-cover"
+                    width={959}
+                    height={959}
                   />
                 </div>
                 {/* Floating elements */}
@@ -85,23 +87,15 @@ export function HeroSection() {
 
               {/* Side stats */}
               <div className="hidden md:block space-y-4">
-                <div className="bg-card border rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow mr-8">
-                  <div className="text-2xl font-bold text-accent">50+</div>
-                  <div className="text-sm text-muted-foreground">Projects Completed</div>
-                </div>
-                <div className="bg-card border rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="text-2xl font-bold text-secondary">5+</div>
-                  <div className="text-sm text-muted-foreground">Years Experience</div>
-                </div>
+                <p className="bg-card border rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow mr-8 flex flex-col items-center">
+                  <span className="text-2xl font-bold text-accent">23+</span>
+                  <span className="text-sm text-muted-foreground">Projects Completed</span>
+                </p>
               </div>
-
-
-
             </div>
           </div>
         </div>
       </div>
-      <div className="absolute z-10 w-11/12 h-12 mt-4 rounded-t-2xl border-t border-x justify-self-center bg-background"></div>
     </section>
   )
 }

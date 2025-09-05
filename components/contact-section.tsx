@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, MapPin, Phone, Send } from "lucide-react"
+import { Mail, MapPin, Send } from "lucide-react"
 
 export function ContactSection() {
   return (
@@ -31,10 +31,7 @@ export function ContactSection() {
                 <Mail className="h-5 w-5 text-accent" />
                 <span className="text-muted-foreground">saymon.hwaier@gmail.com</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-accent" />
-                <span className="text-muted-foreground">+1 (226) 345-6700</span>
-              </div>
+              
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-accent" />
                 <span className="text-muted-foreground">Windsor, ON, CA</span>
