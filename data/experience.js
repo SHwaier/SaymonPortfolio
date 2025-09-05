@@ -17,7 +17,6 @@ const experienceData = [
         endDate: "December 2017",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     },
-    // Add more experience objects here if needed
 ];
 
 export default experienceData;

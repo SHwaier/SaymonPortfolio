@@ -81,6 +81,8 @@ export function HeroSection() {
                     className="w-full h-full object-cover"
                     width={959}
                     height={959}
+                    fetchPriority="high"
+                    loading="eager"
                   />
                 </div>
                 {/* Floating elements */}
