@@ -5,9 +5,9 @@ import { sendGTMEvent } from '@next/third-parties/google'
 
 export function HeroSection() {
   return (
-    <section className="hidden md:block relative py-20 md:py-32 overflow-hidden">
+    <section className="relative py-20 md:py-32 overflow-hidden">
       {/* decorative characters overlay */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 text-6xl text-secondary font-mono rotate-12" aria-hidden="true">{"<>"}</div>
         <div className="absolute top-40 right-20 text-4xl text-fuchsia-500 font-mono -rotate-12" aria-hidden="true">{"{ }"}</div>
         <div className="absolute bottom-24 left-3/12 text-5xl text-indigo-600 font-mono rotate-45" aria-hidden="true">{"</>"}</div>
