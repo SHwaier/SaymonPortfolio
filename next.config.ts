@@ -4,14 +4,14 @@ import type { NextConfig } from "next";
 const CSP = [
 	"default-src 'self'",
 	// allow GTM/GA; keep 'unsafe-inline' & 'unsafe-eval' so Next/Dev/HMR don't break
-	"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com",
+	"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com",
 	// Google Fonts
 	"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
 	"font-src 'self' https://fonts.gstatic.com data:",
 	// images + GA/GTM beacons
 	"img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net",
 	// XHR/beacons
-	"connect-src 'self' https://api.microlink.io https://www.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net",
+	"connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net https://static.cloudflareinsights.com",
 	// GTM <noscript> iframe
 	"frame-src 'self' https://www.googletagmanager.com",
 	// clickjacking hardening (CSP) + legacy XFO
