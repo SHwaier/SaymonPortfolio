@@ -7,10 +7,10 @@ export function HeroSection() {
   return (
     <section className="relative py-20 md:py-32 overflow-hidden">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 text-6xl text-accent/10 font-mono rotate-12" aria-hidden="true">{"<>"}</div>
-        <div className="absolute top-40 right-20 text-4xl text-secondary/10 font-mono -rotate-12" aria-hidden="true">{"{ }"}</div>
-        <div className="absolute bottom-32 left-1/4 text-5xl text-accent/10 font-mono rotate-45" aria-hidden="true">{"</>"}</div>
-        <div className="absolute top-1/3 right-10 text-3xl text-secondary/10 font-mono -rotate-6" aria-hidden="true">{"( )"}</div>
+        <div className="absolute top-20 left-10 text-6xl text-accent/25 font-mono rotate-12" aria-hidden="true">{"<>"}</div>
+        <div className="absolute top-40 right-20 text-4xl text-secondary/25 font-mono -rotate-12" aria-hidden="true">{"{ }"}</div>
+        <div className="absolute bottom-32 left-1/4 text-5xl text-accent/25 font-mono rotate-45" aria-hidden="true">{"</>"}</div>
+        <div className="absolute top-1/3 right-10 text-3xl text-secondary/25 font-mono -rotate-6" aria-hidden="true">{"( )"}</div>
       </div>
 
       <div className="container mx-auto px-4">
