@@ -5,14 +5,16 @@ import { sendGTMEvent } from '@next/third-parties/google'
 
 export function HeroSection() {
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden">
+    <section className="hidden md:block relative py-20 md:py-32 overflow-hidden">
+      {/* decorative characters overlay */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 text-6xl text-accent/10 font-mono rotate-12">{"<>"}</div>
-        <div className="absolute top-40 right-20 text-4xl text-secondary/10 font-mono -rotate-12">{"{ }"}</div>
-        <div className="absolute bottom-32 left-1/4 text-5xl text-accent/10 font-mono rotate-45">{"</>"}</div>
-        <div className="absolute top-1/3 right-10 text-3xl text-secondary/10 font-mono -rotate-6">{"( )"}</div>
+        <div className="absolute top-20 left-10 text-6xl text-secondary font-mono rotate-12" aria-hidden="true">{"<>"}</div>
+        <div className="absolute top-40 right-20 text-4xl text-fuchsia-500 font-mono -rotate-12" aria-hidden="true">{"{ }"}</div>
+        <div className="absolute bottom-24 left-3/12 text-5xl text-indigo-600 font-mono rotate-45" aria-hidden="true">{"</>"}</div>
+        <div className="absolute top-1/3 right-10 text-3xl text-rose-500 font-mono -rotate-6" aria-hidden="true">{"( )"}</div>
       </div>
 
+      {/* the actual hero section */}
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-6">
@@ -81,6 +83,8 @@ export function HeroSection() {
                     className="w-full h-full object-cover"
                     width={959}
                     height={959}
+                    fetchPriority="high"
+                    loading="eager"
                   />
                 </div>
                 {/* Floating elements */}
