@@ -16,13 +16,8 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-User-agent: Slurp
-Allow: /
 
-# Block access to admin or private areas (if any)
-Disallow: /admin/
-Disallow: /private/
-Disallow: /api/
+Disallow: /cdn-cgi/
 
 # Allow access to important files
 Allow: /favicon.ico
