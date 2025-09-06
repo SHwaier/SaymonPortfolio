@@ -50,13 +50,13 @@ export function Footer() {
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-primary-foreground/80">© 2025 Saymon Hwaier.</p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <LinkPreview url="https://github.com/SHwaier" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+            <LinkPreview url="https://github.com/SHwaier" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" aria-label="GitHub">
               <Github className="h-5 w-5" />
             </LinkPreview>
-            <LinkPreview url="https://www.linkedin.com/in/saymon-hwaier/" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+            <LinkPreview url="https://www.linkedin.com/in/saymon-hwaier/" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" aria-label="LinkedIn">
               <Linkedin className="h-5 w-5" />
             </LinkPreview>
-            <a href="mailto:saymon.hwaier@gmail.com" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+            <a href="mailto:saymon.hwaier@gmail.com" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" aria-label="Email">
               <Mail className="h-5 w-5" />
             </a>
           </div>

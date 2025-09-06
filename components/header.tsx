@@ -112,6 +112,7 @@ export function Header() {
             variant="ghost"
             size="icon"
             className="md:hidden"
+            id="mobile-menu-toggle"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-controls="mobile-nav"
             aria-expanded={open}
@@ -132,11 +133,12 @@ export function Header() {
       {/* Drawer */}
       <div
         id="mobile-nav"
-        className={`md:hidden fixed top-16 left-0 right-0 border-b bg-background transition-transform duration-200 ${
-          open ? "translate-y-0" : "-translate-y-4 pointer-events-none opacity-0"
-        }`}
+        className={`md:hidden fixed top-16 left-0 right-0 border-b bg-background transition-transform duration-200 ${open ? "translate-y-0" : "-translate-y-4 pointer-events-none opacity-0"
+          }`}
         role="dialog"
         aria-modal="true"
+        aria-labelledby="mobile-menu-toggle"
+        aria-label="Mobile menu"
       >
         <div className="container mx-auto px-4 py-3">
           <nav className="flex flex-col gap-2">

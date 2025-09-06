@@ -20,7 +20,11 @@ export function ContactSection() {
             <CardContent className="space-y-4">
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-accent" />
-                <span className="text-muted-foreground">saymon.hwaier@gmail.com</span>
+                <span className="text-muted-foreground">
+                  <a href="mailto:saymon.hwaier@gmail.com" aria-label="Contact Email">
+                    Saymon.Hwaier@gmail.com
+                  </a>
+                </span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-accent" />
