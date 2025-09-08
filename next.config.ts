@@ -39,6 +39,7 @@ const nextConfig: NextConfig = {
 	},
 	experimental: {
 		useCache: true,
+		inlineCss: true,
 	},
 };
 
