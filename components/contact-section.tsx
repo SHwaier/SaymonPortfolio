@@ -1,9 +1,8 @@
-import { Button } from "@/components/ui/button"
+'use cache'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Mail, MapPin, Send, Linkedin } from "lucide-react"
+import { Mail, MapPin } from "lucide-react"
 
-export function ContactSection() {
+export async function ContactSection() {
   return (
     <section id="contact" className="py-20">
       <div className="container mx-auto px-4">

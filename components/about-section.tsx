@@ -1,7 +1,8 @@
+'use cache'
 import { Card, CardContent } from "@/components/ui/card"
 import { Code, Lightbulb, Users, Zap, Coffee, BookOpen } from "lucide-react"
 
-export function AboutSection() {
+export async function AboutSection() {
     return (
         <>
             <div className="absolute z-10 w-11/12 h-12 mt-4 rounded-t-2xl border-t border-x justify-self-center bg-background"></div>

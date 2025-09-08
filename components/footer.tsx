@@ -1,6 +1,7 @@
+'use cache'
 import { Github, Linkedin, Mail } from "lucide-react"
 
-export function Footer() {
+export async function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground py-12">
       <div className="container mx-auto px-4">
