@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Download, Code2, Zap, Heart } from "lucide-react"
 import { sendGTMEvent } from '@next/third-parties/google'
+import Image from "next/image"
 
 export function HeroSection() {
   return (
@@ -77,7 +78,7 @@ export function HeroSection() {
               {/* Main image */}
               <div className="relative">
                 <div className="aspect-square bg-card rounded-2xl border shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-500">
-                  <img
+                  <Image
                     src="/assets/img/Saymon - Software Engineer.webp"
                     alt="Saymon - Software Engineer Profile Picture"
                     className="w-full h-full object-cover"
@@ -85,6 +86,7 @@ export function HeroSection() {
                     height={959}
                     fetchPriority="high"
                     loading="eager"
+                    placeholder="blur"
                   />
                 </div>
                 {/* Floating elements */}

@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink, Github, Code2 } from "lucide-react"
 import { projects } from "@/data/projects"
-
+import Image from "next/image"
 
 export function ProjectsSection() {
   return (
@@ -28,11 +28,12 @@ export function ProjectsSection() {
                 }`}
             >
               <div className="aspect-video overflow-hidden relative">
-                <img
+                <Image
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   loading="lazy"
+                  placeholder="blur"
                 />
                 <div className="absolute top-4 left-4 w-8 h-8 bg-accent text-accent-foreground rounded-full flex items-center justify-center text-sm font-bold">
                   {index + 1}
