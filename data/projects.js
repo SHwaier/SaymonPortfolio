@@ -12,7 +12,7 @@ export const projects = [
     title: "Work To Calendar",
     description:
       "A Windows app that takes in emailed work schedules parses and converts work shifts into ics files, which then are added to a Google Calendar.",
-    image: "/mockup.webp",
+    image: "/mockup.jpg",
     technologies: ["C#", "Google Calendar API", "LINQ"],
     liveUrl: "",
     githubUrl: "https://github.com/SHwaier/Work-To-Calendar",
@@ -21,7 +21,7 @@ export const projects = [
     title: "Random Pixel Generator",
     description:
       "A Windows Forms application that uses custom user input to generate backgrounds by manipulating data into pixels",
-    image: "/mockup.webp",
+    image: "/mockup.jpg",
     technologies: ["C#", "Material Skin", "XML Serialization"],
     liveUrl: "",
     githubUrl: "https://github.com/SHwaier/RandomPixelImage",
@@ -30,7 +30,7 @@ export const projects = [
     title: "CSharp-DocGenerator",
     description:
       "Takes in C# code, parses comments and relevant method documentation to generate a markdown/HTML file of the documentation",
-    image: "/mockup.webp",
+    image: "/mockup.jpg",
     technologies: ["C#", "Windows Forms"],
     liveUrl: "",
     githubUrl: "https://github.com/SHwaier/CSharp-DocGenerator",

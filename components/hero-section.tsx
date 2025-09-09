@@ -79,7 +79,7 @@ export function HeroSection() {
               <div className="relative">
                 <div className="aspect-square bg-card rounded-2xl border shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-500">
                   <Image
-                    src="/assets/img/Saymon - Software Engineer.webp"
+                    src="/assets/img/Saymon_Software_Engineer.jpg"
                     alt="Saymon - Software Engineer Profile Picture"
                     className="w-full h-full object-cover"
                     width={959}

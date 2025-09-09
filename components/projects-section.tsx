@@ -29,7 +29,7 @@ export function ProjectsSection() {
             >
               <div className="aspect-video overflow-hidden relative">
                 <Image
-                  src={project.image || "/placeholder.svg"}
+                  src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   loading="lazy"
