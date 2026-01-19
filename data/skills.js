@@ -50,6 +50,7 @@ export const otherSkills = [
     "REST APIs",
 ]
 export const learningSkills = [
-    "Graph Theory",
+    "OpenCV",
+    "OpenGL",
     "Design & Analysis of Computer Algorithms"
 ]
