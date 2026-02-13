@@ -18,9 +18,41 @@ const sourceSans = Source_Sans_3({
 })
 
 export const metadata: Metadata = {
-  title: "Saymon - Portfolio",
-  description: "Welcome to my portfolio website! I'm Saymon, a passionate developer specializing in creating beautiful and functional web applications. Explore my projects, skills, and get in touch to collaborate on exciting ventures.",
-
+  title: {
+    default: "Saymon Hwaier | Software Engineer",
+    template: "%s | Saymon Hwaier"
+  },
+  description: "Portfolio of Saymon Hwaier, a Software Engineer crafting digital experiences with React, Next.js, and TypeScript. View my projects and skills.",
+  authors: [{ name: "Saymon Hwaier" }],
+  keywords: ["Software Engineer", "Web Developer", "React", "Next.js", "TypeScript", "Frontend Developer", "Full Stack"],
+  creator: "Saymon Hwaier",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://saymon.ca",
+    title: "Saymon Hwaier | Software Engineer",
+    description: "Crafting digital experiences that matter. Explore my portfolio of projects and skills.",
+    siteName: "SaymonPortfolio",
+    images: [
+      {
+        url: "/og-image.jpg", // Needs to be added to public/
+        width: 1200,
+        height: 630,
+        alt: "Saymon Hwaier Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Saymon Hwaier | Software Engineer",
+    description: "Software Engineer specializing in modern web development.",
+    // creator: "@yourtwitterhandle", // Optional
+    images: ["/og-image.jpg"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+  metadataBase: new URL('https://saymon.ca'),
 }
 
 export default function RootLayout({

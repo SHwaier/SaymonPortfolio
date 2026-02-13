@@ -7,11 +7,12 @@ export const skillCategories = [
         color: "text-accent",
         bgColor: "bg-accent/10",
         skills: [
-            { name: "React/Next.js", level: "Expert", years: "3y+" },
+            { name: "React", level: "Expert", years: "3y+" },
+            { name: "Next.js", level: "Expert", years: "3y+" },
             { name: "TypeScript", level: "Advanced", years: "2y+" },
+            { name: "JavaScript", level: "Expert", years: "4y+" },
             { name: "Tailwind CSS", level: "Expert", years: "3y+" },
-            { name: "SCSS", level: "Intermediate", years: "1y+" },
-            { name: "UI/UX (Figma)", level: "Advanced", years: "2y+" },
+            { name: "HTML/CSS", level: "Expert", years: "5y+" },
         ],
     },
     {
@@ -20,11 +21,12 @@ export const skillCategories = [
         color: "text-secondary",
         bgColor: "bg-secondary/10",
         skills: [
-            { name: "Node.js / PHP", level: "Expert", years: "3y+" },
-            { name: "C# / .NET Framework", level: "Advanced", years: "5y+" },
+            { name: "Node.js", level: "Advanced", years: "3y+" },
+            { name: "C#", level: "Advanced", years: "4y+" },
             { name: "Java", level: "Advanced", years: "3y+" },
-            { name: "SQL / MongoDB", level: "Advanced", years: "1y+" },
-            { name: "REST APIs", level: "Advanced", years: "2y+" },
+            { name: "PHP", level: "Intermediate", years: "2y+" },
+            { name: "SQL", level: "Intermediate", years: "2y+" },
+            { name: "MongoDB", level: "Intermediate", years: "1y+" },
         ],
     },
     {
@@ -33,23 +35,23 @@ export const skillCategories = [
         color: "text-primary",
         bgColor: "bg-primary/10",
         skills: [
-            { name: "Git/GitHub", level: "Expert", years: "3y+" },
-            { name: "Linux", level: "Advanced", years: "2y+" },
+            { name: "Git/GitHub", level: "Expert", years: "4y+" },
+            { name: "Linux", level: "Advanced", years: "3y+" },
+            { name: "Figma", level: "Intermediate", years: "2y+" },
             { name: "Cloudflare", level: "Intermediate", years: "1y+" },
-            { name: "Gradle", level: "Advanced", years: "2y+" },
-            { name: "JUnit Testing", level: "Advanced", years: "2y+" },
-            { name: "CI/CD", level: "Intermediate", years: "1y+" },
+            { name: "Gradle", level: "Intermediate", years: "2y+" },
+            { name: "JUnit Testing", level: "Intermediate", years: "2y+" },
         ],
     },
 ]
+
 export const otherSkills = [
-    "WordPress",
-    "NextAuth (OAuth 2.0)",
-    "2FA",
-    "JWT Tokens",
     "REST APIs",
+    "JWT Tokens",
+    "C",
+    "SceneBuilder",
 ]
+
 export const learningSkills = [
-    "Graph Theory",
-    "Design & Analysis of Computer Algorithms"
+    // Open for future learning
 ]

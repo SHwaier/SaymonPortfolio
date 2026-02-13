@@ -1,109 +1,213 @@
-'use client'
+"use client"
+
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Download, Code2, Zap, Heart } from "lucide-react"
+import { ArrowRight, Download, Code2, Zap, Heart, Terminal } from "lucide-react"
 import { sendGTMEvent } from '@next/third-parties/google'
-import Image from "next/image"
+import { motion, useScroll, useTransform, Variants } from "framer-motion"
+import { useRef } from "react"
 
 export function HeroSection() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  })
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  }
+
+  const itemVariants: Variants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    },
+  }
+
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden">
-      {/* decorative characters overlay */}
-      <div className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 text-6xl text-secondary font-mono rotate-12" aria-hidden="true">{"<>"}</div>
-        <div className="absolute top-40 right-20 text-4xl text-fuchsia-500 font-mono -rotate-12" aria-hidden="true">{"{ }"}</div>
-        <div className="absolute bottom-24 left-3/12 text-5xl text-indigo-600 font-mono rotate-45" aria-hidden="true">{"</>"}</div>
-        <div className="absolute top-1/3 right-10 text-3xl text-rose-500 font-mono -rotate-6" aria-hidden="true">{"( )"}</div>
+    <section ref={containerRef} className="relative py-20 md:py-32 overflow-hidden min-h-[90vh] flex items-center justify-center">
+      {/* Dynamic Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-[30rem] h-[30rem] bg-secondary/5 rounded-full blur-3xl animate-pulse delay-1000" />
+        
+        {/* Floating Code Symbols */}
+        <motion.div 
+            initial={{ opacity: 0, rotate: -10 }} 
+            animate={{ opacity: 1, rotate: 10, y: [0, -20, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            className="hidden md:block absolute top-20 left-10 text-6xl text-muted-foreground/10 font-mono" aria-hidden="true"
+        >
+            {"<React />"}
+        </motion.div>
+        
+        <motion.div 
+            initial={{ opacity: 0, rotate: 10 }}
+            animate={{ opacity: 1, rotate: -10, y: [0, 20, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="hidden md:block absolute bottom-24 right-10 text-5xl text-muted-foreground/10 font-mono" aria-hidden="true"
+        >
+            {"{ code }"}
+        </motion.div>
       </div>
 
-      {/* the actual hero section */}
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="mb-6">
-            <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-4">
-              <Zap className="h-4 w-4" />
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div 
+            style={{ y, opacity }}
+            className="max-w-4xl mx-auto text-center"
+        >
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="mb-8"
+          >
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 text-accent px-4 py-2 rounded-full text-sm font-medium mb-6 hover:bg-accent/20 transition-colors cursor-default">
+              <Zap className="h-4 w-4 fill-current" />
               Available for new opportunities
-            </div>
-            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-primary mb-2 leading-tight">
-              Saymon Hwaier
-            </h1>
-            <div className="text-2xl md:text-3xl text-accent font-medium mb-4">Software Engineer</div>
-          </div>
+            </motion.div>
+            
+            <motion.h1 variants={itemVariants} className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4 leading-tight">
+              <span className="text-foreground">Saymon </span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50">Hwaier</span>
+            </motion.h1>
+            
+            <motion.div variants={itemVariants} className="text-2xl md:text-3xl font-medium mb-6 text-muted-foreground flex justify-center items-center gap-3">
+                 <Terminal className="w-6 h-6 text-accent" />
+                 <span className="text-secondary-foreground">Software Engineer</span>
+            </motion.div>
 
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-            I build digital experiences that matter. From elegant interfaces to robust backends, I craft solutions that
-            users <Heart className="inline h-5 w-5 text-red-500" /> and businesses trust.
-          </p>
+            <motion.p variants={itemVariants} className="text-lg md:text-xl text-muted-foreground/80 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Crafting digital experiences that merge <span className="text-foreground font-semibold">aesthetics</span> with <span className="text-foreground font-semibold">performance</span>. 
+              Building the web of tomorrow, one component at a time.
+            </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-            <Button
-              size="lg"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-              asChild
-            >
-              <a href="#projects">
-                View My Work
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="px-8 py-3 rounded-full border-2 hover:bg-accent/5 transition-all duration-300 bg-transparent"
-              asChild
-            >
-              <a onClick={() => sendGTMEvent({ event: 'Download Resume Button Clicked', value: 'xyz' })}
-                href="/resume" target="_blank" rel="noopener noreferrer">
-                <Download className="mr-2 h-4 w-4" />
-                Download Resume
-              </a>
-            </Button>
-          </div>
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+              <Button
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg rounded-full shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 group"
+                asChild
+              >
+                <a href="#projects">
+                  View My Work
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="px-8 py-6 text-lg rounded-full border-2 hover:bg-muted/50 transition-all duration-300 backdrop-blur-sm"
+                asChild
+              >
+                <a 
+                    onClick={() => sendGTMEvent({ event: 'Download Resume Button Clicked', value: 'hero_section' })}
+                    href="/resume" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                >
+                  <Download className="mr-2 h-5 w-5" />
+                  Download Resume
+                </a>
+              </Button>
+            </motion.div>
+          </motion.div>
 
-          <div className="relative max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-4 items-center">
-              {/* Side accent cards */}
-              <div className="hidden md:block space-y-4">
-                <p className="bg-card border rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center">
-                  <Code2 className="h-8 w-8 text-accent mb-2" />
-                  <span className="text-sm font-medium">Clean Code</span>
-                  <span className="text-xs text-muted-foreground">Maintainable & Scalable</span>
-                </p>
-                <p className="bg-card border rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow ml-8 flex flex-col items-center">
-                  <Zap className="h-8 w-8 text-secondary mb-2" />
-                  <span className="text-sm font-medium">Fast Performance</span>
-                  <span className="text-xs text-muted-foreground">Optimized Solutions</span>
-                </p>
-              </div>
-
-              {/* Main image */}
-              <div className="relative">
-                <div className="aspect-square bg-card rounded-2xl border shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-500">
-                  <Image
-                    src="/assets/img/Saymon_Software_Engineer.jpg"
-                    alt="Saymon - Software Engineer Profile Picture"
-                    className="w-full h-full object-cover"
-                    width={959}
-                    height={959}
-                    fetchPriority="high"
-                    loading="eager"
-                    placeholder="blur"
-                  />
+          <div className="relative max-w-5xl mx-auto mt-12">
+            <div className="grid md:grid-cols-3 gap-8 items-center">
+              {/* Left Floating Card */}
+              <motion.div 
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+                className="hidden md:block"
+              >
+                <div className="bg-card/50 backdrop-blur-md border border-border/50 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group">
+                  <div className="w-12 h-12 bg-accent/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <Code2 className="h-6 w-6 text-accent" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-1">Clean Architecture</h3>
+                  <p className="text-sm text-muted-foreground">Scalable, maintainable, and robust codebases.</p>
                 </div>
-                {/* Floating elements */}
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-accent rounded-full animate-pulse"></div>
-                <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-secondary rounded-full animate-pulse delay-1000"></div>
-              </div>
+              </motion.div>
 
-              {/* Side stats */}
-              <div className="hidden md:block space-y-4">
-                <p className="bg-card border rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow mr-8 flex flex-col items-center">
-                  <span className="text-2xl font-bold text-accent">23+</span>
-                  <span className="text-sm text-muted-foreground">Projects Completed</span>
-                </p>
-              </div>
+              {/* Center Image */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5, duration: 0.8, type: "spring" }}
+                className="relative z-10"
+              >
+                <div className="relative aspect-square max-w-[320px] mx-auto">
+                    <div className="absolute inset-0 bg-gradient-to-tr from-primary to-secondary rounded-[2rem] opacity-20 blur-2xl animate-pulse" />
+                    <motion.div 
+                        animate={{ y: [0, -10, 0] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        className="relative bg-card rounded-[2rem] overflow-hidden border-2 border-border/50 shadow-2xl"
+                    >
+                      <img
+                        src="/assets/img/Saymon_Software_Engineer.jpg"
+                        alt="Saymon Hwaier"
+                        className="w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-700"
+                        width={400}
+                        height={400}
+                        loading="eager"
+                      />
+                    </motion.div>
+                    
+                    {/* Floating Badge */}
+                    <motion.div 
+                        animate={{ y: [0, 10, 0] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                        className="absolute -bottom-6 -right-6 bg-background/80 backdrop-blur-md border border-border/50 p-3 rounded-2xl shadow-xl flex items-center gap-3"
+                    >
+                        <div className="flex -space-x-3">
+                            {[1, 2, 3].map((i) => (
+                                <div key={i} className="w-8 h-8 rounded-full bg-muted border-2 border-background flex items-center justify-center text-[10px] font-bold">
+                                    {i === 1 ? 'JS' : i === 2 ? 'TS' : 'RC'}
+                                </div>
+                            ))}
+                        </div>
+                        <div className="text-xs font-bold pr-2">
+                            Top Tech<br/>Stack
+                        </div>
+                    </motion.div>
+                </div>
+              </motion.div>
+
+              {/* Right Floating Card */}
+              <motion.div 
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.0, duration: 0.8 }}
+                className="hidden md:block"
+              >
+                <div className="bg-card/50 backdrop-blur-md border border-border/50 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group">
+                  <div className="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <Zap className="h-6 w-6 text-secondary" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-1">High Performance</h3>
+                  <p className="text-sm text-muted-foreground">Optimized for speed, SEO, and user experience.</p>
+                </div>
+              </motion.div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

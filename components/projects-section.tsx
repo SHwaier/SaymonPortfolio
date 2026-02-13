@@ -1,111 +1,176 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github, Code2 } from "lucide-react"
+import { ExternalLink, Github, Code2, Play } from "lucide-react"
 import { projects } from "@/data/projects"
-import Image from "next/image"
+import { motion } from "framer-motion"
+import { cn } from "@/lib/utils"
 
 export function ProjectsSection() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    },
+  }
+
   return (
-    <section id="projects" className="py-20 bg-muted/30">
+    <section id="projects" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-4">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-4"
+          >
             <Code2 className="h-4 w-4" />
             Recent Work
-          </div>
-          <h2 className="font-serif text-3xl md:text-5xl font-bold text-primary mb-4">Featured Projects</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Each project tells a story of problem-solving, creativity, and technical excellence.
-          </p>
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="font-serif text-3xl md:text-5xl font-bold text-foreground mb-4"
+          >
+            Featured Projects
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-lg text-muted-foreground max-w-2xl mx-auto"
+          >
+            A collection of applications that solve real-world problems with clean code and modern architecture.
+          </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto auto-rows-[minmax(300px,auto)]"
+        >
           {projects.map((project, index) => (
-            <Card
+            <motion.div
               key={index}
-              className={`overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group ${index === 1 ? "md:mt-8" : ""
-                }`}
+              variants={itemVariants}
+              className={cn(
+                "group relative overflow-hidden rounded-2xl border bg-background/50 backdrop-blur-sm shadow-sm transition-all hover:shadow-xl hover:-translate-y-1",
+                project.size === "large" ? "md:col-span-2 md:row-span-2 min-h-[400px]" : "col-span-1"
+              )}
             >
-              <div className="aspect-video overflow-hidden relative">
-                <Image
-                  src={project.image}
+              {/* Image Background */}
+              <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent z-10" />
+                <img
+                  src={project.image || "/placeholder.svg"}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  loading="lazy"
-                  placeholder="blur"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute top-4 left-4 w-8 h-8 bg-accent text-accent-foreground rounded-full flex items-center justify-center text-sm font-bold">
-                  {index + 1}
+                
+                {/* Video Preview Overlay (Future Feature) */}
+                {/* <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-0">
+                    <Play className="w-12 h-12 text-white fill-white opacity-80" />
+                </div> */}
+              </div>
+
+              {/* Content Content - Positioned at bottom */}
+              <div className="absolute inset-0 z-20 flex flex-col justify-end p-6">
+                <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  <div className="flex items-start justify-between mb-2">
+                    <h3 className={cn(
+                        "font-serif font-bold text-foreground group-hover:text-accent transition-colors",
+                         project.size === "large" ? "text-3xl" : "text-xl"
+                    )}>
+                      {project.title}
+                    </h3>
+                  </div>
+                  
+                  <p className={cn(
+                      "text-muted-foreground mb-4 line-clamp-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100",
+                       project.size === "large" ? "text-lg" : "text-sm"
+                  )}>
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.slice(0, project.size === "large" ? 6 : 3).map((tech, techIndex) => (
+                      <Badge
+                        key={techIndex}
+                        variant="secondary"
+                        className="bg-accent/10 text-accent hover:bg-accent hover:text-accent-foreground border-accent/20 backdrop-blur-md"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                    {project.technologies.length > (project.size === "large" ? 6 : 3) && (
+                        <Badge variant="outline" className="text-xs bg-background/50">+{(project.technologies.length - (project.size === "large" ? 6 : 3))}</Badge>
+                    )}
+                  </div>
+
+                  <div className="flex gap-3 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-200">
+                    {project.liveUrl && (
+                      <Button size="sm" className="bg-foreground text-background hover:bg-foreground/90 rounded-full" asChild>
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4 mr-2" /> Live Demo
+                        </a>
+                      </Button>
+                    )}
+                    {project.githubUrl && (
+                      <Button size="sm" variant="outline" className="bg-background/50 backdrop-blur-md border-foreground/20 hover:bg-background/80 rounded-full" asChild>
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-2" /> Source
+                        </a>
+                      </Button>
+                    )}
+                  </div>
                 </div>
               </div>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-xl font-serif group-hover:text-accent transition-colors">
-                  {project.title}
-                </CardTitle>
-                <CardDescription className="text-sm leading-relaxed">{project.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, techIndex) => (
-                    <Badge
-                      key={techIndex}
-                      variant="secondary"
-                      className="text-xs hover:bg-accent hover:text-accent-foreground transition-colors cursor-default"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-                <div className="flex gap-2 justify-between">
-                  {project.liveUrl &&
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="flex-1 hover:bg-accent hover:text-accent-foreground transition-colors bg-transparent"
-                      asChild
-                    >
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="h-3 w-3 mr-1" />
-                        Live Demo
-                      </a>
-                    </Button>
-                  }
-                  {project.githubUrl &&
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="flex-1 hover:bg-secondary hover:text-secondary-foreground transition-colors bg-transparent"
-                      asChild
-                    >
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                        <Github className="h-3 w-3 mr-1" />
-                        Code
-                      </a>
-                    </Button>
-                  }
-                </div>
-              </CardContent>
-            </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="text-center mt-16">
-          <div className="inline-flex flex-col items-center gap-4">
-            <div className="text-sm text-muted-foreground">Want to see more?</div>
-            <Button
-              variant="outline"
-              size="lg"
-              className="px-8 py-3 rounded-full border-2 hover:bg-accent hover:text-accent-foreground hover:border-accent transition-all duration-300 bg-transparent"
-              asChild
-            >
-              <a href="https://github.com/SHwaier" target="_blank" rel="noopener noreferrer">
-                <Github className="mr-2 h-4 w-4" />
-                View All Projects on GitHub
-              </a>
-            </Button>
-          </div>
-        </div>
+        <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="text-center mt-16"
+        >
+          <Button
+            variant="outline"
+            size="lg"
+            className="px-8 py-6 rounded-full border-2 hover:bg-accent hover:text-accent-foreground transition-all duration-300 group"
+            asChild
+          >
+            <a href="https://github.com/SHwaier" target="_blank" rel="noopener noreferrer">
+              <Github className="mr-2 h-5 w-5" />
+              View All Projects on GitHub
+              <ExternalLink className="ml-2 h-4 w-4 opacity-50 group-hover:opacity-100 transition-opacity" />
+            </a>
+          </Button>
+        </motion.div>
       </div>
     </section>
   )
