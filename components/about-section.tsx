@@ -6,7 +6,7 @@ import { Code, Lightbulb, Users, Zap, Coffee, BookOpen, Briefcase, Calendar, Map
 import experienceData from "@/data/experience"
 import { motion } from "framer-motion"
 
-export async function AboutSection() {
+export function AboutSection() {
     return (
         <section id="about" className="py-20 bg-background relative overflow-hidden">
             {/* Decorative background element */}
