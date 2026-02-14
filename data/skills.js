@@ -4,8 +4,9 @@ export const skillCategories = [
     {
         title: "Frontend Development",
         icon: Code2,
-        color: "text-accent",
-        bgColor: "bg-accent/10",
+        iconColor: "text-blue-600 dark:text-blue-400",
+        bgColor: "bg-blue-100 dark:bg-blue-900/20",
+        progressColor: "bg-blue-600 dark:bg-blue-500",
         skills: [
             { name: "React", level: "Expert", years: "3y+" },
             { name: "Next.js", level: "Expert", years: "3y+" },
@@ -18,8 +19,9 @@ export const skillCategories = [
     {
         title: "Backend Development",
         icon: Database,
-        color: "text-secondary",
-        bgColor: "bg-secondary/10",
+        iconColor: "text-emerald-600 dark:text-emerald-400",
+        bgColor: "bg-emerald-100 dark:bg-emerald-900/20",
+        progressColor: "bg-emerald-600 dark:bg-emerald-500",
         skills: [
             { name: "Node.js", level: "Advanced", years: "3y+" },
             { name: "C#", level: "Advanced", years: "4y+" },
@@ -32,8 +34,9 @@ export const skillCategories = [
     {
         title: "Tools & DevOps",
         icon: Wrench,
-        color: "text-primary",
-        bgColor: "bg-primary/10",
+        iconColor: "text-purple-600 dark:text-purple-400",
+        bgColor: "bg-purple-100 dark:bg-purple-900/20",
+        progressColor: "bg-purple-600 dark:bg-purple-500",
         skills: [
             { name: "Git/GitHub", level: "Expert", years: "4y+" },
             { name: "Linux", level: "Advanced", years: "3y+" },
@@ -53,5 +56,7 @@ export const otherSkills = [
 ]
 
 export const learningSkills = [
-    // Open for future learning
+    "Docker",
+    "OpenCV",
+    "OpenGL",
 ]

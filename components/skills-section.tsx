@@ -46,7 +46,7 @@ export function SkillsSection() {
             className="text-center mb-16"
         >
           <div className="inline-flex items-center gap-2 bg-background border border-border shadow-sm text-foreground px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+            <Star className="h-4 w-4 text-yellow-600 dark:text-yellow-400 fill-yellow-600 dark:fill-yellow-400" />
             <span className="text-muted-foreground">Technical Expertise</span>
           </div>
           <h2 className="font-serif text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60 mb-6">
@@ -69,11 +69,11 @@ export function SkillsSection() {
             return (
               <motion.div key={index} variants={itemVariants} className="h-full">
                 <Card className="h-full border-border/50 bg-background/50 backdrop-blur-sm hover:border-primary/50 transition-colors duration-300 shadow-sm hover:shadow-md group overflow-hidden">
-                    <div className={`absolute top-0 left-0 w-1 h-full ${category.color.replace('text-', 'bg-')}/20 group-hover:${category.color.replace('text-', 'bg-')} transition-colors duration-300`} />
+                    <div className={`absolute top-0 left-0 w-1 h-full ${category.progressColor}/20 group-hover:${category.progressColor} transition-colors duration-300`} />
                   <CardHeader className="pb-4">
                     <div className="flex items-center gap-4">
                       <div className={`w-12 h-12 ${category.bgColor} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                        <IconComponent className={`h-6 w-6 ${category.color}`} />
+                        <IconComponent className={`h-6 w-6 ${category.iconColor}`} />
                       </div>
                       <CardTitle className="text-xl font-serif">{category.title}</CardTitle>
                     </div>
@@ -95,7 +95,7 @@ export function SkillsSection() {
                                 whileInView={{ width: `${(skill.level === "Expert" ? 100 : skill.level === "Advanced" ? 80 : skill.level === "Intermediate" ? 60 : 40)}%` }}
                                 transition={{ duration: 1, delay: 0.2 + (skillIndex * 0.1) }}
                                 viewport={{ once: true }}
-                                className={`h-full rounded-full ${category.color.replace("text-", "bg-")}`}
+                                className={`h-full rounded-full ${category.progressColor}`}
                             />
                         </div>
                       </div>
