@@ -1,13 +1,16 @@
--- Seed Additional Skills and Learning
+-- Clean up incorrect data first
+DELETE FROM public.skills 
+WHERE category IN ('Additional Tools', 'Current Learning');
+
+-- Seed Additional Skills and Learning (Corrected)
 INSERT INTO public.skills (category, name, level, years)
 VALUES
   -- Additional Tools
-  ('Additional Tools', 'VS Code', 'Intermediate', '2y+'),
-  ('Additional Tools', 'Postman', 'Intermediate', '2y+'),
-  ('Additional Tools', 'Jira', 'Intermediate', '1y+'),
-  ('Additional Tools', 'Slack', 'Intermediate', '2y+'),
+  ('Additional Tools', 'REST APIs', 'Intermediate', '2y+'),
+  ('Additional Tools', 'JWT Tokens', 'Intermediate', '2y+'),
+  ('Additional Tools', 'C', 'Intermediate', '1y+'),
   
   -- Current Learning
-  ('Current Learning', 'Rust', 'Beginner', 'N/A'),
-  ('Current Learning', 'GraphQL', 'Beginner', 'N/A'),
-  ('Current Learning', 'Docker', 'Beginner', 'N/A');
+  ('Current Learning', 'Docker', 'Beginner', 'N/A'),
+  ('Current Learning', 'OpenCV', 'Beginner', 'N/A'),
+  ('Current Learning', 'OpenGL', 'Beginner', 'N/A');
