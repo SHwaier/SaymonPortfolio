@@ -2,12 +2,16 @@
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github, Code2, Play } from "lucide-react"
-import { projects } from "@/data/projects"
+import { ExternalLink, Github, Code2 } from "lucide-react"
 import { motion, Variants } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { Project } from "@/types"
 
-export function ProjectsSection() {
+interface ProjectsSectionProps {
+  projects: Project[]
+}
+
+export function ProjectsSection({ projects }: ProjectsSectionProps) {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -73,7 +77,7 @@ export function ProjectsSection() {
         >
           {projects.map((project, index) => (
             <motion.div
-              key={index}
+              key={project.id || index}
               variants={itemVariants}
               className={cn(
                 "group relative overflow-hidden rounded-2xl border bg-background/50 backdrop-blur-sm shadow-sm transition-all hover:shadow-xl hover:-translate-y-1",
@@ -88,11 +92,6 @@ export function ProjectsSection() {
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                
-                {/* Video Preview Overlay (Future Feature) */}
-                {/* <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center z-0">
-                    <Play className="w-12 h-12 text-white fill-white opacity-80" />
-                </div> */}
               </div>
 
               {/* Content Content - Positioned at bottom */}
@@ -100,16 +99,16 @@ export function ProjectsSection() {
                 <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                   <div className="flex items-start justify-between mb-2">
                     <h3 className={cn(
-                        "font-serif font-bold text-foreground group-hover:text-accent transition-colors",
-                         project.size === "large" ? "text-3xl" : "text-xl"
+                      "font-serif font-bold text-foreground group-hover:text-accent transition-colors",
+                      project.size === "large" ? "text-3xl" : "text-xl"
                     )}>
                       {project.title}
                     </h3>
                   </div>
-                  
+
                   <p className={cn(
-                      "text-muted-foreground mb-4 line-clamp-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100",
-                       project.size === "large" ? "text-lg" : "text-sm"
+                    "text-muted-foreground mb-4 line-clamp-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100",
+                    project.size === "large" ? "text-lg" : "text-sm"
                   )}>
                     {project.description}
                   </p>
@@ -125,21 +124,21 @@ export function ProjectsSection() {
                       </Badge>
                     ))}
                     {project.technologies.length > (project.size === "large" ? 6 : 3) && (
-                        <Badge variant="outline" className="text-xs bg-background/50">+{(project.technologies.length - (project.size === "large" ? 6 : 3))}</Badge>
+                      <Badge variant="outline" className="text-xs bg-background/50">+{(project.technologies.length - (project.size === "large" ? 6 : 3))}</Badge>
                     )}
                   </div>
 
                   <div className="flex gap-3 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-200">
-                    {project.liveUrl && (
+                    {project.live_url && (
                       <Button size="sm" className="bg-foreground text-background hover:bg-foreground/90 rounded-full" asChild>
-                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                        <a href={project.live_url} target="_blank" rel="noopener noreferrer">
                           <ExternalLink className="h-4 w-4 mr-2" /> Live Demo
                         </a>
                       </Button>
                     )}
-                    {project.githubUrl && (
+                    {project.github_url && (
                       <Button size="sm" variant="outline" className="bg-background/50 backdrop-blur-md border-foreground/20 hover:bg-background/80 rounded-full" asChild>
-                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <a href={project.github_url} target="_blank" rel="noopener noreferrer">
                           <Github className="h-4 w-4 mr-2" /> Source
                         </a>
                       </Button>
@@ -152,11 +151,11 @@ export function ProjectsSection() {
         </motion.div>
 
         <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="text-center mt-16"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="text-center mt-16"
         >
           <Button
             variant="outline"

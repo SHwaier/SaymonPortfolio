@@ -29,9 +29,9 @@ This document outlines the strategic plan for evolving SaymonPortfolio from a st
 - [x] **Migration Endpoint**: Create API to seed DB from existing JSON data.
 
 ### 🔌 API Development
-- [ ] **API Utility**: `lib/supabase.ts`.
-- [ ] **Fetch Data**: Replace static imports with Supabase queries in components.
-- [ ] **Caching**: Implement Revalidation/ISR.
+- [x] **API Utility**: `lib/supabase.ts`.
+- [x] **Fetch Data**: Replace static imports with Supabase queries in components.
+- [x] **Caching**: Implement Revalidation/ISR.
 
 ---
 
@@ -39,7 +39,7 @@ This document outlines the strategic plan for evolving SaymonPortfolio from a st
 **Goal:** Create a secure admin interface to manage portfolio content.
 
 ### 🛠️ Admin Interface
-- [ ] **Auth**: Integrate NextAuth.js.
+- [ ] **Auth**: Integrate NextAuth.js (or Supabase Auth).
 - [ ] **Dashboard**: Create admin layout.
 - [ ] **Editors**: CRUD for Projects, Skills, Experience.
 
@@ -51,5 +51,5 @@ This document outlines the strategic plan for evolving SaymonPortfolio from a st
 - [ ] **Analytics**.
 
 ## 🕒 Development Log & Status
-- **Current Phase**: Phase 2 (Dynamic Data Layer)
-- **Last Updated**: 2026-02-13
+- **Current Phase**: Phase 3 (Admin Dashboard)
+- **Last Updated**: 2026-02-14
