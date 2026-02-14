@@ -78,9 +78,9 @@ export function AboutSection() {
 
                             <div className="flex flex-wrap gap-3">
                                 {[
-                                    { icon: Code, label: "Full Stack Dev", color: "bg-blue-500/10 text-blue-500" },
-                                    { icon: Users, label: "Mentoring", color: "bg-green-500/10 text-green-500" },
-                                    { icon: Zap, label: "Open Source", color: "bg-yellow-500/10 text-yellow-500" },
+                                    { icon: Code, label: "Full Stack Dev", className: "bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400" },
+                                    { icon: Users, label: "Mentoring", className: "bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400" },
+                                    { icon: Zap, label: "Open Source", className: "bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400" },
                                 ].map((tag, i) => (
                                     <motion.div 
                                         key={i}
@@ -88,7 +88,7 @@ export function AboutSection() {
                                         whileInView={{ opacity: 1, scale: 1 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: 0.3 + (i * 0.1) }}
-                                        className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${tag.color}`}
+                                        className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${tag.className}`}
                                     >
                                         <tag.icon className="h-4 w-4" />
                                         {tag.label}
@@ -100,9 +100,9 @@ export function AboutSection() {
                         {/* Personality Cards */}
                         <div className="lg:col-span-2 space-y-4">
                             {[
-                                { title: "Craft & Quality", desc: "Every line of code matters. I write with future maintainers in mind.", icon: Code, color: "text-accent", bg: "bg-accent/10" },
-                                { title: "Innovation", desc: "Always exploring new technologies and pushing boundaries.", icon: Lightbulb, color: "text-secondary", bg: "bg-secondary/10" },
-                                { title: "Performance", desc: "Speed and efficiency are not optional—they're essential.", icon: Zap, color: "text-orange-500", bg: "bg-orange-500/10" }
+                                { title: "Craft & Quality", desc: "Every line of code matters. I write with future maintainers in mind.", icon: Code, className: "bg-accent/10 text-accent dark:bg-accent/20 dark:text-accent-foreground" },
+                                { title: "Innovation", desc: "Always exploring new technologies and pushing boundaries.", icon: Lightbulb, className: "bg-secondary/10 text-secondary dark:bg-secondary/20 dark:text-secondary-foreground" },
+                                { title: "Performance", desc: "Speed and efficiency are not optional—they're essential.", icon: Zap, className: "bg-orange-100 text-orange-700 dark:bg-orange-900/20 dark:text-orange-400" }
                             ].map((card, index) => (
                                 <motion.div
                                     key={index}
@@ -113,8 +113,8 @@ export function AboutSection() {
                                 >
                                     <Card className="p-4 hover:shadow-md transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
                                         <div className="flex items-start gap-4">
-                                            <div className={`w-10 h-10 ${card.bg} rounded-lg flex items-center justify-center flex-shrink-0`}>
-                                                <card.icon className={`h-5 w-5 ${card.color}`} />
+                                            <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${card.className}`}>
+                                                <card.icon className="h-5 w-5" />
                                             </div>
                                             <div>
                                                 <h4 className="font-semibold text-foreground mb-1">{card.title}</h4>
