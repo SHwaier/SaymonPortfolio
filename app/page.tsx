@@ -105,10 +105,26 @@ async function getSkills(): Promise<SkillCategory[]> {
   return categories
 }
 
+async function getSimpleSkills(category: string): Promise<string[]> {
+  const { data, error } = await supabase
+    .from('skills')
+    .select('name')
+    .eq('category', category)
+
+  if (error) {
+    console.error(`Error fetching ${category}:`, error)
+    return []
+  }
+
+  return data.map((s: { name: string }) => s.name)
+}
+
 export default async function HomePage() {
   const projects = await getProjects()
   const experience = await getExperience()
   const skillCategories = await getSkills()
+  const otherSkills = await getSimpleSkills('Additional Tools')
+  const learningSkills = await getSimpleSkills('Current Learning')
 
   return (
     <main className="min-h-screen">
@@ -116,7 +132,11 @@ export default async function HomePage() {
       <HeroSection />
       <DynamicAboutSection experience={experience} />
       <DynamicProjectsSection projects={projects} />
-      <DynamicSkillsSection skillCategories={skillCategories} />
+      <DynamicSkillsSection
+        skillCategories={skillCategories}
+        otherSkills={otherSkills}
+        learningSkills={learningSkills}
+      />
       <DynamicContactSection />
       <DynamicFooter />
     </main>

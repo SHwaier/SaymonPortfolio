@@ -3,12 +3,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Star, Code2, Database, Wrench } from "lucide-react"
-import { otherSkills, learningSkills } from "@/data/skills"
 import { motion, Variants } from "framer-motion"
 import { SkillCategory } from "@/types"
 
 interface SkillsSectionProps {
   skillCategories: SkillCategory[]
+  otherSkills: string[]
+  learningSkills: string[]
 }
 
 const iconMap: Record<string, any> = {
@@ -17,7 +18,7 @@ const iconMap: Record<string, any> = {
   'Wrench': Wrench
 }
 
-export function SkillsSection({ skillCategories }: SkillsSectionProps) {
+export function SkillsSection({ skillCategories, otherSkills, learningSkills }: SkillsSectionProps) {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
