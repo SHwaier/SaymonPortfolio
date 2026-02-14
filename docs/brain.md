@@ -25,5 +25,12 @@
 -   `supabase/`: Database schema and migrations.
 
 ## 📝 Current Status
--   **Phase 1 (Foundation)**: Complete. Hero, Projects (Bento), About (Timeline), SEO.
+-   **Phase 1 (Foundation)**: Complete. Hero, Projects (Bento), About (Timeline), SEO, Header/Footer (w/ Theme Toggle).
 -   **Phase 2 (Dynamic Data)**: In Progress. Supabase client installed, schema defined.
+
+## 📜 Rules
+1. Never change the rules yourself, only i can change them
+2. Develop with a security first approach in mind
+3. if you deem it fit, after major changes, or after patches, ask me to commit and push the changes to the repository (if that's ever the case, always ask me)
+4. If it is a user facing change that you are making that affects the frontend, develop it with mobile resposivness in mind
+
