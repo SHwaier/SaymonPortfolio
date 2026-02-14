@@ -55,20 +55,30 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://saymon.ca'),
 }
 
+import { ThemeProvider } from "@/components/theme-provider"
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${sourceSans.variable} antialiased`}>
+    <html lang="en" className={`${playfair.variable} ${sourceSans.variable} antialiased`} suppressHydrationWarning>
       <GoogleTagManager gtmId="GTM-NZNK8HRT" />
       <body>
         {/* Google Tag Manager (noscript)  */}
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZNK8HRT"
           height="0" width="0" style={{ display: "none", visibility: "hidden" }}></iframe></noscript>
         {/* End Google Tag Manager (noscript) */}
-        {children}</body>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+      </body>
     </html>
   )
 }
