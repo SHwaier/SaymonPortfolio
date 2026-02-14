@@ -16,7 +16,7 @@ export const projects = [
       image: "/mockup.jpg",
       technologies: ["Java", "Java Swing", "Gradle", "AWT"],
       liveUrl: "",
-      githubUrl: "", // Not specified in resume, leaving blank
+      githubUrl: "",
     },
     {
       title: "Random Pixel Generator",
@@ -26,6 +26,24 @@ export const projects = [
       technologies: ["C#", "Material Skin", "XML Serialization"],
       liveUrl: "",
       githubUrl: "https://github.com/SHwaier/RandomPixelImage",
+    },
+    {
+      title: "CSharp-DocGenerator",
+      description:
+        "Takes in C# code, parses comments and relevant method documentation to generate a markdown/HTML file of the documentation",
+      image: "/mockup.jpg",
+      technologies: ["C#", "Windows Forms"],
+      liveUrl: "",
+      githubUrl: "https://github.com/SHwaier/CSharp-DocGenerator",
+    },
+    {
+      title: "CSharp-DocGenerator",
+      description:
+        "Takes in C# code, parses comments and relevant method documentation to generate a markdown/HTML file of the documentation",
+      image: "/mockup.jpg",
+      technologies: ["C#", "Windows Forms"],
+      liveUrl: "",
+      githubUrl: "https://github.com/SHwaier/CSharp-DocGenerator",
     },
     {
       title: "CSharp-DocGenerator",

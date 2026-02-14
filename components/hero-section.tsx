@@ -14,7 +14,7 @@ export function HeroSection() {
   })
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8], [1, 1, 0])
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
