@@ -36,9 +36,5 @@ To elevate this to a "Senior/Expert" level portfolio, consider adding the follow
 **Why**: Communication is a top-tier skill.
 **Suggestion**: A **"Writing"** or **"Blog"** section (or just links to 2-3 Medium/Dev.to articles). This proves you can document and teach, not just code.
 
-### 5. Resume Download
-**Why**: Recruiters often need a PDF.
-**Suggestion**: Add a sleek "Download Resume" button, perhaps in the About section or Footer.
-
 ## Recommended Changes
-I recommend adding **Testimonials** or a **Process** section between **Projects** and **Skills**. This breaks up the technical density with human/social elements.
+I recommend adding a **Process** section between **Projects** and **Skills**. This breaks up the technical density with human/social elements.
