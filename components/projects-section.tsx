@@ -6,6 +6,7 @@ import { ExternalLink, Github, Code2 } from "lucide-react"
 import { motion, Variants } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Project } from "@/types"
+import Image from "next/image"
 
 interface ProjectsSectionProps {
   projects: Project[]
@@ -92,7 +93,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               {/* Image Background */}
               <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent z-10 transition-opacity duration-300 group-hover:via-black/60" />
-                <img
+                <Image
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

@@ -2,9 +2,10 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Star, Code2, Database, Wrench } from "lucide-react"
+import { Star, Code2, Database, Wrench, LucideProps } from "lucide-react"
 import { motion, Variants } from "framer-motion"
 import { SkillCategory } from "@/types"
+import { ForwardRefExoticComponent, RefAttributes } from "react"
 
 interface SkillsSectionProps {
   skillCategories: SkillCategory[]
@@ -12,7 +13,7 @@ interface SkillsSectionProps {
   learningSkills: string[]
 }
 
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>> = {
   'Code2': Code2,
   'Database': Database,
   'Wrench': Wrench

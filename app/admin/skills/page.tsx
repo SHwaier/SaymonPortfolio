@@ -1,8 +1,8 @@
 import { createClient } from '@/utils/supabase/server'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Plus, Pencil, Trash2 } from 'lucide-react'
+import { Card, CardContent } from '@/components/ui/card'
+import { Plus, Pencil } from 'lucide-react'
 import { Skill } from '@/types'
 import { Badge } from '@/components/ui/badge'
 

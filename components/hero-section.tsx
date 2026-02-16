@@ -2,10 +2,11 @@
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Download, Code2, Zap, Heart, Terminal } from "lucide-react"
+import { ArrowRight, Download, Code2, Zap, Terminal } from "lucide-react"
 import { sendGTMEvent } from '@next/third-parties/google'
 import { motion, useScroll, useTransform, Variants } from "framer-motion"
 import { useRef } from "react"
+import Image from "next/image"
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -163,7 +164,7 @@ export function HeroSection() {
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                     className="relative bg-card rounded-[2rem] overflow-hidden border-2 border-border/50 shadow-2xl"
                   >
-                    <img
+                    <Image
                       src="/assets/img/Saymon_Software_Engineer.jpg"
                       alt="Saymon Hwaier"
                       className="w-full h-full object-cover scale-105 hover:scale-110 transition-transform duration-700"

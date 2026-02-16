@@ -2,7 +2,7 @@
 
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Code, Lightbulb, Users, Zap, Coffee, BookOpen, Briefcase, Calendar, MapPin } from "lucide-react"
+import { Code, Lightbulb, Users, Zap, Coffee, BookOpen, Briefcase, MapPin } from "lucide-react"
 import { motion } from "framer-motion"
 import { Experience } from "@/types"
 
@@ -71,7 +71,7 @@ export function AboutSection({ experience }: AboutSectionProps) {
                                     <h4 className="text-lg font-bold text-foreground">B.Sc. Honours Computer Science with Software Engineering</h4>
                                     <p className="text-muted-foreground">University of Windsor • Sep 2022 - Present</p>
                                     <p className="text-sm text-muted-foreground mt-1">Certificate: Applied Information Technology</p>
-                                    <p className="text-sm text-muted-foreground mt-1">Dean's Entrance Scholarship ($10,000)</p>
+                                    <p className="text-sm text-muted-foreground mt-1">Dean&apos;s Entrance Scholarship ($10,000)</p>
                                 </div>
 
                                 <h3 className="font-serif text-2xl font-semibold text-primary mb-4 flex items-center gap-2">

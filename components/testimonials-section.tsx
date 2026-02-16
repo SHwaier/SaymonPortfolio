@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
-import { Quote, Star, User } from "lucide-react"
+import { Quote, Star } from "lucide-react"
 import { motion } from "framer-motion"
 import { Testimonial } from "@/types"
 
@@ -45,7 +45,7 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
                         transition={{ delay: 0.2 }}
                         className="text-lg text-muted-foreground max-w-2xl mx-auto"
                     >
-                        Feedback from colleagues and clients I've had the pleasure of working with.
+                        Feedback from colleagues and clients I&apos;ve had the pleasure of working with.
                     </motion.p>
                 </div>
 
@@ -84,7 +84,7 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
                                         ))}
                                     </div>
                                     <p className="text-muted-foreground leading-relaxed italic">
-                                        "{testimonial.content}"
+                                        &quot;{testimonial.content}&quot;
                                     </p>
                                 </CardContent>
                             </Card>

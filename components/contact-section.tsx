@@ -44,10 +44,10 @@ export function ContactSection() {
           className="text-center mb-12"
         >
           <h2 className="font-serif text-4xl font-bold mb-4">
-            Let's Work Together
+            Let&apos;s Work Together
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            I'm always interested in new opportunities.
+            I&apos;m always interested in new opportunities.
           </p>
         </motion.div>
 

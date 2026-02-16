@@ -11,6 +11,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, Loader2, Save, Trash2 } from "lucide-react"
 import { Project } from "@/types"
 import Link from "next/link"
+import Image from "next/image"
 
 interface ProjectFormProps {
     initialData?: Project
@@ -224,7 +225,7 @@ export function ProjectForm({ initialData }: ProjectFormProps) {
                                 />
                                 {formData.image && (
                                     <div className="aspect-video w-full rounded-md bg-muted overflow-hidden border border-border mt-2">
-                                        <img src={formData.image} alt="Preview" className="w-full h-full object-cover" />
+                                        <Image src={formData.image} alt="Preview" className="w-full h-full object-cover" />
                                     </div>
                                 )}
                             </div>

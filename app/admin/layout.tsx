@@ -1,13 +1,11 @@
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import {
     LayoutDashboard,
     FolderGit2,
     Briefcase,
     Wrench,
-    LogOut,
     User,
     Quote
 } from 'lucide-react'

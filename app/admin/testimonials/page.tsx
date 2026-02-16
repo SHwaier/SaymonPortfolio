@@ -2,7 +2,7 @@ import { createClient } from '@/utils/supabase/server'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Plus, Pencil, Trash2, Quote, User } from 'lucide-react'
+import { Plus, Pencil, Trash2, Quote } from 'lucide-react'
 import { Testimonial } from '@/types'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
@@ -56,7 +56,7 @@ export default async function AdminTestimonialsPage() {
                             <div className="relative pl-6 mb-4 flex-1">
                                 <Quote className="absolute left-0 top-0 h-4 w-4 text-muted-foreground/30" />
                                 <p className="text-sm text-muted-foreground line-clamp-4 italic">
-                                    "{testimonial.content}"
+                                    &quot;{testimonial.content}&quot;
                                 </p>
                             </div>
 

@@ -145,7 +145,7 @@ export function Header() {
                   <SheetTitle className="font-serif text-2xl font-bold">Menu</SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col gap-6">
-                  {navLinks.map((link, i) => (
+                  {navLinks.map((link) => (
                     <a
                       key={link.href}
                       href={link.href}

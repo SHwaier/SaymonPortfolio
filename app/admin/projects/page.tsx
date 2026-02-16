@@ -2,8 +2,9 @@ import { createClient } from '@/utils/supabase/server'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Plus, Pencil, Trash2, ExternalLink, Github } from 'lucide-react'
+import { Plus, Pencil, Trash2 } from 'lucide-react'
 import { Project } from '@/types'
+import Image from 'next/image'
 
 export const dynamic = 'force-dynamic'
 
@@ -39,7 +40,9 @@ export default async function AdminProjectsPage() {
                     <Card key={project.id} className="overflow-hidden flex flex-col">
                         <div className="aspect-video w-full bg-muted relative overflow-hidden group">
                             {project.image ? (
-                                <img
+                                <Image
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     src={project.image}
                                     alt={project.title}
                                     className="w-full h-full object-cover transition-transform group-hover:scale-105"
