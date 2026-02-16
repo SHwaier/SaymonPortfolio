@@ -3,7 +3,6 @@ import { HeroSection } from "@/components/hero-section"
 import dynamic from 'next/dynamic';
 import { supabase } from "@/lib/supabase"
 import { Project, Experience, Skill, SkillCategory, Testimonial } from "@/types"
-import { Code2, Database, Wrench } from "lucide-react"
 
 const DynamicAboutSection = dynamic(() => import('@/components/about-section').then(mod => mod.AboutSection));
 const DynamicProjectsSection = dynamic(() => import('@/components/projects-section').then(mod => mod.ProjectsSection));

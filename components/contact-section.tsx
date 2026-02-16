@@ -30,12 +30,7 @@ export function ContactSection() {
 
   const handleMailClick = (e: React.MouseEvent) => {
     e.preventDefault()
-    window.location.href = mailto.replace(/&amp;/g, '&'); // aggressive fallback if needed, but usually just setting href works. 
-    // Actually, setting window.location.href to a string with entities might be double-encoded by browsers or React.
-    // Better strategy: construct the real string at click time (which we have in 'email') 
-    // BUT the user asked for HTML encoding. Usually that's for the static HTML source.
-    // Since this is a client component, the source is already obscured. 
-    // I will set the HREF on the anchor tag to the encoded version if possible, or just use the JS redirect for max safety.
+    window.location.href = mailto.replace(/&amp;/g, '&');
     window.location.href = `mailto:${email}`;
   }
 

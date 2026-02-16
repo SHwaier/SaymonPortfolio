@@ -25,7 +25,7 @@ npm start
 ```
 
 ## Management
--   **Content**: Currently managed via `data/*.js` files. Moving to Supabase (Database) in Phase 2.
+-   **Content**: content is managed through /admin and stored in a database using supabase. Menu items are stored in /data/menuItems.js
 -   **Images**: Store in `public/assets/img`.
 
 ## Deployment

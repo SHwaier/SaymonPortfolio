@@ -80,7 +80,6 @@ export default async function AdminProjectsPage() {
                                         Edit
                                     </Link>
                                 </Button>
-                                {/* We'll handle delete via a separate client component or form action later */}
                                 <Button variant="outline" size="icon" className="text-destructive hover:bg-destructive/10">
                                     <Trash2 className="w-4 h-4" />
                                 </Button>

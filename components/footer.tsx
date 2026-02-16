@@ -1,7 +1,6 @@
 'use client';
 
 import { Github, Linkedin, Mail, Heart } from "lucide-react"
-import { motion } from "framer-motion"
 
 import { Separator } from "@/components/ui/separator"
 import {

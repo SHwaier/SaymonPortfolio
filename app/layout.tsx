@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: "SaymonPortfolio",
     images: [
       {
-        url: "/og-image.jpg", // Needs to be added to public/
+        url: "/og-image.jpg", 
         width: 1200,
         height: 630,
         alt: "Saymon Hwaier Portfolio",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Saymon Hwaier | Software Engineer",
     description: "Software Engineer specializing in modern web development.",
-    // creator: "@yourtwitterhandle", // Optional
+    
     images: ["/og-image.jpg"],
   },
   icons: {

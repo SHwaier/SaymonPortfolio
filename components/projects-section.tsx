@@ -82,17 +82,16 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               key={project.id || index}
               variants={itemVariants}
               className={cn(
-                "group relative overflow-hidden rounded-2xl border bg-background/50 shadow-sm hover:shadow-xl", // Removed transition-all and hover:-translate-y-1 to fix conflict with Framer Motion
+                "group relative overflow-hidden rounded-2xl border bg-background/50 shadow-sm hover:shadow-xl", 
                 project.size === "large" ? "md:col-span-2 md:row-span-2 min-h-[400px]" : "col-span-1 min-h-[300px]"
               )}
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
-              style={{ backfaceVisibility: "hidden" }} // Prevents flicker on some browsers
+              style={{ backfaceVisibility: "hidden" }} 
             >
               {/* Image Background */}
               <div className="absolute inset-0 z-0">
-                {/* Darker gradient overlay for better text contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-10 transition-opacity duration-300 group-hover:via-black/60" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent z-10 transition-opacity duration-300 group-hover:via-black/60" />
                 <img
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
@@ -114,7 +113,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                   </div>
 
                   <p className={cn(
-                    "text-gray-200 mb-4 line-clamp-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 drop-shadow-sm", // Force light gray text
+                    "text-gray-200 mb-4 line-clamp-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 drop-shadow-sm",
                     project.size === "large" ? "text-lg" : "text-sm"
                   )}>
                     {project.description}
@@ -125,7 +124,6 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                       <Badge
                         key={techIndex}
                         variant="secondary"
-                        // More visible glassmorphism with white text
                         className="bg-white/20 text-white border-white/10 backdrop-blur-md hover:bg-white/30 transition-colors"
                       >
                         {tech}

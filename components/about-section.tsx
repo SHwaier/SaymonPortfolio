@@ -1,6 +1,6 @@
 "use client"
 
-import { Card, CardContent } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Code, Lightbulb, Users, Zap, Coffee, BookOpen, Briefcase, Calendar, MapPin } from "lucide-react"
 import { motion } from "framer-motion"
