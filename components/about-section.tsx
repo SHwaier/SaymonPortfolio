@@ -28,7 +28,7 @@ export function AboutSection({ experience }: AboutSectionProps) {
                             viewport={{ once: true }}
                             className="mb-4"
                         >
-                            <Badge variant="secondary" className="px-4 py-2 text-sm font-medium bg-secondary/10 text-secondary hover:bg-secondary/20 border-secondary/20 rounded-full">
+                            <Badge variant="secondary" className="px-4 py-2 text-sm font-medium bg-accent/10 text-accent hover:bg-accent/20 border-accent/20 rounded-full">
                                 <Coffee className="h-4 w-4 mr-2" />
                                 Get to know me
                             </Badge>
