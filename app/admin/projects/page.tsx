@@ -44,6 +44,8 @@ export default async function AdminProjectsPage() {
                                     fill
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     src={project.image}
+                                    width={500}
+                                    height={500}
                                     alt={project.title}
                                     className="w-full h-full object-cover transition-transform group-hover:scale-105"
                                 />

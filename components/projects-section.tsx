@@ -95,6 +95,8 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                 <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent z-10 transition-opacity duration-300 group-hover:via-black/60" />
                 <Image
                   src={project.image || "/placeholder.svg"}
+                  width={500}
+                  height={500}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   style={{ backfaceVisibility: "hidden", transform: "translateZ(0)" }}

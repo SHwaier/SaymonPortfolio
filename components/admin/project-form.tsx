@@ -225,7 +225,10 @@ export function ProjectForm({ initialData }: ProjectFormProps) {
                                 />
                                 {formData.image && (
                                     <div className="aspect-video w-full rounded-md bg-muted overflow-hidden border border-border mt-2">
-                                        <Image src={formData.image} alt="Preview" className="w-full h-full object-cover" />
+                                        <Image src={formData.image}
+                                            width={500}
+                                            height={500}
+                                            alt="Preview" className="w-full h-full object-cover" />
                                     </div>
                                 )}
                             </div>
