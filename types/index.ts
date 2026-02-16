@@ -43,3 +43,13 @@ export interface SkillData {
     level: string
     years: string
 }
+
+export interface Testimonial {
+    id: number
+    name: string
+    role: string
+    company: string | null
+    content: string
+    avatar_url: string | null
+    rating: number | null
+}

@@ -2,11 +2,12 @@ import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
 import dynamic from 'next/dynamic';
 import { supabase } from "@/lib/supabase"
-import { Project, Experience, Skill, SkillCategory } from "@/types"
+import { Project, Experience, Skill, SkillCategory, Testimonial } from "@/types"
 import { Code2, Database, Wrench } from "lucide-react"
 
 const DynamicAboutSection = dynamic(() => import('@/components/about-section').then(mod => mod.AboutSection));
 const DynamicProjectsSection = dynamic(() => import('@/components/projects-section').then(mod => mod.ProjectsSection));
+const DynamicTestimonialsSection = dynamic(() => import('@/components/testimonials-section').then(mod => mod.TestimonialsSection));
 const DynamicSkillsSection = dynamic(() => import('@/components/skills-section').then(mod => mod.SkillsSection));
 const DynamicContactSection = dynamic(() => import('@/components/contact-section').then(mod => mod.ContactSection));
 const DynamicFooter = dynamic(() => import('@/components/footer').then(mod => mod.Footer));
@@ -119,12 +120,26 @@ async function getSimpleSkills(category: string): Promise<string[]> {
   return data.map((s: { name: string }) => s.name)
 }
 
+async function getTestimonials(): Promise<Testimonial[]> {
+  const { data, error } = await supabase
+    .from('testimonials')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  if (error) {
+    console.error('Error fetching testimonials:', error)
+    return []
+  }
+  return data as Testimonial[]
+}
+
 export default async function HomePage() {
   const projects = await getProjects()
   const experience = await getExperience()
   const skillCategories = await getSkills()
   const otherSkills = await getSimpleSkills('Additional Tools')
   const learningSkills = await getSimpleSkills('Current Learning')
+  const testimonials = await getTestimonials()
 
   return (
     <main className="min-h-screen">
@@ -132,6 +147,7 @@ export default async function HomePage() {
       <HeroSection />
       <DynamicAboutSection experience={experience} />
       <DynamicProjectsSection projects={projects} />
+      <DynamicTestimonialsSection testimonials={testimonials} />
       <DynamicSkillsSection
         skillCategories={skillCategories}
         otherSkills={otherSkills}

@@ -8,7 +8,8 @@ import {
     Briefcase,
     Wrench,
     LogOut,
-    User
+    User,
+    Quote
 } from 'lucide-react'
 import LogoutButton from './logout-button'
 
@@ -32,6 +33,7 @@ export default async function AdminLayout({
         { href: '/admin/projects', label: 'Projects', icon: FolderGit2 },
         { href: '/admin/experience', label: 'Experience', icon: Briefcase },
         { href: '/admin/skills', label: 'Skills', icon: Wrench },
+        { href: '/admin/testimonials', label: 'Testimonials', icon: Quote },
     ]
 
     return (
