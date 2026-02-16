@@ -2,14 +2,28 @@
 
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, Github, Linkedin, Mail, X } from "lucide-react";
+import { Menu, Github, Linkedin, Mail } from "lucide-react";
 import { ModeToggle } from "@/components/ModeToggle";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Separator } from "@/components/ui/separator";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export function Header() {
-  const [open, setOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   // Handle scroll effect
   React.useEffect(() => {
@@ -20,27 +34,6 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggle = () => setOpen((v) => !v);
-  const close = () => setOpen(false);
-
-  // Close on Esc
-  React.useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  // Prevent body scroll when menu is open
-  React.useEffect(() => {
-    if (open) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
   const navLinks = [
     { href: "#about", label: "About" },
     { href: "#projects", label: "Projects" },
@@ -49,13 +42,13 @@ export function Header() {
   ];
 
   return (
-    <>
-      <motion.header 
+    <TooltipProvider>
+      <motion.header
         className={cn(
-            "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
-            scrolled 
-                ? "bg-background/80 backdrop-blur-md border-border/50 py-3 shadow-sm" 
-                : "bg-transparent border-transparent py-5"
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
+          scrolled
+            ? "bg-background/80 backdrop-blur-md border-border/50 py-3 shadow-sm"
+            : "bg-transparent border-transparent py-5"
         )}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -90,27 +83,43 @@ export function Header() {
           <div className="flex items-center space-x-3">
             <div className="hidden md:flex items-center space-x-2">
               <ModeToggle />
-              <div className="h-6 w-px bg-border mx-2" />
-              <Button variant="ghost" size="icon" asChild className="hover:bg-accent/10 hover:text-accent transition-colors">
-                <a
-                  href="https://github.com/SHwaier"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                >
-                  <Github className="h-5 w-5" />
-                </a>
-              </Button>
-              <Button variant="ghost" size="icon" asChild className="hover:bg-accent/10 hover:text-accent transition-colors">
-                <a
-                  href="https://www.linkedin.com/in/saymon-hwaier/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </a>
-              </Button>
+              <Separator orientation="vertical" className="h-6 mx-2" />
+
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="ghost" size="icon" asChild className="hover:bg-accent/10 hover:text-accent transition-colors">
+                    <a
+                      href="https://github.com/SHwaier"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="GitHub"
+                    >
+                      <Github className="h-5 w-5" />
+                    </a>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>GitHub</p>
+                </TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="ghost" size="icon" asChild className="hover:bg-accent/10 hover:text-accent transition-colors">
+                    <a
+                      href="https://www.linkedin.com/in/saymon-hwaier/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                    >
+                      <Linkedin className="h-5 w-5" />
+                    </a>
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>LinkedIn</p>
+                </TooltipContent>
+              </Tooltip>
             </div>
 
             <Button className="hidden md:flex bg-foreground text-background hover:bg-foreground/90 rounded-full px-6" asChild>
@@ -119,66 +128,53 @@ export function Header() {
               </a>
             </Button>
 
-            {/* Mobile Menu Toggle */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden relative z-50"
-              onClick={toggle}
-              aria-label={open ? "Close menu" : "Open menu"}
-            >
-              {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
+            {/* Mobile Menu Toggle (Sheet) */}
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="md:hidden relative z-50"
+                  aria-label="Open menu"
+                >
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-full sm:max-w-sm flex flex-col pt-10">
+                <SheetHeader className="text-left mb-6">
+                  <SheetTitle className="font-serif text-2xl font-bold">Menu</SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col gap-6">
+                  {navLinks.map((link, i) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className="text-2xl font-serif font-bold hover:text-accent transition-colors block py-2"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </nav>
+
+                <div className="mt-auto mb-10">
+                  <div className="flex items-center gap-4 py-6 border-t">
+                    <a href="https://github.com/SHwaier" target="_blank" rel="noopener noreferrer" className="p-3 bg-muted rounded-full hover:bg-accent hover:text-accent-foreground transition-colors">
+                      <Github className="h-5 w-5" />
+                    </a>
+                    <a href="https://www.linkedin.com/in/saymon-hwaier/" target="_blank" rel="noopener noreferrer" className="p-3 bg-muted rounded-full hover:bg-accent hover:text-accent-foreground transition-colors">
+                      <Linkedin className="h-5 w-5" />
+                    </a>
+                    <a href="mailto:saymon.hwaier@gmail.com" className="p-3 bg-muted rounded-full hover:bg-accent hover:text-accent-foreground transition-colors">
+                      <Mail className="h-5 w-5" />
+                    </a>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </motion.header>
-
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl md:hidden flex flex-col items-center justify-center"
-          >
-            <nav className="flex flex-col items-center gap-8">
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={close}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
-                  transition={{ delay: 0.1 + i * 0.1 }}
-                  className="text-4xl font-serif font-bold hover:text-accent transition-colors"
-                >
-                  {link.label}
-                </motion.a>
-              ))}
-            </nav>
-
-            <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ delay: 0.5 }}
-                className="mt-12 flex items-center gap-6"
-            >
-                <a href="https://github.com/SHwaier" target="_blank" rel="noopener noreferrer" className="p-3 bg-muted rounded-full hover:bg-accent hover:text-accent-foreground transition-colors">
-                    <Github className="h-6 w-6" />
-                </a>
-                <a href="https://www.linkedin.com/in/saymon-hwaier/" target="_blank" rel="noopener noreferrer" className="p-3 bg-muted rounded-full hover:bg-accent hover:text-accent-foreground transition-colors">
-                    <Linkedin className="h-6 w-6" />
-                </a>
-                <a href="mailto:saymon.hwaier@gmail.com" className="p-3 bg-muted rounded-full hover:bg-accent hover:text-accent-foreground transition-colors">
-                    <Mail className="h-6 w-6" />
-                </a>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+    </TooltipProvider>
   );
 }

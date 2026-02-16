@@ -80,26 +80,31 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               key={project.id || index}
               variants={itemVariants}
               className={cn(
-                "group relative overflow-hidden rounded-2xl border bg-background/50 backdrop-blur-sm shadow-sm transition-all hover:shadow-xl hover:-translate-y-1",
-                project.size === "large" ? "md:col-span-2 md:row-span-2 min-h-[400px]" : "col-span-1"
+                "group relative overflow-hidden rounded-2xl border bg-background/50 shadow-sm hover:shadow-xl", // Removed transition-all and hover:-translate-y-1 to fix conflict with Framer Motion
+                project.size === "large" ? "md:col-span-2 md:row-span-2 min-h-[400px]" : "col-span-1 min-h-[300px]"
               )}
+              whileHover={{ y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              style={{ backfaceVisibility: "hidden" }} // Prevents flicker on some browsers
             >
               {/* Image Background */}
               <div className="absolute inset-0 z-0">
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent z-10" />
+                {/* Darker gradient overlay for better text contrast */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-10 transition-opacity duration-300 group-hover:via-black/60" />
                 <img
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ backfaceVisibility: "hidden", transform: "translateZ(0)" }}
                 />
               </div>
 
               {/* Content Content - Positioned at bottom */}
-              <div className="absolute inset-0 z-20 flex flex-col justify-end p-6">
+              <div className="absolute inset-0 z-20 flex flex-col justify-end p-6 select-none">
                 <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                   <div className="flex items-start justify-between mb-2">
                     <h3 className={cn(
-                      "font-serif font-bold text-foreground group-hover:text-accent transition-colors",
+                      "font-serif font-bold text-white mb-1 drop-shadow-md", // Force white text
                       project.size === "large" ? "text-3xl" : "text-xl"
                     )}>
                       {project.title}
@@ -107,7 +112,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                   </div>
 
                   <p className={cn(
-                    "text-muted-foreground mb-4 line-clamp-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100",
+                    "text-gray-200 mb-4 line-clamp-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 drop-shadow-sm", // Force light gray text
                     project.size === "large" ? "text-lg" : "text-sm"
                   )}>
                     {project.description}
@@ -118,26 +123,27 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                       <Badge
                         key={techIndex}
                         variant="secondary"
-                        className="bg-accent/10 text-accent hover:bg-accent hover:text-accent-foreground border-accent/20 backdrop-blur-md"
+                        // More visible glassmorphism with white text
+                        className="bg-white/20 text-white border-white/10 backdrop-blur-md hover:bg-white/30 transition-colors"
                       >
                         {tech}
                       </Badge>
                     ))}
                     {project.technologies.length > (project.size === "large" ? 6 : 3) && (
-                      <Badge variant="outline" className="text-xs bg-background/50">+{(project.technologies.length - (project.size === "large" ? 6 : 3))}</Badge>
+                      <Badge variant="outline" className="text-xs text-white border-white/20 bg-black/20 backdrop-blur-sm">+{(project.technologies.length - (project.size === "large" ? 6 : 3))}</Badge>
                     )}
                   </div>
 
                   <div className="flex gap-3 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-200">
                     {project.live_url && (
-                      <Button size="sm" className="bg-foreground text-background hover:bg-foreground/90 rounded-full" asChild>
+                      <Button size="sm" className="bg-white text-black hover:bg-white/90 rounded-full font-medium" asChild>
                         <a href={project.live_url} target="_blank" rel="noopener noreferrer">
                           <ExternalLink className="h-4 w-4 mr-2" /> Live Demo
                         </a>
                       </Button>
                     )}
                     {project.github_url && (
-                      <Button size="sm" variant="outline" className="bg-background/50 backdrop-blur-md border-foreground/20 hover:bg-background/80 rounded-full" asChild>
+                      <Button size="sm" variant="outline" className="bg-black/50 text-white border-white/20 hover:bg-black/70 hover:text-white rounded-full backdrop-blur-md" asChild>
                         <a href={project.github_url} target="_blank" rel="noopener noreferrer">
                           <Github className="h-4 w-4 mr-2" /> Source
                         </a>
@@ -171,6 +177,6 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
           </Button>
         </motion.div>
       </div>
-    </section>
+    </section >
   )
 }

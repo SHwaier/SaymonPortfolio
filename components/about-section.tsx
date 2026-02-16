@@ -6,6 +6,8 @@ import { Code, Lightbulb, Users, Zap, Coffee, BookOpen, Briefcase, Calendar, Map
 import { motion } from "framer-motion"
 import { Experience } from "@/types"
 
+import { Separator } from "@/components/ui/separator"
+
 interface AboutSectionProps {
     experience: Experience[]
 }
@@ -92,10 +94,14 @@ export function AboutSection({ experience }: AboutSectionProps) {
                                         whileInView={{ opacity: 1, scale: 1 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: 0.3 + (i * 0.1) }}
-                                        className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${tag.className}`}
                                     >
-                                        <tag.icon className="h-4 w-4" />
-                                        {tag.label}
+                                        <Badge
+                                            variant="secondary"
+                                            className={`flex items-center gap-2 px-4 py-2 text-sm font-medium ${tag.className} border-0`}
+                                        >
+                                            <tag.icon className="h-4 w-4" />
+                                            {tag.label}
+                                        </Badge>
                                     </motion.div>
                                 ))}
                             </div>
@@ -146,7 +152,10 @@ export function AboutSection({ experience }: AboutSectionProps) {
                         </div>
 
                         {/* Vertical Line */}
-                        <div className="absolute left-4 md:left-1/2 top-16 bottom-0 w-0.5 bg-border transform md:-translate-x-1/2" />
+                        <Separator
+                            orientation="vertical"
+                            className="absolute left-4 md:left-1/2 top-16 bottom-0 w-0.5 md:-translate-x-1/2 bg-border h-auto"
+                        />
 
                         <div className="space-y-12">
                             {experience.map((exp, index) => (
@@ -168,7 +177,7 @@ export function AboutSection({ experience }: AboutSectionProps) {
                                         transition={{ delay: 0.2 }}
                                         className="ml-12 md:ml-0 md:w-1/2 px-4"
                                     >
-                                        <Card className="p-6 border-border/40 hover:border-border transition-colors duration-300 relative group overflow-hidden">
+                                        <Card className="p-6 border-border/40 hover:border-border transition-all duration-300 relative group overflow-hidden bg-card/50 backdrop-blur-sm hover:shadow-lg">
                                             <div className={`absolute top-0 w-1 h-full ${index % 2 === 0 ? 'right-0 bg-primary/20' : 'left-0 bg-secondary/20'} transition-all group-hover:bg-primary`} />
 
                                             <div className="flex flex-wrap justify-between items-start gap-4 mb-2">
@@ -179,7 +188,7 @@ export function AboutSection({ experience }: AboutSectionProps) {
                                                         {exp.company}
                                                     </div>
                                                 </div>
-                                                <Badge variant="secondary" className="font-mono text-xs">
+                                                <Badge variant="outline" className="font-mono text-xs bg-background/50 backdrop-blur-sm">
                                                     {exp.start_date} - {exp.end_date}
                                                 </Badge>
                                             </div>
@@ -197,7 +206,11 @@ export function AboutSection({ experience }: AboutSectionProps) {
                                             {exp.technologies && (
                                                 <div className="flex flex-wrap gap-2">
                                                     {exp.technologies.map((tech, i) => (
-                                                        <Badge key={i} variant="outline" className="text-[10px] px-2 py-0.5 border-border/50 text-muted-foreground/80">
+                                                        <Badge
+                                                            key={i}
+                                                            variant="secondary"
+                                                            className="text-xs px-2.5 py-0.5 bg-accent/10 text-accent hover:bg-accent hover:text-accent-foreground border-accent/20 transition-colors"
+                                                        >
                                                             {tech}
                                                         </Badge>
                                                     ))}
