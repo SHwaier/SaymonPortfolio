@@ -26,10 +26,12 @@ export function AboutSection({ experience }: AboutSectionProps) {
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="inline-flex items-center gap-2 bg-secondary/10 text-secondary px-4 py-2 rounded-full text-sm font-medium mb-4"
+                            className="mb-4"
                         >
-                            <Coffee className="h-4 w-4" />
-                            Get to know me
+                            <Badge variant="secondary" className="px-4 py-2 text-sm font-medium bg-secondary/10 text-secondary hover:bg-secondary/20 border-secondary/20 rounded-full">
+                                <Coffee className="h-4 w-4 mr-2" />
+                                Get to know me
+                            </Badge>
                         </motion.div>
                         <motion.h2
                             initial={{ opacity: 0, y: 10 }}

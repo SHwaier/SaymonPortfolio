@@ -22,10 +22,12 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4"
+                        className="mb-4"
                     >
-                        <Quote className="h-4 w-4" />
-                        Social Proof
+                        <Badge variant="secondary" className="px-4 py-2 text-sm font-medium bg-primary/10 text-primary hover:bg-primary/20 border-primary/20 rounded-full">
+                            <Quote className="h-4 w-4 mr-2" />
+                            Social Proof
+                        </Badge>
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 10 }}

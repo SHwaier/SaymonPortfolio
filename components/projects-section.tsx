@@ -43,10 +43,12 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-4"
+            className="mb-6"
           >
-            <Code2 className="h-4 w-4" />
-            Recent Work
+            <Badge variant="secondary" className="px-4 py-2 text-sm font-medium bg-accent/10 text-accent hover:bg-accent/20 border-accent/20 rounded-full">
+              <Code2 className="h-4 w-4 mr-2" />
+              Recent Projects
+            </Badge>
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
