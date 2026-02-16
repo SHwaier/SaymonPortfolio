@@ -11,7 +11,7 @@ const CSP = [
 	// images + GA/GTM beacons
 	"img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net",
 	// XHR/beacons
-	"connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net https://static.cloudflareinsights.com",
+	"connect-src 'self' https://ivndnsgkpmbxpwhyaeka.supabase.co https://www.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net https://static.cloudflareinsights.com",
 	// GTM <noscript> iframe
 	"frame-src 'self' https://www.googletagmanager.com",
 	// clickjacking hardening (CSP) + legacy XFO
@@ -25,6 +25,9 @@ const CSP = [
 
 const nextConfig: NextConfig = {
 	async headers() {
+		// Only apply strict strict security headers in production
+		if (process.env.NODE_ENV === "development") return [];
+
 		return [
 			{
 				source: "/:path*",
@@ -36,6 +39,10 @@ const nextConfig: NextConfig = {
 				],
 			},
 		];
+	},
+	experimental: {
+		useCache: true,
+		inlineCss: true,
 	},
 };
 
