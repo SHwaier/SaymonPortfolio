@@ -40,6 +40,7 @@ const nextConfig: NextConfig = {
 			},
 		];
 	},
+	reactCompiler: true,
 	experimental: {
 		useCache: true,
 		inlineCss: true,

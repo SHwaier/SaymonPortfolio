@@ -75,7 +75,7 @@ export function AboutSection({ experience }: AboutSectionProps) {
                                 </div>
 
                                 <h3 className="font-serif text-2xl font-semibold text-primary mb-4 flex items-center gap-2">
-                                    <Code className="w-5 h-5 text-accent" /> {/* Changed icon to generic Code or keep generic */}
+                                    <Code className="w-5 h-5 text-accent" />
                                     My Journey
                                 </h3>
                                 <p className="text-muted-foreground leading-relaxed mb-4 text-lg">
