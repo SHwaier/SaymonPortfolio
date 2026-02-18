@@ -34,17 +34,21 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
 
     const trackEvent = (action: string, value?: string) => {
         if (consent === "granted") {
-            // Create a custom event in Clarity
-            // Format: action_value (if value exists) or just action
-            // Clarity events are typically single strings, so we combine them
+            // 1. Microsoft Clarity
             const eventName = value ? `${action}_${value}` : action
-
-            // Sanitize event name (spaces to underscores, lowercase)
             const sanitizedEvent = eventName.toLowerCase().replace(/\s+/g, '_')
 
             if (window.clarity) {
                 // @ts-ignore - clarity type definition might be incomplete
                 clarity.event(sanitizedEvent);
+            }
+
+            // 2. Google Tag Manager
+            if ((window as any).dataLayer) {
+                (window as any).dataLayer.push({
+                    event: action,
+                    value: value,
+                });
             }
         }
     }
