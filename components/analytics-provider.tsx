@@ -23,6 +23,20 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
         if (storedConsent === "granted" || storedConsent === "denied") {
             setConsentState(storedConsent)
         }
+
+        // Handle session termination
+        const handleUnload = () => {
+            if (window.clarity) {
+                // @ts-ignore - raw clarity API
+                window.clarity('stop');
+            }
+        };
+
+        window.addEventListener('beforeunload', handleUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleUnload);
+        };
     }, [])
 
     const setConsent = (status: ConsentStatus) => {
