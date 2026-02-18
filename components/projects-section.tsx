@@ -7,6 +7,7 @@ import { motion, Variants } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Project } from "@/types"
 import Image from "next/image"
+import { useAnalytics } from "@/components/analytics-provider"
 
 interface ProjectsSectionProps {
   projects: Project[]
@@ -36,40 +37,12 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
     },
   }
 
+  const { trackEvent } = useAnalytics()
+
   return (
     <section id="projects" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-6"
-          >
-            <Badge variant="secondary" className="px-4 py-2 text-sm font-medium bg-accent/10 text-accent hover:bg-accent/20 border-accent/20 rounded-full">
-              <Code2 className="h-4 w-4 mr-2" />
-              Recent Projects
-            </Badge>
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="font-serif text-3xl md:text-5xl font-bold text-foreground mb-4"
-          >
-            Featured Projects
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-lg text-muted-foreground max-w-2xl mx-auto"
-          >
-            A collection of applications that solve real-world problems with clean code and modern architecture.
-          </motion.p>
-        </div>
+        {/* ... existing code ... */}
 
         <motion.div
           variants={containerVariants}
@@ -83,12 +56,13 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               key={project.id || index}
               variants={itemVariants}
               className={cn(
-                "group relative overflow-hidden rounded-2xl border bg-background/50 shadow-sm hover:shadow-xl", 
+                "group relative overflow-hidden rounded-2xl border bg-background/50 shadow-sm hover:shadow-xl",
                 project.size === "large" ? "md:col-span-2 md:row-span-2 min-h-[400px]" : "col-span-1 min-h-[300px]"
               )}
               whileHover={{ y: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
-              style={{ backfaceVisibility: "hidden" }} 
+              style={{ backfaceVisibility: "hidden" }}
+              onClick={() => trackEvent('project_click_card', project.title)}
             >
               {/* Image Background */}
               <div className="absolute inset-0 z-0">
@@ -139,14 +113,31 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
 
                   <div className="flex gap-3 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-200">
                     {project.live_url && (
-                      <Button size="sm" className="bg-white text-black hover:bg-white/90 rounded-full font-medium" asChild>
+                      <Button
+                        size="sm"
+                        className="bg-white text-black hover:bg-white/90 rounded-full font-medium"
+                        asChild
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevent card click
+                          trackEvent('project_click_live', project.title)
+                        }}
+                      >
                         <a href={project.live_url} target="_blank" rel="noopener noreferrer">
                           <ExternalLink className="h-4 w-4 mr-2" /> Live Demo
                         </a>
                       </Button>
                     )}
                     {project.github_url && (
-                      <Button size="sm" variant="outline" className="bg-black/50 text-white border-white/20 hover:bg-black/70 hover:text-white rounded-full backdrop-blur-md" asChild>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="bg-black/50 text-white border-white/20 hover:bg-black/70 hover:text-white rounded-full backdrop-blur-md"
+                        asChild
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevent card click
+                          trackEvent('project_click_source', project.title)
+                        }}
+                      >
                         <a href={project.github_url} target="_blank" rel="noopener noreferrer">
                           <Github className="h-4 w-4 mr-2" /> Source
                         </a>

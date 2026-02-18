@@ -6,10 +6,13 @@ import { Mail, MapPin, Copy, Check, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 import { Card, CardContent } from "@/components/ui/card"
+import { useAnalytics } from "@/components/analytics-provider"
 
 export function ContactSection() {
   const [copied, setCopied] = useState(false)
   const [mailto, setMailto] = useState("")
+
+  const { trackEvent } = useAnalytics()
 
   // Obfuscated email parts
   const user = "saymon.hwaier"
@@ -25,11 +28,13 @@ export function ContactSection() {
   const handleCopy = () => {
     navigator.clipboard.writeText(email)
     setCopied(true)
+    trackEvent('contact_copy_email')
     setTimeout(() => setCopied(false), 2000)
   }
 
   const handleMailClick = (e: React.MouseEvent) => {
     e.preventDefault()
+    trackEvent('contact_click_mailto')
     window.location.href = mailto.replace(/&amp;/g, '&');
     window.location.href = `mailto:${email}`;
   }
