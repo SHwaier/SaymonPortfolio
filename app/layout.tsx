@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: "SaymonPortfolio",
     images: [
       {
-        url: "/og-image.jpg", 
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Saymon Hwaier Portfolio",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Saymon Hwaier | Software Engineer",
     description: "Software Engineer specializing in modern web development.",
-    
+
     images: ["/og-image.jpg"],
   },
   icons: {
@@ -56,6 +56,9 @@ export const metadata: Metadata = {
 }
 
 import { ThemeProvider } from "@/components/theme-provider"
+import { AnalyticsProvider } from "@/components/analytics-provider"
+import { ClarityAnalytics } from "@/components/clarity-analytics"
+import { ConsentBanner } from "@/components/consent-banner"
 
 export default function RootLayout({
   children,
@@ -71,13 +74,17 @@ export default function RootLayout({
           height="0" width="0" style={{ display: "none", visibility: "hidden" }}></iframe></noscript>
         {/* End Google Tag Manager (noscript) */}
         <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AnalyticsProvider>
             {children}
-          </ThemeProvider>
+            <ConsentBanner />
+            <ClarityAnalytics />
+          </AnalyticsProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
