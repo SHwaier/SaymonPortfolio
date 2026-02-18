@@ -12,9 +12,11 @@ const DynamicContactSection = dynamic(() => import('@/components/contact-section
 const DynamicFooter = dynamic(() => import('@/components/footer').then(mod => mod.Footer));
 
 // Data fetching configuration
-export const revalidate = 60 // Revalidate every 60 seconds (ISR)
+// Data fetching configuration
+// export const revalidate = 60 // Revalidate every 60 seconds (ISR) -> Replaced by "use cache"
 
 async function getProjects(): Promise<Project[]> {
+  "use cache"
   const { data, error } = await supabase
     .from('projects')
     .select('*')
@@ -28,6 +30,7 @@ async function getProjects(): Promise<Project[]> {
 }
 
 async function getExperience(): Promise<Experience[]> {
+  "use cache"
   const { data, error } = await supabase
     .from('experience')
     .select('*')
@@ -41,6 +44,7 @@ async function getExperience(): Promise<Experience[]> {
 }
 
 async function getSkills(): Promise<SkillCategory[]> {
+  "use cache"
   const { data: skillsData, error } = await supabase
     .from('skills')
     .select('*')
@@ -106,6 +110,7 @@ async function getSkills(): Promise<SkillCategory[]> {
 }
 
 async function getSimpleSkills(category: string): Promise<string[]> {
+  "use cache"
   const { data, error } = await supabase
     .from('skills')
     .select('name')
@@ -120,6 +125,7 @@ async function getSimpleSkills(category: string): Promise<string[]> {
 }
 
 async function getTestimonials(): Promise<Testimonial[]> {
+  "use cache"
   const { data, error } = await supabase
     .from('testimonials')
     .select('*')
