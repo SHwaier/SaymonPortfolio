@@ -9,8 +9,10 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { useAnalytics } from "@/components/analytics-provider"
 
 export function Footer() {
+    const { trackEvent, setConsent } = useAnalytics()
     const currentYear = new Date().getFullYear();
 
     return (
@@ -42,7 +44,11 @@ export function Footer() {
                             <ul className="space-y-3">
                                 {['About', 'Projects', 'Skills', 'Contact'].map((item) => (
                                     <li key={item}>
-                                        <a href={`#${item.toLowerCase()}`} className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-center group">
+                                        <a
+                                            href={`#${item.toLowerCase()}`}
+                                            className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-center group"
+                                            onClick={() => trackEvent('footer_click_nav', item)}
+                                        >
                                             <span className="w-0 group-hover:w-2 h-px bg-accent mr-0 group-hover:mr-2 transition-all duration-300" />
                                             {item}
                                         </a>
@@ -56,7 +62,13 @@ export function Footer() {
                             <div className="flex flex-col gap-4">
                                 <Tooltip>
                                     <TooltipTrigger asChild>
-                                        <a href="https://github.com/SHwaier" target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors group">
+                                        <a
+                                            href="https://github.com/SHwaier"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors group"
+                                            onClick={() => trackEvent('social_click', 'GitHub')}
+                                        >
                                             <Github className="w-4 h-4 mr-3 group-hover:text-accent transition-colors" />
                                             GitHub
                                         </a>
@@ -68,7 +80,13 @@ export function Footer() {
 
                                 <Tooltip>
                                     <TooltipTrigger asChild>
-                                        <a href="https://www.linkedin.com/in/saymon-hwaier/" target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors group">
+                                        <a
+                                            href="https://www.linkedin.com/in/saymon-hwaier/"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors group"
+                                            onClick={() => trackEvent('social_click', 'LinkedIn')}
+                                        >
                                             <Linkedin className="w-4 h-4 mr-3 group-hover:text-accent transition-colors" />
                                             LinkedIn
                                         </a>
@@ -80,7 +98,11 @@ export function Footer() {
 
                                 <Tooltip>
                                     <TooltipTrigger asChild>
-                                        <a href="mailto:saymon.hwaier@gmail.com" className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors group">
+                                        <a
+                                            href="mailto:saymon.hwaier@gmail.com"
+                                            className="flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors group"
+                                            onClick={() => trackEvent('social_click', 'Email')}
+                                        >
                                             <Mail className="w-4 h-4 mr-3 group-hover:text-accent transition-colors" />
                                             Email
                                         </a>
@@ -98,9 +120,17 @@ export function Footer() {
                         <p className="text-sm text-muted-foreground flex items-center">
                             © {currentYear} Saymon Hwaier.
                         </p>
-                        <p className="text-sm text-muted-foreground">
-                            All rights reserved.
-                        </p>
+                        <div className="flex items-center gap-4">
+                            <button
+                                onClick={() => setConsent(null)}
+                                className="text-xs text-muted-foreground hover:text-foreground underline underline-offset-4 transition-colors"
+                            >
+                                Manage Cookies
+                            </button>
+                            <p className="text-sm text-muted-foreground">
+                                All rights reserved.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </footer>

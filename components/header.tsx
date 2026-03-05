@@ -4,6 +4,7 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, Github, Linkedin, Mail } from "lucide-react";
 import { ModeToggle } from "@/components/ModeToggle";
+import { useAnalytics } from "@/components/analytics-provider";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
@@ -22,6 +23,7 @@ import {
 } from "@/components/ui/tooltip";
 
 export function Header() {
+  const { trackEvent } = useAnalytics();
   const [scrolled, setScrolled] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -56,11 +58,15 @@ export function Header() {
       >
         <div className="container mx-auto flex items-center justify-between px-4">
           {/* Brand */}
-          <a href="#" className="flex items-center space-x-2 group">
-            <div className="h-10 w-10 rounded-xl bg-gradient-to-tr from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform duration-300">
+          <a
+            href="#"
+            className="flex items-center space-x-2 group"
+            onClick={() => trackEvent('header_click_logo')}
+          >
+            <div className="h-10 w-10 rounded-xl bg-linear-to-tr from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform duration-300">
               <span className="text-primary-foreground font-bold text-xl">S</span>
             </div>
-            <span className="font-serif text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">
+            <span className="font-serif text-xl font-bold bg-clip-text text-transparent bg-linear-to-r from-foreground to-foreground/80">
               Saymon Hwaier
             </span>
           </a>
@@ -72,6 +78,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group"
+                onClick={() => trackEvent('header_click_nav', link.label)}
               >
                 {link.label}
                 <span className="absolute inset-x-0 bottom-0 h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
@@ -93,6 +100,7 @@ export function Header() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="GitHub"
+                      onClick={() => trackEvent('header_click_social', 'GitHub')}
                     >
                       <Github className="h-5 w-5" />
                     </a>
@@ -111,6 +119,7 @@ export function Header() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="LinkedIn"
+                      onClick={() => trackEvent('header_click_social', 'LinkedIn')}
                     >
                       <Linkedin className="h-5 w-5" />
                     </a>
@@ -122,7 +131,11 @@ export function Header() {
               </Tooltip>
             </div>
 
-            <Button className="hidden md:flex bg-foreground text-background hover:bg-foreground/90 rounded-full px-6" asChild>
+            <Button
+              className="hidden md:flex bg-foreground text-background hover:bg-foreground/90 rounded-full px-6"
+              asChild
+              onClick={() => trackEvent('header_click_cta')}
+            >
               <a href="#contact">
                 Get In Touch
               </a>
@@ -136,6 +149,7 @@ export function Header() {
                   size="icon"
                   className="md:hidden relative z-50"
                   aria-label="Open menu"
+                  onClick={() => trackEvent('header_mobile_menu_open')}
                 >
                   <Menu className="h-6 w-6" />
                 </Button>
@@ -149,7 +163,10 @@ export function Header() {
                     <a
                       key={link.href}
                       href={link.href}
-                      onClick={() => setIsOpen(false)}
+                      onClick={() => {
+                        setIsOpen(false);
+                        trackEvent('header_mobile_click_nav', link.label);
+                      }}
                       className="text-2xl font-serif font-bold hover:text-accent transition-colors block py-2"
                     >
                       {link.label}
@@ -159,13 +176,29 @@ export function Header() {
 
                 <div className="mt-auto mb-10">
                   <div className="flex items-center gap-4 py-6 border-t">
-                    <a href="https://github.com/SHwaier" target="_blank" rel="noopener noreferrer" className="p-3 bg-muted rounded-full hover:bg-accent hover:text-accent-foreground transition-colors">
+                    <a
+                      href="https://github.com/SHwaier"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-muted rounded-full hover:bg-accent hover:text-accent-foreground transition-colors"
+                      onClick={() => trackEvent('header_mobile_click_social', 'GitHub')}
+                    >
                       <Github className="h-5 w-5" />
                     </a>
-                    <a href="https://www.linkedin.com/in/saymon-hwaier/" target="_blank" rel="noopener noreferrer" className="p-3 bg-muted rounded-full hover:bg-accent hover:text-accent-foreground transition-colors">
+                    <a
+                      href="https://www.linkedin.com/in/saymon-hwaier/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-muted rounded-full hover:bg-accent hover:text-accent-foreground transition-colors"
+                      onClick={() => trackEvent('header_mobile_click_social', 'LinkedIn')}
+                    >
                       <Linkedin className="h-5 w-5" />
                     </a>
-                    <a href="mailto:saymon.hwaier@gmail.com" className="p-3 bg-muted rounded-full hover:bg-accent hover:text-accent-foreground transition-colors">
+                    <a
+                      href="mailto:saymon.hwaier@gmail.com"
+                      className="p-3 bg-muted rounded-full hover:bg-accent hover:text-accent-foreground transition-colors"
+                      onClick={() => trackEvent('header_mobile_click_social', 'Email')}
+                    >
                       <Mail className="h-5 w-5" />
                     </a>
                   </div>

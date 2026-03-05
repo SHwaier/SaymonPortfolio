@@ -10,14 +10,14 @@
 4.  **SEO & Discovery:** Optimized for search engines and AI agents.
 
 ## 🛠️ Tech Stack
--   **Framework:** Next.js 15 (App Router)
+-   **Framework:** Next.js 16 (App Router)
 -   **Styling:** Tailwind CSS, Framer Motion
 -   **Language:** TypeScript
 -   **Database:** Supabase (PostgreSQL) - *In Progress*
 -   **Deployment:** Vercel
 
 ## 📂 Project Structure
--   `app/`: Next.js App Router pages.
+-   `app/`: Next.js App Router pages (including `robots.ts` & `sitemap.ts`).
 -   `components/`: Reusable UI components.
 -   `data/`: Static JSON data (migrating to DB).
 -   `public/`: Static assets (images, llms.txt).
@@ -25,8 +25,10 @@
 -   `supabase/`: Database schema and migrations.
 
 ## 📝 Current Status
--   **Phase 1 (Foundation)**: Complete. Hero, Projects (Bento), About (Timeline), SEO, Header/Footer (w/ Theme Toggle).
+-   **Phase 1 (Foundation)**: Complete. Hero, Projects (Bento), About (Timeline), SEO (Robots & Sitemap), Header/Footer (w/ Theme Toggle).
 -   **Phase 2 (Dynamic Data)**: In Progress. Supabase client installed, schema defined.
+-   **Analytics Integration**: Complete. Unified tracking system using Google Tag Manager (for GA4) and the official `@microsoft/clarity` package. Event tracking implemented across all major components (Hero, Header, Footer, About, Skills, Projects, Contact).
+-   **SEO Optimization**: Complete. Added dynamic `robots.txt` with environment-aware indexing rules and an automated `sitemap.xml`.
 
 ## 📜 Rules
 1. Never change the rules yourself, only i can change them
