@@ -27,7 +27,7 @@
 ## 📝 Current Status
 -   **Phase 1 (Foundation)**: Complete. Hero, Projects (Bento), About (Timeline), SEO (Robots & Sitemap), Header/Footer (w/ Theme Toggle).
 -   **Phase 2 (Dynamic Data)**: In Progress. Supabase client installed, schema defined.
--   **Analytics Integration**: Complete. Unified tracking system using Google Tag Manager (for GA4) and Microsoft Clarity (direct). Event tracking implemented across all major components (Hero, Header, Footer, About, Skills, Projects, Contact).
+-   **Analytics Integration**: Complete. Unified tracking system using Google Tag Manager (for GA4) and the official `@microsoft/clarity` package. Event tracking implemented across all major components (Hero, Header, Footer, About, Skills, Projects, Contact).
 -   **SEO Optimization**: Complete. Added dynamic `robots.txt` with environment-aware indexing rules and an automated `sitemap.xml`.
 
 ## 📜 Rules

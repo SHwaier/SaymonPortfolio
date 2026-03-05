@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
-import { clarity } from "react-microsoft-clarity";
+import clarity from "@microsoft/clarity";
 import { useAnalytics } from "./analytics-provider"
 
 export function ClarityAnalytics() {
@@ -9,14 +9,13 @@ export function ClarityAnalytics() {
     const projectId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID
 
     useEffect(() => {
-        // Only initialize if consent is granted and project ID exists
-        if (consent === "granted" && projectId) {
-            // Ensure we don't double-initialize if already running
-            if (!window.clarity) {
-                clarity.init(projectId);
-            } else {
-                // If clarity is already on the window but we want to ensure
-                // tracking is active (e.g. after consent change)
+        // Only initialize if project ID exists
+        if (projectId) {
+            // The official package's init is safe to call multiple times or manages its own state
+            clarity.init(projectId);
+
+            // If consent is granted, make sure we tell clarity
+            if (consent === "granted") {
                 clarity.consent();
             }
         }
