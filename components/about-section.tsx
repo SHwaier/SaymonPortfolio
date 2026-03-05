@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Code, Lightbulb, Users, Zap, Coffee, BookOpen, Briefcase, MapPin } from "lucide-react"
 import { motion } from "framer-motion"
 import { Experience } from "@/types"
+import { useAnalytics } from "@/components/analytics-provider"
 
 import { Separator } from "@/components/ui/separator"
 
@@ -13,10 +14,11 @@ interface AboutSectionProps {
 }
 
 export function AboutSection({ experience }: AboutSectionProps) {
+    const { trackEvent } = useAnalytics()
     return (
         <section id="about" className="py-20 bg-background relative overflow-hidden">
             {/* Decorative background element */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-24 bg-gradient-to-b from-muted/50 to-transparent pointer-events-none" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-24 bg-linear-to-b from-muted/50 to-transparent pointer-events-none" />
 
             <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-6xl mx-auto">
@@ -67,7 +69,10 @@ export function AboutSection({ experience }: AboutSectionProps) {
                                     <BookOpen className="w-5 h-5 text-accent" />
                                     Education
                                 </h3>
-                                <div className="mb-6">
+                                <div
+                                    className="mb-6 cursor-pointer"
+                                    onClick={() => trackEvent('about_click_education', 'B.Sc. Honours CS')}
+                                >
                                     <h4 className="text-lg font-bold text-foreground">B.Sc. Honours Computer Science with Software Engineering</h4>
                                     <p className="text-muted-foreground">University of Windsor • Sep 2022 - Present</p>
                                     <p className="text-sm text-muted-foreground mt-1">Certificate: Applied Information Technology</p>
@@ -125,7 +130,7 @@ export function AboutSection({ experience }: AboutSectionProps) {
                                 >
                                     <Card className="p-4 hover:shadow-md transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
                                         <div className="flex items-start gap-4">
-                                            <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${card.className}`}>
+                                            <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${card.className}`}>
                                                 <card.icon className="h-5 w-5" />
                                             </div>
                                             <div>
@@ -179,7 +184,10 @@ export function AboutSection({ experience }: AboutSectionProps) {
                                         transition={{ delay: 0.2 }}
                                         className="ml-12 md:ml-0 md:w-1/2 px-4"
                                     >
-                                        <Card className="p-6 border-border/40 hover:border-border transition-all duration-300 relative group overflow-hidden bg-card/50 backdrop-blur-sm hover:shadow-lg">
+                                        <Card
+                                            className="p-6 border-border/40 hover:border-border transition-all duration-300 relative group overflow-hidden bg-card/50 backdrop-blur-sm hover:shadow-lg cursor-pointer"
+                                            onClick={() => trackEvent('about_click_experience', exp.company)}
+                                        >
                                             <div className={`absolute top-0 w-1 h-full ${index % 2 === 0 ? 'right-0 bg-primary/20' : 'left-0 bg-secondary/20'} transition-all group-hover:bg-primary`} />
 
                                             <div className="flex flex-wrap justify-between items-start gap-4 mb-2">

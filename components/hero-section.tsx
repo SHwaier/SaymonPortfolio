@@ -3,12 +3,13 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Download, Code2, Zap, Terminal } from "lucide-react"
-import { sendGTMEvent } from '@next/third-parties/google'
+import { useAnalytics } from "@/components/analytics-provider"
 import { motion, useScroll, useTransform, Variants } from "framer-motion"
 import { useRef } from "react"
 import Image from "next/image"
 
 export function HeroSection() {
+  const { trackEvent } = useAnalytics()
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -44,7 +45,7 @@ export function HeroSection() {
 
   return (
     <section ref={containerRef} className="relative py-20 md:py-32 overflow-hidden min-h-[90vh] flex items-center justify-center">
-      {/* Dynamic Background */}
+      {/* ... existing dynamic background code ... */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-0 right-1/4 w-[30rem] h-[30rem] bg-secondary/5 rounded-full blur-3xl animate-pulse delay-1000" />
@@ -107,6 +108,7 @@ export function HeroSection() {
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-6 text-lg rounded-full shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 group"
                 asChild
+                onClick={() => trackEvent('hero_click_view_work')}
               >
                 <a href="#projects">
                   View My Work
@@ -120,7 +122,7 @@ export function HeroSection() {
                 asChild
               >
                 <a
-                  onClick={() => sendGTMEvent({ event: 'Download Resume Button Clicked', value: 'hero_section' })}
+                  onClick={() => trackEvent('hero_click_download_resume')}
                   href="/resume"
                   target="_blank"
                   rel="noopener noreferrer"

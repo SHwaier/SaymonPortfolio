@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect } from "react"
-import Script from "next/script"
 import { clarity } from "react-microsoft-clarity";
 import { useAnalytics } from "./analytics-provider"
 

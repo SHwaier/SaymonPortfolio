@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Mail, MapPin, Copy, Check, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -10,20 +10,9 @@ import { useAnalytics } from "@/components/analytics-provider"
 
 export function ContactSection() {
   const [copied, setCopied] = useState(false)
-  const [mailto, setMailto] = useState("")
+  const email = "saymon.hwaier@gmail.com"
 
   const { trackEvent } = useAnalytics()
-
-  // Obfuscated email parts
-  const user = "saymon.hwaier"
-  const domain = "gmail.com"
-  const email = `${user}@${domain}`
-
-  // Encode email to HTML entities for the mailto link on mount
-  useEffect(() => {
-    const encoded = email.split("").map(char => `&#${char.charCodeAt(0)};`).join("")
-    setMailto(`mailto:${encoded}`)
-  }, [email])
 
   const handleCopy = () => {
     navigator.clipboard.writeText(email)
@@ -32,11 +21,9 @@ export function ContactSection() {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const handleMailClick = (e: React.MouseEvent) => {
-    e.preventDefault()
+  const handleMailClick = () => {
     trackEvent('contact_click_mailto')
-    window.location.href = mailto.replace(/&amp;/g, '&');
-    window.location.href = `mailto:${email}`;
+    window.location.href = `mailto:${email}`
   }
 
   return (
@@ -79,7 +66,7 @@ export function ContactSection() {
                     <span>Email</span>
                   </div>
                   <span className="text-xl md:text-2xl font-medium tracking-tight">
-                    {user}<span className="text-muted-foreground mx-0.5">@</span>{domain}
+                    {email}
                   </span>
                   <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
                     <MapPin className="h-3 w-3" />

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github, Code2 } from "lucide-react"
+import { ExternalLink, Github } from "lucide-react"
 import { motion, Variants } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { Project } from "@/types"

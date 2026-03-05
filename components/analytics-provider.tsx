@@ -3,31 +3,31 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
 
 import { clarity } from "react-microsoft-clarity";
+import { sendGTMEvent } from '@next/third-parties/google';
 
 type ConsentStatus = "granted" | "denied" | null
 
 interface AnalyticsContextType {
     consent: ConsentStatus
     setConsent: (status: ConsentStatus) => void
-    trackEvent: (action: string, value?: string) => void
+    trackEvent: (action: string, value?: string, params?: Record<string, any>) => void
 }
 
 const AnalyticsContext = createContext<AnalyticsContextType | undefined>(undefined)
 
 export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
-    const [consent, setConsentState] = useState<ConsentStatus>(null)
+    const [consent, setConsentState] = useState<ConsentStatus>(() => {
+        if (typeof window !== "undefined") {
+            const storedConsent = localStorage.getItem("cookie-consent")
+            return (storedConsent === "granted" || storedConsent === "denied") ? storedConsent : null
+        }
+        return null
+    })
 
     useEffect(() => {
-        // Check localStorage on mount
-        const storedConsent = localStorage.getItem("cookie-consent")
-        if (storedConsent === "granted" || storedConsent === "denied") {
-            setConsentState(storedConsent)
-        }
-
         // Handle session termination
         const handleUnload = () => {
             if (window.clarity) {
-                // @ts-ignore - raw clarity API
                 window.clarity('stop');
             }
         };
@@ -46,24 +46,23 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
         }
     }
 
-    const trackEvent = (action: string, value?: string) => {
+    const trackEvent = (action: string, value?: string, params?: Record<string, any>) => {
         if (consent === "granted") {
             // 1. Microsoft Clarity
             const eventName = value ? `${action}_${value}` : action
             const sanitizedEvent = eventName.toLowerCase().replace(/\s+/g, '_')
 
             if (window.clarity) {
-                // @ts-ignore - clarity type definition might be incomplete
                 clarity.event(sanitizedEvent);
             }
 
             // 2. Google Tag Manager
-            if ((window as any).dataLayer) {
-                (window as any).dataLayer.push({
-                    event: action,
-                    value: value,
-                });
-            }
+            // This will also trigger GA4 if configured in GTM container
+            sendGTMEvent({
+                event: action,
+                value: value,
+                ...params,
+            });
         }
     }
 

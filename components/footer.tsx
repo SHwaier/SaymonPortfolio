@@ -44,7 +44,11 @@ export function Footer() {
                             <ul className="space-y-3">
                                 {['About', 'Projects', 'Skills', 'Contact'].map((item) => (
                                     <li key={item}>
-                                        <a href={`#${item.toLowerCase()}`} className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-center group">
+                                        <a
+                                            href={`#${item.toLowerCase()}`}
+                                            className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-center group"
+                                            onClick={() => trackEvent('footer_click_nav', item)}
+                                        >
                                             <span className="w-0 group-hover:w-2 h-px bg-accent mr-0 group-hover:mr-2 transition-all duration-300" />
                                             {item}
                                         </a>

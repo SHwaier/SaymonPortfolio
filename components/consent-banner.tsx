@@ -5,14 +5,15 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { useAnalytics } from "./analytics-provider"
-import { Cookie, X } from "lucide-react"
+import { Cookie } from "lucide-react"
 
 export function ConsentBanner() {
     const { consent, setConsent } = useAnalytics()
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
-        setMounted(true)
+        const timer = setTimeout(() => setMounted(true), 0)
+        return () => clearTimeout(timer)
     }, [])
 
     if (!mounted) return null

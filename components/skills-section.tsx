@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Star, Code2, Database, Wrench, LucideProps } from "lucide-react"
 import { motion, Variants } from "framer-motion"
 import { SkillCategory } from "@/types"
+import { useAnalytics } from "@/components/analytics-provider"
 import { ForwardRefExoticComponent, RefAttributes } from "react"
 
 interface SkillsSectionProps {
@@ -20,6 +21,7 @@ const iconMap: Record<string, ForwardRefExoticComponent<Omit<LucideProps, "ref">
 }
 
 export function SkillsSection({ skillCategories, otherSkills, learningSkills }: SkillsSectionProps) {
+  const { trackEvent } = useAnalytics()
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -62,7 +64,7 @@ export function SkillsSection({ skillCategories, otherSkills, learningSkills }: 
             <Star className="h-4 w-4 text-yellow-600 dark:text-yellow-400 fill-yellow-600 dark:fill-yellow-400" />
             <span className="text-muted-foreground">Technical Expertise</span>
           </div>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60 mb-6">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-linear-to-r from-primary to-primary/60 mb-6">
             Skills & Expertise
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -81,7 +83,10 @@ export function SkillsSection({ skillCategories, otherSkills, learningSkills }: 
             const IconComponent = iconMap[category.iconName] || Code2
             return (
               <motion.div key={index} variants={itemVariants} className="h-full">
-                <Card className="h-full border-border/50 bg-background/50 backdrop-blur-sm hover:border-primary/50 transition-colors duration-300 shadow-sm hover:shadow-md group overflow-hidden">
+                <Card
+                  className="h-full border-border/50 bg-background/50 backdrop-blur-sm hover:border-primary/50 transition-colors duration-300 shadow-sm hover:shadow-md group overflow-hidden cursor-pointer"
+                  onClick={() => trackEvent('skills_click_category', category.title)}
+                >
                   <div className={`absolute top-0 left-0 w-1 h-full ${category.progressColor}/20 group-hover:${category.progressColor} transition-colors duration-300`} />
                   <CardHeader className="pb-4">
                     <div className="flex items-center gap-4">
