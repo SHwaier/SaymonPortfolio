@@ -27,6 +27,7 @@
 ## 📝 Current Status
 -   **Phase 1 (Foundation)**: Complete. Hero, Projects (Bento), About (Timeline), SEO (Robots & Sitemap), Header/Footer (w/ Theme Toggle).
 -   **Phase 2 (Dynamic Data)**: In Progress. Supabase client installed, schema defined.
+-   **Next.js 16 Upgrade**: Complete. Upgraded to Next.js 16.2.6 and React 19, enabling Partial Prerendering (PPR) via `cacheComponents: true`. Refactored the admin layout structure to use dynamic Suspense-wrapped child components, resolving all prerender build blocks.
 -   **Analytics Integration**: Complete. Unified tracking system using Google Tag Manager (for GA4) and the official `@microsoft/clarity` package. Event tracking implemented across all major components (Hero, Header, Footer, About, Skills, Projects, Contact).
 -   **SEO Optimization**: Complete. Added dynamic `robots.txt` with environment-aware indexing rules and an automated `sitemap.xml`.
 
