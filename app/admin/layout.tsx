@@ -1,6 +1,7 @@
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import { Suspense } from 'react'
 import {
     LayoutDashboard,
     FolderGit2,
@@ -11,11 +12,7 @@ import {
 } from 'lucide-react'
 import LogoutButton from './logout-button'
 
-export default async function AdminLayout({
-    children,
-}: {
-    children: React.ReactNode
-}) {
+async function AdminSidebarProfile() {
     const supabase = await createClient()
 
     const {
@@ -26,6 +23,23 @@ export default async function AdminLayout({
         return redirect('/login')
     }
 
+    return (
+        <div className="flex items-center gap-3 px-4 py-3 mb-2">
+            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <User className="w-4 h-4 text-primary" />
+            </div>
+            <div className="flex-1 overflow-hidden">
+                <p className="text-sm font-medium truncate">{user.email}</p>
+            </div>
+        </div>
+    )
+}
+
+export default function AdminLayout({
+    children,
+}: {
+    children: React.ReactNode
+}) {
     const navItems = [
         { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
         { href: '/admin/projects', label: 'Projects', icon: FolderGit2 },
@@ -59,14 +73,16 @@ export default async function AdminLayout({
                 </nav>
 
                 <div className="p-4 border-t border-border">
-                    <div className="flex items-center gap-3 px-4 py-3 mb-2">
-                        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                            <User className="w-4 h-4 text-primary" />
+                    <Suspense fallback={
+                        <div className="flex items-center gap-3 px-4 py-3 mb-2 animate-pulse">
+                            <div className="w-8 h-8 rounded-full bg-muted animate-pulse"></div>
+                            <div className="flex-1 space-y-2">
+                                <div className="h-4 bg-muted rounded w-3/4 animate-pulse"></div>
+                            </div>
                         </div>
-                        <div className="flex-1 overflow-hidden">
-                            <p className="text-sm font-medium truncate">{user.email}</p>
-                        </div>
-                    </div>
+                    }>
+                        <AdminSidebarProfile />
+                    </Suspense>
                     <LogoutButton />
                 </div>
             </aside>
@@ -78,7 +94,12 @@ export default async function AdminLayout({
                     <LogoutButton variant="ghost" size="sm" />
                 </header>
                 <div className="p-6 max-w-7xl mx-auto">
-                    {children}
+                    <Suspense fallback={<div className="animate-pulse space-y-4">
+                        <div className="h-8 bg-muted rounded-md w-1/4"></div>
+                        <div className="h-32 bg-muted rounded-md"></div>
+                    </div>}>
+                        {children}
+                    </Suspense>
                 </div>
             </main>
         </div>

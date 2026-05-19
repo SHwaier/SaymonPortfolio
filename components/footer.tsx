@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from "react"
 import { Github, Linkedin, Mail } from "lucide-react"
 
 import { Separator } from "@/components/ui/separator"
@@ -13,7 +14,12 @@ import { useAnalytics } from "@/components/analytics-provider"
 
 export function Footer() {
     const { trackEvent, setConsent } = useAnalytics()
-    const currentYear = new Date().getFullYear();
+    const [currentYear, setCurrentYear] = useState(2026);
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setCurrentYear(new Date().getFullYear());
+    }, []);
 
     return (
         <TooltipProvider>
