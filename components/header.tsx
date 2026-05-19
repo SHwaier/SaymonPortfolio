@@ -23,6 +23,13 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+const navLinks = [
+  { href: "/#about", label: "About" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/#contact", label: "Contact" },
+];
+
 export function Header() {
   const { trackEvent } = useAnalytics();
   const [scrolled, setScrolled] = React.useState(false);
@@ -36,13 +43,6 @@ export function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navLinks = [
-    { href: "/#about", label: "About" },
-    { href: "/#projects", label: "Projects" },
-    { href: "/#skills", label: "Skills" },
-    { href: "/#contact", label: "Contact" },
-  ];
 
   return (
     <TooltipProvider>

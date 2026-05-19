@@ -27,170 +27,170 @@ import {
   Sparkles,
 } from "lucide-react";
 
+const skills = {
+  languages: ["C#", "C", "Java", "PHP", "JavaScript", "TypeScript", "HTML", "CSS", "SQL"],
+  frameworks: ["React", "Tailwind CSS", "Next.js", "WordPress"],
+  technologies: [
+    "Git",
+    "GitHub",
+    "Linux",
+    "Figma",
+    "Cloudflare",
+    "Gradle",
+    "REST APIs",
+    "JWT Tokens",
+    "JUnit Testing",
+    "MongoDB",
+    "N8N",
+  ],
+};
+
+const experience = [
+  {
+    role: "Sales Representative",
+    company: "TELUS Communications",
+    location: "Windsor, ON",
+    period: "Oct 2023 - Present",
+    highlights: [
+      "Developed a growing book-of-business by fostering loyalty, turning in-store downtime into 35 over-the-phone sales in 2025.",
+      "Maintained a high level of professionalism and product knowledge to build trust and rapport with clients.",
+      "Exceeded Ontario TELUS Pure Fiber expansion sales targets at 126.9%, bringing more high-speed home internet options to customers.",
+    ],
+    tags: ["Communication", "Client Relations", "Sales Strategy"],
+  },
+  {
+    role: "WordPress Developer",
+    company: "Integrative Canadian Group Organization",
+    location: "Windsor, ON",
+    period: "Jun 2022 - Aug 2023",
+    highlights: [
+      "Developed and maintained 2 responsive organization websites using WordPress, PHP, HTML, CSS, and JS, resulting in a 56% boost in website traffic.",
+      "Collaborated with the board of directors to ensure website requirements aligned with their vision and future operational needs.",
+      "Optimized website images, scripts, and responsive styling to achieve an 85% device performance improvement.",
+    ],
+    tags: ["WordPress", "PHP", "HTML5/CSS3", "JavaScript", "Performance Optimization"],
+  },
+  {
+    role: "Supervisor",
+    company: "Tim Hortons",
+    location: "Windsor, ON",
+    period: "Sep 2021 - Aug 2023",
+    highlights: [
+      "Managed and scheduled a team of 8 employees daily, implementing workflows to reduce drive-thru service times by 57%.",
+      "Handled customer issues with professionalism to ensure satisfaction, fostering repeat visits and brand loyalty.",
+    ],
+    tags: ["Team Leadership", "Operations", "Problem Solving"],
+  },
+];
+
+const projects = [
+  {
+    title: "Work Scheduler",
+    period: "Jan 2026",
+    tech: ["Python", "N8N", "Google Calendar API", "Google Gmail API", "Cloudflare Tunnel"],
+    description:
+      "An automation service that parses work schedules from sheets and translates them automatically into Google Calendar events, reducing manual tracking.",
+    highlights: [
+      "Designed self-hosted automation workflows with N8N to check schedules and trigger immediate calendar additions.",
+      "Abstracted logic for easy API adjustments and utilized secure Cloudflare Tunnels for endpoint routing.",
+    ],
+  },
+  {
+    title: "Personal Portfolio",
+    period: "Sep 2023",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Vercel"],
+    description:
+      "A premium personal portfolio with a bento grid structure, visual timeline, dark/light theme switching, and integrated analytics.",
+    highlights: [
+      "Built responsive interfaces with Tailwind CSS and Framer Motion for micro-animations.",
+      "Implemented dynamic configuration allowing content updates via structured JSON systems.",
+    ],
+  },
+  {
+    title: "Fancy Pants, 2D Game Engine",
+    period: "Mar 2024",
+    tech: ["Java", "Java Swing", "Java AWT", "Gradle"],
+    description:
+      "A 2D game engine built from the ground up as a team of 5, featuring physics simulation, scene rendering, and frame loop management.",
+    highlights: [
+      "Created the custom physics engine, collision detection algorithms, and progress tracker UI.",
+      "Configured multi-developer project dependencies and builds using Gradle.",
+    ],
+  },
+];
+
+const education = {
+  degree: "Bachelor of Science Honours Computer Science with Software Engineering",
+  school: "University of Windsor",
+  location: "Windsor, ON",
+  period: "Sep 2022 - Present",
+  details: [
+    "Certificate: Applied Information Technology",
+    "Recipient of the Dean's Entrance Scholarship ($10,000)",
+  ],
+  courses: [
+    "Object Oriented Programming (Java)",
+    "Advanced Website Design",
+    "Data Structures & Algorithms",
+    "Software Development",
+    "System Programming",
+    "Operating System Fundamentals",
+  ],
+};
+
+const extracurriculars = [
+  {
+    role: "Event Coordinator",
+    org: "Computer Science Society (CSS)",
+    location: "Windsor, ON",
+    period: "May 2024 - May 2025",
+    highlights: [
+      "Organized and executed workshops, coding contests, and guest lectures attracting 40-75 students per event.",
+      "Collaborated with university faculty and external tech recruiters to secure sponsors and speakers.",
+    ],
+  },
+  {
+    role: "CUSEC representative",
+    org: "Canadian Universities Software Engineering Conference",
+    location: "Montreal, QC",
+    period: "Jan 2024",
+    highlights: [
+      "Selected as one of 16 students representing the University of Windsor at this national event.",
+      "Attended workshops on design patterns, cloud computing, and built networks with software teams.",
+    ],
+  },
+  {
+    role: "Frontend Developer (Blaze Guard)",
+    org: "NASA Space Apps Hackathon",
+    location: "Windsor Regional",
+    period: "Oct 2023",
+    highlights: [
+      "Won 1st Place Regionally in a team of 5 by developing an application to track, report, and map wildfire threats.",
+      "Engineered the responsive dashboard layout, visual fire threat charts, and interactive map interface.",
+    ],
+  },
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 100 } },
+};
+
 export default function ResumePage() {
   const { trackEvent } = useAnalytics();
 
   const handleDownload = () => {
     trackEvent("resume_download", "PDF format");
-  };
-
-  const skills = {
-    languages: ["C#", "C", "Java", "PHP", "JavaScript", "TypeScript", "HTML", "CSS", "SQL"],
-    frameworks: ["React", "Tailwind CSS", "Next.js", "WordPress"],
-    technologies: [
-      "Git",
-      "GitHub",
-      "Linux",
-      "Figma",
-      "Cloudflare",
-      "Gradle",
-      "REST APIs",
-      "JWT Tokens",
-      "JUnit Testing",
-      "MongoDB",
-      "N8N",
-    ],
-  };
-
-  const experience = [
-    {
-      role: "Sales Representative",
-      company: "TELUS Communications",
-      location: "Windsor, ON",
-      period: "Oct 2023 - Present",
-      highlights: [
-        "Developed a growing book-of-business by fostering loyalty, turning in-store downtime into 35 over-the-phone sales in 2025.",
-        "Maintained a high level of professionalism and product knowledge to build trust and rapport with clients.",
-        "Exceeded Ontario TELUS Pure Fiber expansion sales targets at 126.9%, bringing more high-speed home internet options to customers.",
-      ],
-      tags: ["Communication", "Client Relations", "Sales Strategy"],
-    },
-    {
-      role: "WordPress Developer",
-      company: "Integrative Canadian Group Organization",
-      location: "Windsor, ON",
-      period: "Jun 2022 - Aug 2023",
-      highlights: [
-        "Developed and maintained 2 responsive organization websites using WordPress, PHP, HTML, CSS, and JS, resulting in a 56% boost in website traffic.",
-        "Collaborated with the board of directors to ensure website requirements aligned with their vision and future operational needs.",
-        "Optimized website images, scripts, and responsive styling to achieve an 85% device performance improvement.",
-      ],
-      tags: ["WordPress", "PHP", "HTML5/CSS3", "JavaScript", "Performance Optimization"],
-    },
-    {
-      role: "Supervisor",
-      company: "Tim Hortons",
-      location: "Windsor, ON",
-      period: "Sep 2021 - Aug 2023",
-      highlights: [
-        "Managed and scheduled a team of 8 employees daily, implementing workflows to reduce drive-thru service times by 57%.",
-        "Handled customer issues with professionalism to ensure satisfaction, fostering repeat visits and brand loyalty.",
-      ],
-      tags: ["Team Leadership", "Operations", "Problem Solving"],
-    },
-  ];
-
-  const projects = [
-    {
-      title: "Work Scheduler",
-      period: "Jan 2026",
-      tech: ["Python", "N8N", "Google Calendar API", "Google Gmail API", "Cloudflare Tunnel"],
-      description:
-        "An automation service that parses work schedules from sheets and translates them automatically into Google Calendar events, reducing manual tracking.",
-      highlights: [
-        "Designed self-hosted automation workflows with N8N to check schedules and trigger immediate calendar additions.",
-        "Abstracted logic for easy API adjustments and utilized secure Cloudflare Tunnels for endpoint routing.",
-      ],
-    },
-    {
-      title: "Personal Portfolio",
-      period: "Sep 2023",
-      tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Vercel"],
-      description:
-        "A premium personal portfolio with a bento grid structure, visual timeline, dark/light theme switching, and integrated analytics.",
-      highlights: [
-        "Built responsive interfaces with Tailwind CSS and Framer Motion for micro-animations.",
-        "Implemented dynamic configuration allowing content updates via structured JSON systems.",
-      ],
-    },
-    {
-      title: "Fancy Pants, 2D Game Engine",
-      period: "Mar 2024",
-      tech: ["Java", "Java Swing", "Java AWT", "Gradle"],
-      description:
-        "A 2D game engine built from the ground up as a team of 5, featuring physics simulation, scene rendering, and frame loop management.",
-      highlights: [
-        "Created the custom physics engine, collision detection algorithms, and progress tracker UI.",
-        "Configured multi-developer project dependencies and builds using Gradle.",
-      ],
-    },
-  ];
-
-  const education = {
-    degree: "Bachelor of Science Honours Computer Science with Software Engineering",
-    school: "University of Windsor",
-    location: "Windsor, ON",
-    period: "Sep 2022 - Present",
-    details: [
-      "Certificate: Applied Information Technology",
-      "Recipient of the Dean's Entrance Scholarship ($10,000)",
-    ],
-    courses: [
-      "Object Oriented Programming (Java)",
-      "Advanced Website Design",
-      "Data Structures & Algorithms",
-      "Software Development",
-      "System Programming",
-      "Operating System Fundamentals",
-    ],
-  };
-
-  const extracurriculars = [
-    {
-      role: "Event Coordinator",
-      org: "Computer Science Society (CSS)",
-      location: "Windsor, ON",
-      period: "May 2024 - May 2025",
-      highlights: [
-        "Organized and executed workshops, coding contests, and guest lectures attracting 40-75 students per event.",
-        "Collaborated with university faculty and external tech recruiters to secure sponsors and speakers.",
-      ],
-    },
-    {
-      role: "CUSEC representative",
-      org: "Canadian Universities Software Engineering Conference",
-      location: "Montreal, QC",
-      period: "Jan 2024",
-      highlights: [
-        "Selected as one of 16 students representing the University of Windsor at this national event.",
-        "Attended workshops on design patterns, cloud computing, and built networks with software teams.",
-      ],
-    },
-    {
-      role: "Frontend Developer (Blaze Guard)",
-      org: "NASA Space Apps Hackathon",
-      location: "Windsor Regional",
-      period: "Oct 2023",
-      highlights: [
-        "Won 1st Place Regionally in a team of 5 by developing an application to track, report, and map wildfire threats.",
-        "Engineered the responsive dashboard layout, visual fire threat charts, and interactive map interface.",
-      ],
-    },
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
-    show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 100 } },
   };
 
   return (
@@ -233,7 +233,7 @@ export default function ResumePage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.1 }}
-            className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12 bg-card/40 backdrop-blur-xs p-4 rounded-2xl border"
+            className="flex flex-wrap items-center justify-center md:justify-between gap-y-3 gap-x-6 mb-12 bg-card/40 backdrop-blur-xs p-4 rounded-2xl border"
           >
             {[
               { icon: Phone, text: "(226) 345-6700", href: "tel:2263456700" },
@@ -251,7 +251,7 @@ export default function ResumePage() {
                 onClick={() => trackEvent("resume_click_contact", contact.text)}
               >
                 <contact.icon className="w-4 h-4 shrink-0 text-accent/80" />
-                <span className="truncate">{contact.text}</span>
+                <span>{contact.text}</span>
               </a>
             ))}
           </motion.div>
