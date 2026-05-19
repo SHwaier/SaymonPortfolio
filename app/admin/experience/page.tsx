@@ -5,8 +5,6 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Plus, Pencil, Trash2, Briefcase, Calendar } from 'lucide-react'
 import { Experience } from '@/types'
 
-export const dynamic = 'force-dynamic'
-
 export default async function AdminExperiencePage() {
     const supabase = await createClient()
 

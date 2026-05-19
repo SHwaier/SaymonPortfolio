@@ -6,8 +6,6 @@ import { Plus, Pencil } from 'lucide-react'
 import { Skill } from '@/types'
 import { Badge } from '@/components/ui/badge'
 
-export const dynamic = 'force-dynamic'
-
 export default async function AdminSkillsPage() {
     const supabase = await createClient()
 

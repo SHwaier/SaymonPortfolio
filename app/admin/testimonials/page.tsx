@@ -6,8 +6,6 @@ import { Plus, Pencil, Trash2, Quote } from 'lucide-react'
 import { Testimonial } from '@/types'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
-export const dynamic = 'force-dynamic'
-
 export default async function AdminTestimonialsPage() {
     const supabase = await createClient()
 
