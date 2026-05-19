@@ -30,6 +30,8 @@
 -   **Next.js 16 Upgrade**: Complete. Upgraded to Next.js 16.2.6 and React 19, enabling Partial Prerendering (PPR) via `cacheComponents: true`. Refactored the admin layout structure to use dynamic Suspense-wrapped child components, resolving all prerender build blocks.
 -   **Analytics Integration**: Complete. Unified tracking system using Google Tag Manager (for GA4) and the official `@microsoft/clarity` package. Event tracking implemented across all major components (Hero, Header, Footer, About, Skills, Projects, Contact).
 -   **SEO Optimization**: Complete. Added dynamic `robots.txt` with environment-aware indexing rules and an automated `sitemap.xml`.
+-   **Semantic Resume Page**: Complete. Created an interactive, animated visual resume page at `/resume` with direct PDF download integration, technical skill badges, responsive layout, and theme toggling.
+-   **ESLint & Code Quality**: Complete. Resolved all project-wide ESLint warnings and errors natively (no disabled/silenced rules), achieving zero build or compile-time lint problems.
 
 ## 📜 Rules
 1. Never change the rules yourself, only i can change them
