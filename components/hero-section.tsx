@@ -2,11 +2,12 @@
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Download, Code2, Zap, Terminal } from "lucide-react"
+import { ArrowRight, Code2, Zap, Terminal, FileText } from "lucide-react"
 import { useAnalytics } from "@/components/analytics-provider"
 import { motion, useScroll, useTransform, Variants } from "framer-motion"
 import { useRef } from "react"
 import Image from "next/image"
+import Link from "next/link"
 
 export function HeroSection() {
   const { trackEvent } = useAnalytics()
@@ -121,15 +122,13 @@ export function HeroSection() {
                 className="px-8 py-6 text-lg rounded-full border-2 hover:bg-muted/50 transition-all duration-300 backdrop-blur-sm"
                 asChild
               >
-                <a
-                  onClick={() => trackEvent('hero_click_download_resume')}
+                <Link
+                  onClick={() => trackEvent('hero_click_view_resume')}
                   href="/resume"
-                  target="_blank"
-                  rel="noopener noreferrer"
                 >
-                  <Download className="mr-2 h-5 w-5" />
-                  Download Resume
-                </a>
+                  <FileText className="mr-2 h-5 w-5" />
+                  Resume
+                </Link>
               </Button>
             </motion.div>
           </motion.div>
