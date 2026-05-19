@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Github, Linkedin, Mail } from "lucide-react"
+import Link from "next/link"
 
 import { Separator } from "@/components/ui/separator"
 import {
@@ -17,8 +18,10 @@ export function Footer() {
     const [currentYear, setCurrentYear] = useState(2026);
 
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setCurrentYear(new Date().getFullYear());
+        const year = new Date().getFullYear();
+        setTimeout(() => {
+            setCurrentYear(year);
+        }, 0);
     }, []);
 
     return (
@@ -34,12 +37,12 @@ export function Footer() {
                     {/* Bottom Section - Links & Copyright */}
                     <div className="grid md:grid-cols-4 gap-8 md:gap-12">
                         <div className="space-y-4 md:col-span-2">
-                            <a href="#" className="flex items-center space-x-2 group w-fit">
+                            <Link href="/" className="flex items-center space-x-2 group w-fit">
                                 <div className="h-8 w-8 rounded-lg bg-linear-to-tr from-primary to-accent flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                                     <span className="text-primary-foreground font-bold text-lg">S</span>
                                 </div>
                                 <span className="font-serif text-xl font-bold">Saymon Hwaier</span>
-                            </a>
+                            </Link>
                             <p className="text-muted-foreground max-w-sm text-sm leading-relaxed">
                                 A full-stack software engineer focused on building scalable, accessible, and performant web solutions.
                             </p>
@@ -51,7 +54,7 @@ export function Footer() {
                                 {['About', 'Projects', 'Skills', 'Contact'].map((item) => (
                                     <li key={item}>
                                         <a
-                                            href={`#${item.toLowerCase()}`}
+                                            href={`/#${item.toLowerCase()}`}
                                             className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-center group"
                                             onClick={() => trackEvent('footer_click_nav', item)}
                                         >

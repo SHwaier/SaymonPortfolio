@@ -7,6 +7,7 @@ import { ModeToggle } from "@/components/ModeToggle";
 import { useAnalytics } from "@/components/analytics-provider";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 import {
   Sheet,
   SheetContent,
@@ -37,10 +38,10 @@ export function Header() {
   }, []);
 
   const navLinks = [
-    { href: "#about", label: "About" },
-    { href: "#projects", label: "Projects" },
-    { href: "#skills", label: "Skills" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#about", label: "About" },
+    { href: "/#projects", label: "Projects" },
+    { href: "/#skills", label: "Skills" },
+    { href: "/#contact", label: "Contact" },
   ];
 
   return (
@@ -58,8 +59,8 @@ export function Header() {
       >
         <div className="container mx-auto flex items-center justify-between px-4">
           {/* Brand */}
-          <a
-            href="#"
+          <Link
+            href="/"
             className="flex items-center space-x-2 group"
             onClick={() => trackEvent('header_click_logo')}
           >
@@ -69,7 +70,7 @@ export function Header() {
             <span className="font-serif text-xl font-bold bg-clip-text text-transparent bg-linear-to-r from-foreground to-foreground/80">
               Saymon Hwaier
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center space-x-1">
