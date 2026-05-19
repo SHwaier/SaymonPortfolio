@@ -32,6 +32,7 @@
 -   **SEO Optimization**: Complete. Added dynamic `robots.txt` with environment-aware indexing rules and an automated `sitemap.xml`.
 -   **Semantic Resume Page**: Complete. Created an interactive, animated visual resume page at `/resume` with direct PDF download integration, technical skill badges, responsive layout, and theme toggling.
 -   **ESLint & Code Quality**: Complete. Resolved all project-wide ESLint warnings and errors natively (no disabled/silenced rules), achieving zero build or compile-time lint problems.
+-   **React & Responsiveness Optimizations**: Complete. Applied React 19 performance patterns by hoisting static variables and animation variants outside component rendering flows (`ResumePage`, `HeroSection`, and `Header`). Conducted a full responsiveness check across viewports (320px to 2560px), refactoring the resume page's contact bar to a flexible wrapped layout to ensure perfect readable alignment on all devices.
 
 ## 📜 Rules
 1. Never change the rules yourself, only i can change them
