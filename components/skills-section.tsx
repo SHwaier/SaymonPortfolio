@@ -1,12 +1,8 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Star, Code2, Database, Wrench, LucideProps } from "lucide-react"
-import { motion, Variants } from "framer-motion"
+import { motion } from "framer-motion"
 import { SkillCategory } from "@/types"
 import { useAnalytics } from "@/components/analytics-provider"
-import { ForwardRefExoticComponent, RefAttributes } from "react"
 
 interface SkillsSectionProps {
   skillCategories: SkillCategory[]
@@ -14,198 +10,107 @@ interface SkillsSectionProps {
   learningSkills: string[]
 }
 
-const iconMap: Record<string, ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>> = {
-  'Code2': Code2,
-  'Database': Database,
-  'Wrench': Wrench
-}
-
 export function SkillsSection({ skillCategories, otherSkills, learningSkills }: SkillsSectionProps) {
   const { trackEvent } = useAnalytics()
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-      },
-    },
-  }
 
   return (
-    <section id="skills" className="py-24 bg-background relative overflow-hidden">
-      {/* Background Decorative Elements Removed */}
+    <section id="skills" className="py-24 bg-background relative overflow-hidden border-b border-border">
+      {/* Faint Architectural Grid Lines */}
+      <div className="absolute inset-0 pointer-events-none grid grid-cols-4 md:grid-cols-12 gap-4 px-4 opacity-50">
+          <div className="col-span-1 border-l border-border/30 h-full"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+      </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Skills & Expertise
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            A curated stack of technologies I use to build scalable, high-performance applications.
-          </p>
-        </motion.div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
-        >
-          {skillCategories.map((category, index) => {
-            const IconComponent = iconMap[category.iconName] || Code2
-            return (
-              <motion.div key={index} variants={itemVariants} className="h-full">
-                <Card
-                  className="h-full border border-border bg-card hover:border-accent transition-colors duration-300 shadow-sm hover:shadow-md group overflow-hidden cursor-pointer relative"
-                  onClick={() => trackEvent('skills_click_category', category.title)}
-                >
-                  <div className={`absolute top-0 left-0 w-1 h-full bg-border group-hover:bg-accent transition-colors duration-300`} />
-                  <CardHeader className="pb-4">
-                    <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 bg-muted rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300`}>
-                        <IconComponent className={`h-6 w-6 text-foreground`} />
-                      </div>
-                      <CardTitle className="text-xl font-serif">{category.title}</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    {category.skills.map((skill, skillIndex) => (
-                      <div key={skillIndex} className="relative">
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="text-sm font-medium group-hover:text-foreground transition-colors">
-                            {skill.name}
-                          </span>
-                          <span className="text-xs text-muted-foreground/70 font-mono">
-                            {skill.years}
-                          </span>
-                        </div>
-                        <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${(skill.level === "Expert" ? 100 : skill.level === "Advanced" ? 80 : skill.level === "Intermediate" ? 60 : 40)}%` }}
-                            transition={{ duration: 1, delay: 0.2 + (skillIndex * 0.1) }}
-                            viewport={{ once: true }}
-                            className={`h-full rounded-full bg-foreground`}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </CardContent>
-                </Card>
-              </motion.div>
-            )
-          })}
-        </motion.div>
-
-        <div className="mt-20 grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+      <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 md:grid-cols-12 gap-4">
+        <div className="md:col-span-12 mb-20 text-right">
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="bg-card border border-border rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-all duration-300"
+            className="text-4xl md:text-[6rem] font-bold leading-[0.85] tracking-tighter text-foreground"
           >
-            <h3 className="font-serif text-xl font-semibold mb-6 flex items-center justify-center gap-2">
-              <WrenchIcon className="w-5 h-5 text-foreground" />
-              Additional Tools
-            </h3>
-            <div className="flex flex-wrap justify-center gap-2">
-              {otherSkills.map((tech, index) => (
-                <Badge
-                  key={index}
-                  variant="outline"
-                  className="px-3 py-1.5 bg-muted border-border hover:bg-accent hover:text-accent-foreground hover:border-accent transition-colors cursor-default text-sm"
-                >
-                  {tech}
-                </Badge>
-              ))}
-            </div>
-          </motion.div>
+            TECHNICAL<br />EXPERTISE
+          </motion.h2>
+        </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="bg-card border border-border rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-all duration-300"
-          >
-            <h3 className="font-serif text-xl font-semibold mb-6 flex items-center justify-center gap-2">
-              <BookOpenIcon className="w-5 h-5 text-foreground" />
-              Current Learning
-            </h3>
-            <div className="flex flex-wrap justify-center gap-2">
-              {learningSkills.map((tech, index) => (
-                <Badge
-                  key={index}
-                  variant="outline"
-                  className="px-3 py-1.5 border-dashed hover:border-solid hover:bg-accent hover:text-accent-foreground transition-all cursor-default text-sm"
+        <div className="md:col-span-12">
+            <div className="grid md:grid-cols-3 gap-0 border-t border-l border-border/50">
+            {skillCategories.map((category, index) => (
+                <motion.div 
+                    key={index} 
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="p-8 border-r border-b border-border/50 bg-background group cursor-pointer"
+                    onClick={() => trackEvent('skills_click_category', category.title)}
                 >
-                  {tech}
-                </Badge>
-              ))}
+                    <h3 className="text-xl font-bold uppercase tracking-widest text-foreground mb-8">
+                        {category.title}
+                    </h3>
+                    <ul className="space-y-4">
+                        {category.skills.map((skill, skillIndex) => (
+                        <li key={skillIndex} className="flex justify-between items-end border-b border-border/50 pb-2">
+                            <span className="text-sm font-bold text-foreground uppercase tracking-widest">{skill.name}</span>
+                            <span className="text-xs text-muted-foreground font-mono">{skill.years}</span>
+                        </li>
+                        ))}
+                    </ul>
+                </motion.div>
+            ))}
             </div>
-          </motion.div>
+        </div>
+
+        <div className="md:col-span-12 mt-12 grid md:grid-cols-2 gap-0 border-t border-l border-border/50">
+            <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="p-8 border-r border-b border-border/50 bg-background"
+            >
+                <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-6">Additional Tools</h3>
+                <div className="flex flex-wrap gap-2">
+                {otherSkills.map((tech, index) => (
+                    <span
+                    key={index}
+                    className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 border border-border text-foreground hover:bg-foreground hover:text-background transition-colors"
+                    >
+                    {tech}
+                    </span>
+                ))}
+                </div>
+            </motion.div>
+
+            <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="p-8 border-r border-b border-border/50 bg-background"
+            >
+                <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-6">Currently Learning</h3>
+                <div className="flex flex-wrap gap-2">
+                {learningSkills.map((tech, index) => (
+                    <span
+                    key={index}
+                    className="text-[10px] font-bold uppercase tracking-widest px-2 py-1 border border-border border-dashed text-foreground"
+                    >
+                    {tech}
+                    </span>
+                ))}
+                </div>
+            </motion.div>
         </div>
       </div>
     </section>
-  )
-}
-
-function WrenchIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-    </svg>
-  )
-}
-
-function BookOpenIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-    </svg>
   )
 }
