@@ -13,19 +13,19 @@ export function AboutSection({ experience }: AboutSectionProps) {
     return (
         <section id="about" className="py-24 bg-background relative overflow-hidden border-b border-border">
             {/* Faint Architectural Grid Lines */}
-            <div className="absolute inset-0 pointer-events-none grid grid-cols-4 md:grid-cols-12 gap-4 px-4">
-                <div className="col-span-1 border-l border-foreground/10 h-full"></div>
-                <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
-                <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
-                <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
-                <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
-                <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
-                <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
-                <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
-                <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
-                <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
-                <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
-                <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
+            <div className="absolute inset-0 pointer-events-none grid grid-cols-4 md:grid-cols-12 gap-4 px-4 opacity-50">
+                <div className="col-span-1 border-l border-border/30 h-full"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
             </div>
 
             <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 md:grid-cols-12 gap-4">
