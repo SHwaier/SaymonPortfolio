@@ -45,12 +45,8 @@ export function SkillsSection({ skillCategories, otherSkills, learningSkills }: 
   }
 
   return (
-    <section id="skills" className="py-24 bg-muted/30 relative overflow-hidden">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
-      </div>
+    <section id="skills" className="py-24 bg-background relative overflow-hidden">
+      {/* Background Decorative Elements Removed */}
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -60,11 +56,7 @@ export function SkillsSection({ skillCategories, otherSkills, learningSkills }: 
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-background border border-border shadow-sm text-foreground px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Star className="h-4 w-4 text-yellow-600 dark:text-yellow-400 fill-yellow-600 dark:fill-yellow-400" />
-            <span className="text-muted-foreground">Technical Expertise</span>
-          </div>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-linear-to-r from-primary to-primary/60 mb-6">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-6">
             Skills & Expertise
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -84,14 +76,14 @@ export function SkillsSection({ skillCategories, otherSkills, learningSkills }: 
             return (
               <motion.div key={index} variants={itemVariants} className="h-full">
                 <Card
-                  className="h-full border-border/50 bg-background/50 backdrop-blur-sm hover:border-primary/50 transition-colors duration-300 shadow-sm hover:shadow-md group overflow-hidden cursor-pointer"
+                  className="h-full border border-border bg-card hover:border-accent transition-colors duration-300 shadow-sm hover:shadow-md group overflow-hidden cursor-pointer relative"
                   onClick={() => trackEvent('skills_click_category', category.title)}
                 >
-                  <div className={`absolute top-0 left-0 w-1 h-full ${category.progressColor}/20 group-hover:${category.progressColor} transition-colors duration-300`} />
+                  <div className={`absolute top-0 left-0 w-1 h-full bg-border group-hover:bg-accent transition-colors duration-300`} />
                   <CardHeader className="pb-4">
                     <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 ${category.bgColor} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                        <IconComponent className={`h-6 w-6 ${category.iconColor}`} />
+                      <div className={`w-12 h-12 bg-muted rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300`}>
+                        <IconComponent className={`h-6 w-6 text-foreground`} />
                       </div>
                       <CardTitle className="text-xl font-serif">{category.title}</CardTitle>
                     </div>
@@ -113,7 +105,7 @@ export function SkillsSection({ skillCategories, otherSkills, learningSkills }: 
                             whileInView={{ width: `${(skill.level === "Expert" ? 100 : skill.level === "Advanced" ? 80 : skill.level === "Intermediate" ? 60 : 40)}%` }}
                             transition={{ duration: 1, delay: 0.2 + (skillIndex * 0.1) }}
                             viewport={{ once: true }}
-                            className={`h-full rounded-full ${category.progressColor}`}
+                            className={`h-full rounded-full bg-foreground`}
                           />
                         </div>
                       </div>
@@ -131,18 +123,18 @@ export function SkillsSection({ skillCategories, otherSkills, learningSkills }: 
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="bg-background/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 text-center"
+            className="bg-card border border-border rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-all duration-300"
           >
             <h3 className="font-serif text-xl font-semibold mb-6 flex items-center justify-center gap-2">
-              <WrenchIcon className="w-5 h-5 text-muted-foreground" />
+              <WrenchIcon className="w-5 h-5 text-foreground" />
               Additional Tools
             </h3>
             <div className="flex flex-wrap justify-center gap-2">
               {otherSkills.map((tech, index) => (
                 <Badge
                   key={index}
-                  variant="secondary"
-                  className="px-3 py-1.5 hover:bg-primary hover:text-primary-foreground transition-colors cursor-default text-sm"
+                  variant="outline"
+                  className="px-3 py-1.5 bg-muted border-border hover:bg-accent hover:text-accent-foreground hover:border-accent transition-colors cursor-default text-sm"
                 >
                   {tech}
                 </Badge>
@@ -155,10 +147,10 @@ export function SkillsSection({ skillCategories, otherSkills, learningSkills }: 
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="bg-background/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 text-center"
+            className="bg-card border border-border rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-all duration-300"
           >
             <h3 className="font-serif text-xl font-semibold mb-6 flex items-center justify-center gap-2">
-              <BookOpenIcon className="w-5 h-5 text-muted-foreground" />
+              <BookOpenIcon className="w-5 h-5 text-foreground" />
               Current Learning
             </h3>
             <div className="flex flex-wrap justify-center gap-2">

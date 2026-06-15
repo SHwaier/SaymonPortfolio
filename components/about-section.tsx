@@ -17,24 +17,12 @@ export function AboutSection({ experience }: AboutSectionProps) {
     const { trackEvent } = useAnalytics()
     return (
         <section id="about" className="py-20 bg-background relative overflow-hidden">
-            {/* Decorative background element */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-24 bg-linear-to-b from-muted/50 to-transparent pointer-events-none" />
+            {/* Decorative background element removed */}
 
             <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-6xl mx-auto">
                     {/* Header */}
                     <div className="text-center mb-20">
-                        <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="mb-4"
-                        >
-                            <Badge variant="secondary" className="px-4 py-2 text-sm font-medium bg-accent/10 text-accent hover:bg-accent/20 border-accent/20 rounded-full">
-                                <Coffee className="h-4 w-4 mr-2" />
-                                Get to know me
-                            </Badge>
-                        </motion.div>
                         <motion.h2
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -63,10 +51,10 @@ export function AboutSection({ experience }: AboutSectionProps) {
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
-                                className="relative pl-6 border-l-2 border-accent/20"
+                                className="relative pl-6 border-l-2 border-border"
                             >
-                                <h3 className="font-serif text-2xl font-semibold text-primary mb-4 flex items-center gap-2">
-                                    <BookOpen className="w-5 h-5 text-accent" />
+                                <h3 className="font-serif text-2xl font-semibold text-foreground mb-4 flex items-center gap-2">
+                                    <BookOpen className="w-5 h-5 text-foreground" />
                                     Education
                                 </h3>
                                 <div
@@ -79,8 +67,8 @@ export function AboutSection({ experience }: AboutSectionProps) {
                                     <p className="text-sm text-muted-foreground mt-1">Dean&apos;s Entrance Scholarship ($10,000)</p>
                                 </div>
 
-                                <h3 className="font-serif text-2xl font-semibold text-primary mb-4 flex items-center gap-2">
-                                    <Code className="w-5 h-5 text-accent" />
+                                <h3 className="font-serif text-2xl font-semibold text-foreground mb-4 flex items-center gap-2">
+                                    <Code className="w-5 h-5 text-foreground" />
                                     My Journey
                                 </h3>
                                 <p className="text-muted-foreground leading-relaxed mb-4 text-lg">
@@ -91,9 +79,9 @@ export function AboutSection({ experience }: AboutSectionProps) {
 
                             <div className="flex flex-wrap gap-3">
                                 {[
-                                    { icon: Code, label: "Full Stack Dev", className: "bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400" },
-                                    { icon: Users, label: "Mentoring", className: "bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400" },
-                                    { icon: Zap, label: "Open Source", className: "bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400" },
+                                    { icon: Code, label: "Full Stack Dev", className: "bg-background border border-border text-foreground" },
+                                    { icon: Users, label: "Mentoring", className: "bg-background border border-border text-foreground" },
+                                    { icon: Zap, label: "Open Source", className: "bg-background border border-border text-foreground" },
                                 ].map((tag, i) => (
                                     <motion.div
                                         key={i}
@@ -117,9 +105,9 @@ export function AboutSection({ experience }: AboutSectionProps) {
                         {/* Personality Cards */}
                         <div className="lg:col-span-2 space-y-4">
                             {[
-                                { title: "Craft & Quality", desc: "Every line of code matters. I write with future maintainers in mind.", icon: Code, className: "bg-accent/10 text-accent dark:bg-accent/20 dark:text-accent-foreground" },
-                                { title: "Innovation", desc: "Always exploring new technologies and pushing boundaries.", icon: Lightbulb, className: "bg-secondary/10 text-secondary dark:bg-secondary/20 dark:text-secondary-foreground" },
-                                { title: "Performance", desc: "Speed and efficiency are not optional—they're essential.", icon: Zap, className: "bg-orange-100 text-orange-700 dark:bg-orange-900/20 dark:text-orange-400" }
+                                { title: "Craft & Quality", desc: "Every line of code matters. I write with future maintainers in mind.", icon: Code, className: "bg-muted text-foreground" },
+                                { title: "Innovation", desc: "Always exploring new technologies and pushing boundaries.", icon: Lightbulb, className: "bg-muted text-foreground" },
+                                { title: "Performance", desc: "Speed and efficiency are not optional—they're essential.", icon: Zap, className: "bg-muted text-foreground" }
                             ].map((card, index) => (
                                 <motion.div
                                     key={index}
@@ -128,7 +116,7 @@ export function AboutSection({ experience }: AboutSectionProps) {
                                     viewport={{ once: true }}
                                     transition={{ delay: 0.2 + (index * 0.1) }}
                                 >
-                                    <Card className="p-4 hover:shadow-md transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
+                                    <Card className="p-4 hover:shadow-sm transition-all duration-300 border border-border bg-card">
                                         <div className="flex items-start gap-4">
                                             <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${card.className}`}>
                                                 <card.icon className="h-5 w-5" />
@@ -153,7 +141,7 @@ export function AboutSection({ experience }: AboutSectionProps) {
                                 viewport={{ once: true }}
                                 className="font-serif text-2xl font-bold text-foreground flex items-center justify-center gap-2"
                             >
-                                <Briefcase className="w-6 h-6 text-primary" />
+                                <Briefcase className="w-6 h-6 text-foreground" />
                                 Professional Journey
                             </motion.h3>
                         </div>
@@ -173,7 +161,7 @@ export function AboutSection({ experience }: AboutSectionProps) {
                                         initial={{ scale: 0 }}
                                         whileInView={{ scale: 1 }}
                                         viewport={{ once: true }}
-                                        className="absolute left-4 md:left-1/2 w-4 h-4 bg-background border-4 border-primary rounded-full transform -translate-x-1/2 mt-1.5 z-10"
+                                        className="absolute left-4 md:left-1/2 w-3 h-3 bg-background border-2 border-foreground rounded-full transform -translate-x-1/2 mt-1.5 z-10"
                                     />
 
                                     {/* Content Card */}
@@ -185,14 +173,14 @@ export function AboutSection({ experience }: AboutSectionProps) {
                                         className="ml-12 md:ml-0 md:w-1/2 px-4"
                                     >
                                         <Card
-                                            className="p-6 border-border/40 hover:border-border transition-all duration-300 relative group overflow-hidden bg-card/50 backdrop-blur-sm hover:shadow-lg cursor-pointer"
+                                            className="p-6 border border-border transition-all duration-300 relative group overflow-hidden bg-card hover:shadow-sm cursor-pointer"
                                             onClick={() => trackEvent('about_click_experience', exp.company)}
                                         >
-                                            <div className={`absolute top-0 w-1 h-full ${index % 2 === 0 ? 'right-0 bg-primary/20' : 'left-0 bg-secondary/20'} transition-all group-hover:bg-primary`} />
+                                            <div className={`absolute top-0 w-1 h-full ${index % 2 === 0 ? 'right-0' : 'left-0'} bg-border transition-all group-hover:bg-accent`} />
 
                                             <div className="flex flex-wrap justify-between items-start gap-4 mb-2">
                                                 <div>
-                                                    <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">{exp.title}</h4>
+                                                    <h4 className="text-xl font-bold text-foreground group-hover:text-accent transition-colors">{exp.title}</h4>
                                                     <div className="text-base font-medium text-muted-foreground flex items-center gap-2">
                                                         <Briefcase className="w-3 h-3" />
                                                         {exp.company}
@@ -218,8 +206,8 @@ export function AboutSection({ experience }: AboutSectionProps) {
                                                     {exp.technologies.map((tech, i) => (
                                                         <Badge
                                                             key={i}
-                                                            variant="secondary"
-                                                            className="text-xs px-2.5 py-0.5 bg-accent/10 text-accent hover:bg-accent hover:text-accent-foreground border-accent/20 transition-colors"
+                                                            variant="outline"
+                                                            className="text-xs px-2.5 py-0.5 border-border text-foreground bg-muted hover:bg-accent hover:text-accent-foreground hover:border-accent transition-colors"
                                                         >
                                                             {tech}
                                                         </Badge>

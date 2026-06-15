@@ -43,54 +43,64 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-muted/30 px-4">
-            <Card className="w-full max-w-sm">
-                <CardHeader>
-                    <CardTitle className="text-2xl text-center font-serif">Admin Login</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <form onSubmit={handleLogin} className="space-y-4">
-                        <div className="space-y-2">
-                            <Label htmlFor="email">Email</Label>
-                            <Input
-                                id="email"
-                                type="email"
-                                placeholder="you@example.com"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
+        <div className="min-h-screen flex items-center justify-center bg-background px-4">
+            <div className="w-full max-w-sm space-y-8">
+                <div className="text-center">
+                    <div className="flex justify-center mb-6">
+                        <div className="h-12 w-12 rounded-xl bg-foreground flex items-center justify-center shadow-lg">
+                            <span className="text-background font-bold text-2xl font-serif">S</span>
                         </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="password">Password</Label>
-                            <Input
-                                id="password"
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                            />
-                        </div>
+                    </div>
+                    <h1 className="text-2xl font-serif font-bold tracking-tight text-foreground">Admin Portal</h1>
+                    <p className="text-sm text-muted-foreground mt-2">Sign in to manage your portfolio</p>
+                </div>
+                <Card className="border border-border shadow-sm bg-card">
+                    <CardContent className="pt-6">
+                        <form onSubmit={handleLogin} className="space-y-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="email">Email address</Label>
+                                <Input
+                                    id="email"
+                                    type="email"
+                                    placeholder="name@example.com"
+                                    className="border-border focus-visible:ring-accent transition-all"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="password">Password</Label>
+                                <Input
+                                    id="password"
+                                    type="password"
+                                    className="border-border focus-visible:ring-accent transition-all"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
 
-                        {error && (
-                            <Alert variant="destructive">
-                                <AlertDescription>{error}</AlertDescription>
-                            </Alert>
-                        )}
-
-                        <Button type="submit" className="w-full" disabled={loading}>
-                            {loading ? (
-                                <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Logging in...
-                                </>
-                            ) : (
-                                'Login'
+                            {error && (
+                                <Alert variant="destructive" className="border-red-500/50 text-red-600">
+                                    <AlertDescription>{error}</AlertDescription>
+                                </Alert>
                             )}
-                        </Button>
-                    </form>
-                </CardContent>
-            </Card>
+
+                            <Button type="submit" className="w-full bg-foreground text-background hover:bg-foreground/90 transition-colors mt-2" disabled={loading}>
+                                {loading ? (
+                                    <>
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        Signing in...
+                                    </>
+                                ) : (
+                                    'Sign In'
+                                )}
+                            </Button>
+                        </form>
+                    </CardContent>
+                </Card>
+            </div>
         </div>
     )
 }

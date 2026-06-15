@@ -18,17 +18,6 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
         <section id="testimonials" className="py-24 bg-background">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="mb-4"
-                    >
-                        <Badge variant="secondary" className="px-4 py-2 text-sm font-medium bg-primary/10 text-primary hover:bg-primary/20 border-primary/20 rounded-full">
-                            <Quote className="h-4 w-4 mr-2" />
-                            Social Proof
-                        </Badge>
-                    </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -58,11 +47,11 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                         >
-                            <Card className="h-full bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/20 transition-colors">
+                            <Card className="h-full bg-card border border-border shadow-sm hover:shadow-md hover:border-accent transition-all duration-300">
                                 <CardHeader className="flex flex-row items-center gap-4 pb-4">
-                                    <Avatar className="h-12 w-12 border-2 border-primary/10">
+                                    <Avatar className="h-12 w-12 border border-border">
                                         <AvatarImage src={testimonial.avatar_url || ""} alt={testimonial.name} />
-                                        <AvatarFallback className="bg-primary/5 text-primary">
+                                        <AvatarFallback className="bg-muted text-foreground">
                                             {testimonial.name.slice(0, 2).toUpperCase()}
                                         </AvatarFallback>
                                     </Avatar>
@@ -77,8 +66,8 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
                                             <Star
                                                 key={i}
                                                 className={`h-4 w-4 ${i < (testimonial.rating || 5)
-                                                    ? "text-yellow-500 fill-yellow-500"
-                                                    : "text-muted-foreground/20"
+                                                    ? "text-foreground fill-foreground"
+                                                    : "text-muted fill-muted"
                                                     }`}
                                             />
                                         ))}

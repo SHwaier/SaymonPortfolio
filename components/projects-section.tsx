@@ -40,7 +40,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
   const { trackEvent } = useAnalytics()
 
   return (
-    <section id="projects" className="py-24 bg-muted/30">
+    <section id="projects" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         {/* ... existing code ... */}
 
@@ -56,7 +56,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               key={project.id || index}
               variants={itemVariants}
               className={cn(
-                "group relative overflow-hidden rounded-2xl border bg-background/50 shadow-sm hover:shadow-xl",
+                "group relative overflow-hidden rounded-xl border border-border bg-card shadow-sm hover:shadow-md transition-all",
                 project.size === "large" ? "md:col-span-2 md:row-span-2 min-h-[400px]" : "col-span-1 min-h-[300px]"
               )}
               whileHover={{ y: -5 }}
@@ -66,7 +66,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
             >
               {/* Image Background */}
               <div className="absolute inset-0 z-0">
-                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent z-10 transition-opacity duration-300 group-hover:via-black/60" />
+                <div className="absolute inset-0 bg-black/40 z-10 transition-opacity duration-300 group-hover:bg-black/50" />
                 <Image
                   src={project.image || "/placeholder.svg"}
                   width={500}
@@ -79,10 +79,10 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
 
               {/* Content Content - Positioned at bottom */}
               <div className="absolute inset-0 z-20 flex flex-col justify-end p-6 select-none">
-                <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <div className="transition-transform duration-300">
                   <div className="flex items-start justify-between mb-2">
                     <h3 className={cn(
-                      "font-serif font-bold text-white mb-1 drop-shadow-md", // Force white text
+                      "font-serif font-bold text-white mb-1", // Force white text
                       project.size === "large" ? "text-3xl" : "text-xl"
                     )}>
                       {project.title}
@@ -90,7 +90,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                   </div>
 
                   <p className={cn(
-                    "text-gray-200 mb-4 line-clamp-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100 drop-shadow-sm",
+                    "text-gray-200 mb-4 line-clamp-3 transition-opacity duration-300",
                     project.size === "large" ? "text-lg" : "text-sm"
                   )}>
                     {project.description}
@@ -100,22 +100,22 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                     {project.technologies.slice(0, project.size === "large" ? 6 : 3).map((tech, techIndex) => (
                       <Badge
                         key={techIndex}
-                        variant="secondary"
-                        className="bg-white/20 text-white border-white/10 backdrop-blur-md hover:bg-white/30 transition-colors"
+                        variant="outline"
+                        className="bg-transparent text-white border-white/40 hover:bg-white/10 transition-colors font-normal"
                       >
                         {tech}
                       </Badge>
                     ))}
                     {project.technologies.length > (project.size === "large" ? 6 : 3) && (
-                      <Badge variant="outline" className="text-xs text-white border-white/20 bg-black/20 backdrop-blur-sm">+{(project.technologies.length - (project.size === "large" ? 6 : 3))}</Badge>
+                      <Badge variant="outline" className="text-xs text-white border-white/40 bg-transparent font-normal">+{(project.technologies.length - (project.size === "large" ? 6 : 3))}</Badge>
                     )}
                   </div>
 
-                  <div className="flex gap-3 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-200">
+                  <div className="flex gap-3 transition-all duration-300">
                     {project.live_url && (
                       <Button
                         size="sm"
-                        className="bg-white text-black hover:bg-white/90 rounded-full font-medium"
+                        className="bg-white text-black hover:bg-gray-200 rounded-md font-medium"
                         asChild
                         onClick={(e) => {
                           e.stopPropagation(); // Prevent card click
@@ -131,7 +131,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                       <Button
                         size="sm"
                         variant="outline"
-                        className="bg-black/50 text-white border-white/20 hover:bg-black/70 hover:text-white rounded-full backdrop-blur-md"
+                        className="bg-transparent text-white border-white hover:bg-white hover:text-black rounded-md transition-colors"
                         asChild
                         onClick={(e) => {
                           e.stopPropagation(); // Prevent card click
@@ -160,7 +160,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
           <Button
             variant="outline"
             size="lg"
-            className="px-8 py-6 rounded-full border-2 hover:bg-accent hover:text-accent-foreground transition-all duration-300 group"
+            className="px-8 py-6 rounded-md border hover:bg-accent hover:text-accent-foreground transition-all duration-300 group"
             asChild
           >
             <a href="https://github.com/SHwaier" target="_blank" rel="noopener noreferrer">

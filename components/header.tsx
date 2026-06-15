@@ -64,10 +64,10 @@ export function Header() {
             className="flex items-center space-x-2 group"
             onClick={() => trackEvent('header_click_logo')}
           >
-            <div className="h-10 w-10 rounded-xl bg-linear-to-tr from-primary to-accent flex items-center justify-center shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform duration-300">
-              <span className="text-primary-foreground font-bold text-xl">S</span>
+            <div className="h-10 w-10 rounded-xl bg-foreground flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+              <span className="text-background font-bold text-xl">S</span>
             </div>
-            <span className="font-serif text-xl font-bold bg-clip-text text-transparent bg-linear-to-r from-foreground to-foreground/80">
+            <span className="font-serif text-xl font-bold text-foreground">
               Saymon Hwaier
             </span>
           </Link>

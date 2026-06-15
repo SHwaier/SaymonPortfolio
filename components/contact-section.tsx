@@ -45,20 +45,12 @@ export function ContactSection() {
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 1 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
           className="max-w-2xl mx-auto"
         >
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="max-w-2xl mx-auto"
-          >
-            <Card className="bg-secondary/5 border-border/50 backdrop-blur-sm">
+            <Card className="bg-card border border-border shadow-sm hover:shadow-md transition-all duration-300">
               <CardContent className="flex flex-col md:flex-row items-center justify-between gap-8 p-8">
                 <div className="flex flex-col items-center md:items-start gap-2 text-center md:text-left">
                   <div className="flex items-center gap-2 text-muted-foreground text-sm uppercase tracking-wider font-semibold">
@@ -105,7 +97,6 @@ export function ContactSection() {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
         </motion.div>
       </div>
     </section>

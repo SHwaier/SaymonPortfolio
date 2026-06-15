@@ -29,17 +29,14 @@ export function Footer() {
             <footer className="relative bg-background pt-12 pb-12 overflow-hidden">
                 <Separator className="absolute top-0 w-full" />
 
-                {/* Subtle Gradient Overlay */}
-                <div className="absolute inset-0 bg-linear-to-b from-background to-primary/5 pointer-events-none" />
-
-                <div className="container mx-auto px-4 relative z-10">
+                {/* Subtle Gradient Overlay Removed */}                <div className="container mx-auto px-4 relative z-10">
 
                     {/* Bottom Section - Links & Copyright */}
                     <div className="grid md:grid-cols-4 gap-8 md:gap-12">
                         <div className="space-y-4 md:col-span-2">
                             <Link href="/" className="flex items-center space-x-2 group w-fit">
-                                <div className="h-8 w-8 rounded-lg bg-linear-to-tr from-primary to-accent flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                                    <span className="text-primary-foreground font-bold text-lg">S</span>
+                                <div className="h-8 w-8 rounded-lg bg-foreground flex items-center justify-center group-hover:scale-105 transition-transform">
+                                    <span className="text-background font-bold text-lg">S</span>
                                 </div>
                                 <span className="font-serif text-xl font-bold">Saymon Hwaier</span>
                             </Link>
