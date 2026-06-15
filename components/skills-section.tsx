@@ -16,19 +16,19 @@ export function SkillsSection({ skillCategories, otherSkills, learningSkills }: 
   return (
     <section id="skills" className="py-24 bg-background relative overflow-hidden border-b border-border">
       {/* Faint Architectural Grid Lines */}
-      <div className="absolute inset-0 pointer-events-none grid grid-cols-4 md:grid-cols-12 gap-4 px-4 opacity-50">
-          <div className="col-span-1 border-l border-border/30 h-full"></div>
-          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
-          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
-          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
-          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
-          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
-          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
-          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
-          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
-          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
-          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
-          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+      <div className="absolute inset-0 pointer-events-none grid grid-cols-4 md:grid-cols-12 gap-4 px-4">
+          <div className="col-span-1 border-l border-foreground/10 h-full"></div>
+          <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-foreground/10 h-full hidden md:block"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 md:grid-cols-12 gap-4">
@@ -37,7 +37,7 @@ export function SkillsSection({ skillCategories, otherSkills, learningSkills }: 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-[6rem] font-bold leading-[0.85] tracking-tighter text-foreground"
+            className="text-6xl md:text-[7rem] lg:text-[8rem] font-bold leading-none tracking-tighter text-foreground"
           >
             TECHNICAL<br />EXPERTISE
           </motion.h2>
