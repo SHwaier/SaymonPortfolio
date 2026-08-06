@@ -3,6 +3,7 @@
 import { useAnalytics } from "@/components/analytics-provider"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
+import Link from "next/link";
 
 export function HeroSection() {
   const { trackEvent } = useAnalytics()
@@ -34,11 +35,11 @@ export function HeroSection() {
       </div>
 
       <div className="container mx-auto relative z-10 grid grid-cols-1 md:grid-cols-12 gap-4">
-        <motion.div 
+        <motion.div
           style={{ y, opacity }}
           className="md:col-span-10 md:col-start-1"
         >
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -46,7 +47,7 @@ export function HeroSection() {
           >
             SAYMON<br />HWAIER
           </motion.h1>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -56,21 +57,21 @@ export function HeroSection() {
               Software Engineer specializing in full-stack architecture and high-performance digital experiences.
             </p>
             <div className="flex gap-6 md:justify-end pb-2">
-              <a 
-                href="#projects" 
+              <Link
+                href="#projects"
                 onClick={() => trackEvent('hero_click_view_work')}
                 className="group flex items-center text-sm font-bold uppercase tracking-widest text-foreground hover:text-accent transition-colors"
               >
                 View Work <span className="ml-2 group-hover:translate-x-2 transition-transform">→</span>
-              </a>
-              <a 
-                href="/assets/resume.pdf" 
+              </Link>
+              <Link
+                href="/resume"
                 download="Saymon_Hwaier_Resume.pdf"
                 onClick={() => trackEvent('hero_click_view_resume')}
                 className="group flex items-center text-sm font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
               >
                 Resume
-              </a>
+              </Link>
             </div>
           </motion.div>
         </motion.div>
