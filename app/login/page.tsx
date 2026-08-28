@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
 import { Button } from '@/components/ui/button'
@@ -9,9 +9,6 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Loader2 } from 'lucide-react'
-import { checkPasswordStrength } from '@/lib/validations'
-
-const STRENGTH_COLORS = ['bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-lime-500', 'bg-green-500']
 
 export default function LoginPage() {
     const [email, setEmail] = useState('')
@@ -21,18 +18,10 @@ export default function LoginPage() {
     const router = useRouter()
     const supabase = createClient()
 
-    const strength = useMemo(() => checkPasswordStrength(password), [password])
-
     async function handleLogin(e: React.FormEvent) {
         e.preventDefault()
         setLoading(true)
         setError(null)
-
-        if (strength.score < 2) {
-            setError('Password is too weak. ' + strength.suggestions[0])
-            setLoading(false)
-            return
-        }
 
         try {
             const { error } = await supabase.auth.signInWithPassword({
@@ -90,23 +79,6 @@ export default function LoginPage() {
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
                                 />
-                                {password.length > 0 && (
-                                    <div className="space-y-1.5 pt-1">
-                                        <div className="flex gap-1">
-                                            {[0, 1, 2, 3, 4].map((i) => (
-                                                <div
-                                                    key={i}
-                                                    className={`h-1 flex-1 rounded-full transition-colors ${i <= strength.score - 1 ? STRENGTH_COLORS[strength.score] : 'bg-muted'
-                                                        }`}
-                                                />
-                                            ))}
-                                        </div>
-                                        <p className="text-xs text-muted-foreground">
-                                            {strength.label}
-                                            {strength.suggestions.length > 0 && ` — ${strength.suggestions[0]}`}
-                                        </p>
-                                    </div>
-                                )}
                             </div>
 
                             {error && (
