@@ -2,10 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Mail, MapPin, Copy, Check, ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-
-import { Card, CardContent } from "@/components/ui/card"
+import { ArrowRight, Check } from "lucide-react"
 import { useAnalytics } from "@/components/analytics-provider"
 
 export function ContactSection() {
@@ -27,77 +24,66 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="py-24 relative bg-background">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="font-serif text-4xl font-bold mb-4">
-            Let&apos;s Work Together
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            I&apos;m always interested in new opportunities.
-          </p>
-        </motion.div>
+    <section id="contact" className="py-24 relative bg-background border-b border-border overflow-hidden">
+      {/* Faint Architectural Grid Lines */}
+      <div className="absolute inset-0 pointer-events-none grid grid-cols-4 md:grid-cols-12 gap-4 px-4 opacity-50">
+          <div className="col-span-1 border-l border-border/30 h-full"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+          <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+      </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="max-w-2xl mx-auto"
-        >
-            <Card className="bg-card border border-border shadow-sm hover:shadow-md transition-all duration-300">
-              <CardContent className="flex flex-col md:flex-row items-center justify-between gap-8 p-8">
-                <div className="flex flex-col items-center md:items-start gap-2 text-center md:text-left">
-                  <div className="flex items-center gap-2 text-muted-foreground text-sm uppercase tracking-wider font-semibold">
-                    <Mail className="h-4 w-4" />
-                    <span>Email</span>
-                  </div>
-                  <span className="text-xl md:text-2xl font-medium tracking-tight">
-                    {email}
-                  </span>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
-                    <MapPin className="h-3 w-3" />
-                    <span>Windsor, ON, CA</span>
-                  </div>
-                </div>
+      <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 md:grid-cols-12 gap-4">
+        <div className="md:col-span-12 mb-20 text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-6xl md:text-[7rem] lg:text-[8rem] font-bold leading-none tracking-tighter text-foreground"
+          >
+            LET'S WORK<br />TOGETHER
+          </motion.h2>
+        </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                  <Button
-                    size="default"
-                    variant="default"
-                    className="gap-2"
-                    onClick={handleMailClick}
-                  >
-                    <ArrowRight className="h-4 w-4" />
-                    Send Message
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="default"
-                    className="gap-2 text-muted-foreground hover:text-foreground"
-                    onClick={handleCopy}
-                  >
-                    {copied ? (
-                      <>
-                        <Check className="h-4 w-4 text-green-500" />
-                        <span className="text-green-500">Copied</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="h-4 w-4" />
-                        Copy
-                      </>
-                    )}
-                  </Button>
+        <div className="md:col-span-8 md:col-start-3">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="border-t border-l border-r border-border/50 bg-background"
+          >
+            <div className="p-8 md:p-12 border-b border-border/50 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="text-center md:text-left">
+                    <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Direct Inquiry</h3>
+                    <p className="text-2xl md:text-4xl font-bold tracking-tight text-foreground">{email}</p>
+                    <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mt-4">Windsor, ON, CA</p>
                 </div>
-              </CardContent>
-            </Card>
-        </motion.div>
+                
+                <div className="flex flex-col gap-4 w-full md:w-auto">
+                    <button 
+                        onClick={handleMailClick}
+                        className="group flex items-center justify-center md:justify-end text-sm font-bold uppercase tracking-widest text-foreground hover:text-accent transition-colors pb-1 border-b border-foreground hover:border-accent"
+                    >
+                        Send Message <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                    <button 
+                        onClick={handleCopy}
+                        className="group flex items-center justify-center md:justify-end text-sm font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                        {copied ? <span className="flex items-center text-green-500"><Check className="mr-2 h-4 w-4" /> Copied</span> : "Copy Address"}
+                    </button>
+                </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   )

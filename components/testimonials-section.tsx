@@ -1,9 +1,5 @@
 "use client"
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { Quote, Star } from "lucide-react"
 import { motion } from "framer-motion"
 import { Testimonial } from "@/types"
 
@@ -15,70 +11,57 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
     if (!testimonials || testimonials.length === 0) return null
 
     return (
-        <section id="testimonials" className="py-24 bg-background">
-            <div className="container mx-auto px-4">
-                <div className="text-center mb-16">
+        <section id="testimonials" className="py-24 bg-background relative overflow-hidden border-b border-border">
+            {/* Faint Architectural Grid Lines */}
+            <div className="absolute inset-0 pointer-events-none grid grid-cols-4 md:grid-cols-12 gap-4 px-4 opacity-50">
+                <div className="col-span-1 border-l border-border/30 h-full"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+                <div className="col-span-1 border-l border-border/30 h-full hidden md:block"></div>
+            </div>
+
+            <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 md:grid-cols-12 gap-4">
+                <div className="md:col-span-12 mb-20 text-left">
                     <motion.h2
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="font-serif text-3xl md:text-5xl font-bold text-foreground mb-4"
+                        className="text-6xl md:text-[7rem] lg:text-[8rem] font-bold leading-none tracking-tighter text-foreground"
                     >
-                        What People Say
+                        SOCIAL<br />PROOF
                     </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="text-lg text-muted-foreground max-w-2xl mx-auto"
-                    >
-                        Feedback from colleagues and clients I&apos;ve had the pleasure of working with.
-                    </motion.p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-                    {testimonials.map((testimonial, index) => (
-                        <motion.div
-                            key={testimonial.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                        >
-                            <Card className="h-full bg-card border border-border shadow-sm hover:shadow-md hover:border-accent transition-all duration-300">
-                                <CardHeader className="flex flex-row items-center gap-4 pb-4">
-                                    <Avatar className="h-12 w-12 border border-border">
-                                        <AvatarImage src={testimonial.avatar_url || ""} alt={testimonial.name} />
-                                        <AvatarFallback className="bg-muted text-foreground">
-                                            {testimonial.name.slice(0, 2).toUpperCase()}
-                                        </AvatarFallback>
-                                    </Avatar>
-                                    <div className="flex flex-col">
-                                        <h3 className="font-semibold text-foreground">{testimonial.name}</h3>
-                                        <p className="text-sm text-muted-foreground">{testimonial.role} {testimonial.company ? `@ ${testimonial.company}` : ''}</p>
-                                    </div>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="mb-4 flex">
-                                        {[...Array(5)].map((_, i) => (
-                                            <Star
-                                                key={i}
-                                                className={`h-4 w-4 ${i < (testimonial.rating || 5)
-                                                    ? "text-foreground fill-foreground"
-                                                    : "text-muted fill-muted"
-                                                    }`}
-                                            />
-                                        ))}
-                                    </div>
-                                    <p className="text-muted-foreground leading-relaxed italic">
-                                        &quot;{testimonial.content}&quot;
-                                    </p>
-                                </CardContent>
-                            </Card>
-                        </motion.div>
-                    ))}
+                <div className="md:col-span-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-border/50">
+                        {testimonials.map((testimonial, index) => (
+                            <motion.div
+                                key={testimonial.id}
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 }}
+                                className="p-8 border-r border-b border-border/50 bg-background flex flex-col justify-between"
+                            >
+                                <p className="text-foreground text-lg leading-relaxed mb-12 font-medium">
+                                    "{testimonial.content}"
+                                </p>
+                                <div>
+                                    <div className="h-px w-8 bg-foreground mb-4"></div>
+                                    <h3 className="font-bold text-foreground uppercase tracking-widest text-sm mb-1">{testimonial.name}</h3>
+                                    <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">{testimonial.role} {testimonial.company ? `— ${testimonial.company}` : ''}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
