@@ -9,7 +9,10 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, Loader2, Save, Trash2 } from "lucide-react"
 import { Skill } from "@/types"
+import { skillSchema } from "@/lib/validations"
+import { ZodError } from "zod"
 import Link from "next/link"
+
 
 interface SkillFormProps {
     initialData?: Skill
@@ -50,20 +53,34 @@ export function SkillForm({ initialData }: SkillFormProps) {
         setError(null)
 
         try {
+            const payload = skillSchema.parse({
+                name: formData.name,
+                category: formData.category,
+                level: formData.level,
+                years: formData.years,
+            })
+
             const { error } = initialData?.id
                 ? await supabase
                     .from("skills")
-                    .update(formData)
+                    .update(payload)
                     .eq("id", initialData.id)
-                : await supabase.from("skills").insert([formData])
+                : await supabase.from("skills").insert([payload])
 
             if (error) throw error
 
             router.push("/admin/skills")
             router.refresh()
         } catch (err) {
-            setError(err instanceof Error ? err.message : "Failed to save skill")
-        } finally {
+            if (err instanceof ZodError) {
+                setError(err.issues.map((i) => i.message).join(", "))
+            } else if (err instanceof Error) {
+                setError(err.message)
+            } else {
+                setError("Validation failed. Please check your inputs.")
+            }
+        }
+ finally {
             setLoading(false)
         }
     }

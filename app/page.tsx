@@ -1,19 +1,13 @@
 import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
-import dynamic from 'next/dynamic';
+import { AboutSection } from '@/components/about-section'
+import { ProjectsSection } from '@/components/projects-section'
+import { TestimonialsSection } from '@/components/testimonials-section'
+import { SkillsSection } from '@/components/skills-section'
+import { ContactSection } from '@/components/contact-section'
+import { Footer } from '@/components/footer'
 import { supabase } from "@/lib/supabase"
 import { Project, Experience, Skill, SkillCategory, Testimonial } from "@/types"
-
-const DynamicAboutSection = dynamic(() => import('@/components/about-section').then(mod => mod.AboutSection));
-const DynamicProjectsSection = dynamic(() => import('@/components/projects-section').then(mod => mod.ProjectsSection));
-const DynamicTestimonialsSection = dynamic(() => import('@/components/testimonials-section').then(mod => mod.TestimonialsSection));
-const DynamicSkillsSection = dynamic(() => import('@/components/skills-section').then(mod => mod.SkillsSection));
-const DynamicContactSection = dynamic(() => import('@/components/contact-section').then(mod => mod.ContactSection));
-const DynamicFooter = dynamic(() => import('@/components/footer').then(mod => mod.Footer));
-
-// Data fetching configuration
-// Data fetching configuration
-// export const revalidate = 60 // Revalidate every 60 seconds (ISR) -> Replaced by "use cache"
 
 async function getProjects(): Promise<Project[]> {
   "use cache"
@@ -34,7 +28,7 @@ async function getExperience(): Promise<Experience[]> {
   const { data, error } = await supabase
     .from('experience')
     .select('*')
-    .order('id', { ascending: true }) // Using ID for simplicity, could use start_date if standardized
+    .order('id', { ascending: true })
 
   if (error) {
     console.error('Error fetching experience:', error)
@@ -56,7 +50,6 @@ async function getSkills(): Promise<SkillCategory[]> {
 
   const skills = skillsData as Skill[]
 
-  // Transformation map
   const categoryConfig: Record<string, Omit<SkillCategory, 'skills' | 'title'>> = {
     'Frontend Development': {
       iconName: 'Code2',
@@ -78,10 +71,7 @@ async function getSkills(): Promise<SkillCategory[]> {
     },
   }
 
-  // Group skills by category
   const categories: SkillCategory[] = []
-
-  // Define order
   const order = ['Frontend Development', 'Backend Development', 'Tools & DevOps']
 
   order.forEach(catName => {
@@ -150,16 +140,16 @@ export default async function HomePage() {
     <main className="min-h-screen">
       <Header />
       <HeroSection />
-      <DynamicAboutSection experience={experience} />
-      <DynamicProjectsSection projects={projects} />
-      <DynamicTestimonialsSection testimonials={testimonials} />
-      <DynamicSkillsSection
+      <AboutSection experience={experience} />
+      <ProjectsSection projects={projects} />
+      <TestimonialsSection testimonials={testimonials} />
+      <SkillsSection
         skillCategories={skillCategories}
         otherSkills={otherSkills}
         learningSkills={learningSkills}
       />
-      <DynamicContactSection />
-      <DynamicFooter />
+      <ContactSection />
+      <Footer />
     </main>
   )
 }

@@ -4,8 +4,10 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Plus, Pencil, Trash2, Briefcase, Calendar } from 'lucide-react'
 import { Experience } from '@/types'
+import { connection } from 'next/server'
 
 export default async function AdminExperiencePage() {
+    await connection()
     const supabase = await createClient()
 
     const { data: experience, error } = await supabase

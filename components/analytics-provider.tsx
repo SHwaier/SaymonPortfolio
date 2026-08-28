@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useContext, useState } from "react"
+import React, { createContext, useContext, useState, useEffect } from "react"
 
 import clarity from "@microsoft/clarity";
 import { sendGTMEvent } from '@next/third-parties/google';
@@ -16,13 +16,14 @@ interface AnalyticsContextType {
 const AnalyticsContext = createContext<AnalyticsContextType | undefined>(undefined)
 
 export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
-    const [consent, setConsentState] = useState<ConsentStatus>(() => {
-        if (typeof window !== "undefined") {
-            const storedConsent = localStorage.getItem("cookie-consent")
-            return (storedConsent === "granted" || storedConsent === "denied") ? storedConsent : null
+    const [consent, setConsentState] = useState<ConsentStatus>(null)
+
+    useEffect(() => {
+        const storedConsent = localStorage.getItem("cookie-consent")
+        if (storedConsent === "granted" || storedConsent === "denied") {
+            setConsentState(storedConsent)
         }
-        return null
-    })
+    }, [])
 
     // Session termination handling is not natively supported by the official @microsoft/clarity package
 

@@ -5,8 +5,10 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Plus, Pencil } from 'lucide-react'
 import { Skill } from '@/types'
 import { Badge } from '@/components/ui/badge'
+import { connection } from 'next/server'
 
 export default async function AdminSkillsPage() {
+    await connection()
     const supabase = await createClient()
 
     const { data: skills, error } = await supabase
