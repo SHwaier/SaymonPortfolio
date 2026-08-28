@@ -13,10 +13,12 @@ interface EditExperiencePageProps {
 export default async function EditExperiencePage({ params }: EditExperiencePageProps) {
     await connection()
     const { id } = await params
-
-    if (!id || id === '[id]') {
-        return null
+    const numId = Number(id)
+    if (!id || isNaN(numId) || numId <= 0) {
+        notFound()
     }
+
+
 
     const supabase = await createClient()
 

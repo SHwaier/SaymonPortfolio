@@ -13,7 +13,13 @@ create table if not exists public.projects (
 
 alter table public.projects enable row level security;
 
+drop policy if exists "Public projects are viewable by everyone" on public.projects;
+drop policy if exists "Enable insert for authenticated users only" on public.projects;
+drop policy if exists "Enable update for authenticated users only" on public.projects;
+drop policy if exists "Enable delete for authenticated users only" on public.projects;
+
 create policy "Public projects are viewable by everyone" on public.projects for select using (true);
 create policy "Enable insert for authenticated users only" on public.projects for insert with check (auth.role() = 'authenticated');
 create policy "Enable update for authenticated users only" on public.projects for update using (auth.role() = 'authenticated');
 create policy "Enable delete for authenticated users only" on public.projects for delete using (auth.role() = 'authenticated');
+

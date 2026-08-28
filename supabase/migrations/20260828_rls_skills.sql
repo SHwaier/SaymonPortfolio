@@ -10,7 +10,13 @@ create table if not exists public.skills (
 
 alter table public.skills enable row level security;
 
+drop policy if exists "Public skills are viewable by everyone" on public.skills;
+drop policy if exists "Enable insert for authenticated users only" on public.skills;
+drop policy if exists "Enable update for authenticated users only" on public.skills;
+drop policy if exists "Enable delete for authenticated users only" on public.skills;
+
 create policy "Public skills are viewable by everyone" on public.skills for select using (true);
 create policy "Enable insert for authenticated users only" on public.skills for insert with check (auth.role() = 'authenticated');
 create policy "Enable update for authenticated users only" on public.skills for update using (auth.role() = 'authenticated');
 create policy "Enable delete for authenticated users only" on public.skills for delete using (auth.role() = 'authenticated');
+

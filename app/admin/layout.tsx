@@ -41,9 +41,10 @@ export default async function AdminLayout({
         data: { user },
     } = await supabase.auth.getUser()
 
-    if (!user && process.env.NEXT_PHASE !== 'phase-production-build') {
+    if (!user) {
         redirect('/login')
     }
+
 
     const navItems = [
         { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },

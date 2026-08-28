@@ -1,14 +1,8 @@
 /**
  * In-memory sliding window rate limiter.
  *
- * Designed for serverless / edge environments where external stores
- * (Redis, Upstash) are not available. The Map is scoped to the
- * process lifetime, which is sufficient for Vercel Functions that
- * share a warm instance across sequential requests.
- *
- * Usage:
- *   const limiter = createRateLimiter({ windowMs: 60_000, max: 10 })
- *   if (!limiter.check(ip)) { return NextResponse.json(..., { status: 429 }) }
+ * Designed for serverless / edge environments. Includes a maximum
+ * store capacity cap to protect against IP-spoofing memory leaks.
  */
 
 interface RateLimiterOptions {
@@ -16,22 +10,31 @@ interface RateLimiterOptions {
     windowMs: number
     /** Maximum number of requests allowed in the window */
     max: number
+    /** Maximum store entries before force clearing to prevent OOM */
+    maxKeys?: number
 }
 
 interface RequestRecord {
     timestamps: number[]
 }
 
-export function createRateLimiter({ windowMs, max }: RateLimiterOptions) {
+export function createRateLimiter({ windowMs, max, maxKeys = 10_000 }: RateLimiterOptions) {
     const store = new Map<string, RequestRecord>()
 
-    // Periodically prune stale entries to prevent memory leaks
     const PRUNE_INTERVAL = windowMs * 2
     let lastPrune = Date.now()
 
     function prune(now: number) {
+        // Prevent memory leak from IP spoofing by enforcing max map capacity
+        if (store.size > maxKeys) {
+            store.clear()
+            lastPrune = now
+            return
+        }
+
         if (now - lastPrune < PRUNE_INTERVAL) return
         lastPrune = now
+
         for (const [key, record] of store) {
             const valid = record.timestamps.filter((t) => now - t < windowMs)
             if (valid.length === 0) {
@@ -63,3 +66,4 @@ export function createRateLimiter({ windowMs, max }: RateLimiterOptions) {
         },
     }
 }
+

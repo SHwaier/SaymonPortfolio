@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { createClient } from '@/utils/supabase/client'
+import { loginAction } from './actions'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -15,8 +14,6 @@ export default function LoginPage() {
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
-    const router = useRouter()
-    const supabase = createClient()
 
     async function handleLogin(e: React.FormEvent) {
         e.preventDefault()
@@ -24,17 +21,14 @@ export default function LoginPage() {
         setError(null)
 
         try {
-            const { error } = await supabase.auth.signInWithPassword({
-                email,
-                password,
-            })
+            const formData = new FormData()
+            formData.append('email', email)
+            formData.append('password', password)
 
-            if (error) {
-                throw error
+            const res = await loginAction(null, formData)
+            if (res?.error) {
+                setError(res.error)
             }
-
-            router.push('/admin')
-            router.refresh()
         } catch (err) {
             setError(err instanceof Error ? err.message : 'Failed to login')
         } finally {
@@ -104,3 +98,4 @@ export default function LoginPage() {
         </div>
     )
 }
+

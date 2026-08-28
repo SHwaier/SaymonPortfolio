@@ -7,9 +7,10 @@ const MAX_LONG_TEXT = 5000
 const MAX_URL = 2048
 
 const urlOrEmpty = z.string().max(MAX_URL).refine(
-    (v) => v === '' || v.startsWith('https://') || v.startsWith('http://') || v.startsWith('/'),
-    { message: 'Must be a valid URL or empty' }
+    (v) => v === '' || v.startsWith('https://') || v.startsWith('http://') || (v.startsWith('/') && !v.startsWith('//')),
+    { message: 'Must be a valid HTTP(S) URL, relative path, or empty' }
 )
+
 
 // ─── Project ─────────────────────────────────────────────────────────────────
 

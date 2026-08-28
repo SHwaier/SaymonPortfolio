@@ -14,10 +14,12 @@ export default async function EditTestimonialPage({ params }: EditTestimonialPag
     await connection()
     // Await the params object
     const { id } = await params
-
-    if (!id || id === '[id]') {
-        return null
+    const numId = Number(id)
+    if (!id || isNaN(numId) || numId <= 0) {
+        notFound()
     }
+
+
 
     const supabase = await createClient()
 

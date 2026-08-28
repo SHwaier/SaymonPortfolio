@@ -36,7 +36,8 @@ const nextConfig: NextConfig = {
 					{ key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
 					{ key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains; preload" },
 					{ key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
-					{ key: "X-XSS-Protection", value: "1; mode=block" },
+					{ key: "X-XSS-Protection", value: "0" },
+
 					{ key: "X-DNS-Prefetch-Control", value: "on" },
 					{ key: "Cross-Origin-Opener-Policy", value: "same-origin" },
 					{ key: "Cross-Origin-Embedder-Policy", value: "credentialless" },

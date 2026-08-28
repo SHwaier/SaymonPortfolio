@@ -13,7 +13,13 @@ create table if not exists public.experience (
 
 alter table public.experience enable row level security;
 
+drop policy if exists "Public experience is viewable by everyone" on public.experience;
+drop policy if exists "Enable insert for authenticated users only" on public.experience;
+drop policy if exists "Enable update for authenticated users only" on public.experience;
+drop policy if exists "Enable delete for authenticated users only" on public.experience;
+
 create policy "Public experience is viewable by everyone" on public.experience for select using (true);
 create policy "Enable insert for authenticated users only" on public.experience for insert with check (auth.role() = 'authenticated');
 create policy "Enable update for authenticated users only" on public.experience for update using (auth.role() = 'authenticated');
 create policy "Enable delete for authenticated users only" on public.experience for delete using (auth.role() = 'authenticated');
+

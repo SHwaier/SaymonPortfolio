@@ -10,7 +10,9 @@ import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, Loader2, Save, Trash2 } from "lucide-react"
 import { Skill } from "@/types"
 import { skillSchema } from "@/lib/validations"
+import { ZodError } from "zod"
 import Link from "next/link"
+
 
 interface SkillFormProps {
     initialData?: Skill
@@ -70,12 +72,15 @@ export function SkillForm({ initialData }: SkillFormProps) {
             router.push("/admin/skills")
             router.refresh()
         } catch (err) {
-            if (err instanceof Error) {
+            if (err instanceof ZodError) {
+                setError(err.issues.map((i) => i.message).join(", "))
+            } else if (err instanceof Error) {
                 setError(err.message)
             } else {
                 setError("Validation failed. Please check your inputs.")
             }
-        } finally {
+        }
+ finally {
             setLoading(false)
         }
     }
