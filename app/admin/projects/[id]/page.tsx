@@ -2,6 +2,7 @@ import { createClient } from '@/utils/supabase/server'
 import { ProjectForm } from '@/components/admin/project-form'
 import { notFound } from 'next/navigation'
 import { Project } from '@/types'
+import { connection } from 'next/server'
 
 interface EditProjectPageProps {
     params: Promise<{
@@ -10,8 +11,13 @@ interface EditProjectPageProps {
 }
 
 export default async function EditProjectPage({ params }: EditProjectPageProps) {
+    await connection()
     // Await the params object
     const { id } = await params
+
+    if (!id || id === '[id]') {
+        return null
+    }
 
     const supabase = await createClient()
 

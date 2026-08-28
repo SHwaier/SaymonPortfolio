@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, Loader2, Save, Trash2 } from "lucide-react"
 import { Experience } from "@/types"
+import { experienceSchema } from "@/lib/validations"
 import Link from "next/link"
 
 interface ExperienceFormProps {
@@ -51,19 +52,33 @@ export function ExperienceForm({ initialData }: ExperienceFormProps) {
         setError(null)
 
         try {
+            const payload = experienceSchema.parse({
+                title: formData.title,
+                company: formData.company,
+                location: formData.location,
+                start_date: formData.start_date,
+                end_date: formData.end_date,
+                description: formData.description,
+                technologies: formData.technologies,
+            })
+
             const { error } = initialData?.id
                 ? await supabase
                     .from("experience")
-                    .update(formData)
+                    .update(payload)
                     .eq("id", initialData.id)
-                : await supabase.from("experience").insert([formData])
+                : await supabase.from("experience").insert([payload])
 
             if (error) throw error
 
             router.push("/admin/experience")
             router.refresh()
         } catch (err) {
-            setError(err instanceof Error ? err.message : "Failed to save experience")
+            if (err instanceof Error) {
+                setError(err.message)
+            } else {
+                setError("Validation failed. Please check your inputs.")
+            }
         } finally {
             setLoading(false)
         }

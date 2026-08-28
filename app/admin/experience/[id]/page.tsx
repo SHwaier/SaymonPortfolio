@@ -2,6 +2,7 @@ import { createClient } from '@/utils/supabase/server'
 import { ExperienceForm } from '@/components/admin/experience-form'
 import { notFound } from 'next/navigation'
 import { Experience } from '@/types'
+import { connection } from 'next/server'
 
 interface EditExperiencePageProps {
     params: Promise<{
@@ -10,7 +11,13 @@ interface EditExperiencePageProps {
 }
 
 export default async function EditExperiencePage({ params }: EditExperiencePageProps) {
+    await connection()
     const { id } = await params
+
+    if (!id || id === '[id]') {
+        return null
+    }
+
     const supabase = await createClient()
 
     const { data: experience, error } = await supabase

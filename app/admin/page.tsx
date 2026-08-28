@@ -1,8 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { createClient } from '@/utils/supabase/server'
 import { FolderGit2, Briefcase, Wrench } from "lucide-react"
+import { connection } from 'next/server'
 
 export default async function AdminDashboard() {
+    await connection()
     const supabase = await createClient()
 
     // Fetch counts or just links

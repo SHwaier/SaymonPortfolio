@@ -5,8 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Plus, Pencil, Trash2 } from 'lucide-react'
 import { Project } from '@/types'
 import Image from 'next/image'
+import { connection } from 'next/server'
 
 export default async function AdminProjectsPage() {
+    await connection()
     const supabase = await createClient()
 
     const { data: projects, error } = await supabase

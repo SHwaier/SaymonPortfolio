@@ -2,6 +2,7 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Suspense } from 'react'
+import { connection } from 'next/server'
 import {
     LayoutDashboard,
     FolderGit2,
@@ -12,34 +13,38 @@ import {
 } from 'lucide-react'
 import LogoutButton from './logout-button'
 
-async function AdminSidebarProfile() {
-    const supabase = await createClient()
+// Admin routes are fully dynamic (auth-gated) — opt out of static prerendering
+export const instant = false
 
-    const {
-        data: { user },
-    } = await supabase.auth.getUser()
-
-    if (!user) {
-        return redirect('/login')
-    }
-
+function AdminSidebarProfile({ email }: { email: string }) {
     return (
         <div className="flex items-center gap-3 px-4 py-3 mb-2">
             <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
                 <User className="w-4 h-4 text-primary" />
             </div>
             <div className="flex-1 overflow-hidden">
-                <p className="text-sm font-medium truncate">{user.email}</p>
+                <p className="text-sm font-medium truncate">{email}</p>
             </div>
         </div>
     )
 }
 
-export default function AdminLayout({
+export default async function AdminLayout({
     children,
 }: {
     children: React.ReactNode
 }) {
+    await connection()
+    const supabase = await createClient()
+
+    const {
+        data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user && process.env.NEXT_PHASE !== 'phase-production-build') {
+        redirect('/login')
+    }
+
     const navItems = [
         { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
         { href: '/admin/projects', label: 'Projects', icon: FolderGit2 },
@@ -81,7 +86,7 @@ export default function AdminLayout({
                             </div>
                         </div>
                     }>
-                        <AdminSidebarProfile />
+                        <AdminSidebarProfile email={user?.email || ''} />
                     </Suspense>
                     <LogoutButton />
                 </div>

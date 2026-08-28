@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, Loader2, Save, Trash2 } from "lucide-react"
 import { Project } from "@/types"
+import { projectSchema } from "@/lib/validations"
 import Link from "next/link"
 import Image from "next/image"
 
@@ -54,19 +55,33 @@ export function ProjectForm({ initialData }: ProjectFormProps) {
         setError(null)
 
         try {
+            const payload = projectSchema.parse({
+                title: formData.title,
+                description: formData.description,
+                image: formData.image,
+                technologies: formData.technologies,
+                live_url: formData.live_url,
+                github_url: formData.github_url,
+                size: formData.size,
+            })
+
             const { error } = initialData?.id
                 ? await supabase
                     .from("projects")
-                    .update(formData)
+                    .update(payload)
                     .eq("id", initialData.id)
-                : await supabase.from("projects").insert([formData])
+                : await supabase.from("projects").insert([payload])
 
             if (error) throw error
 
             router.push("/admin/projects")
             router.refresh()
         } catch (err) {
-            setError(err instanceof Error ? err.message : "Failed to save project")
+            if (err instanceof Error) {
+                setError(err.message)
+            } else {
+                setError("Validation failed. Please check your inputs.")
+            }
         } finally {
             setLoading(false)
         }

@@ -5,8 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Plus, Pencil, Trash2, Quote } from 'lucide-react'
 import { Testimonial } from '@/types'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { connection } from 'next/server'
 
 export default async function AdminTestimonialsPage() {
+    await connection()
     const supabase = await createClient()
 
     const { data: testimonials, error } = await supabase

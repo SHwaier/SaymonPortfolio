@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, Loader2, Save, Trash2, Star, User } from "lucide-react"
 import { Testimonial } from "@/types"
+import { testimonialSchema } from "@/lib/validations"
 import Link from "next/link"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
@@ -47,19 +48,32 @@ export function TestimonialForm({ initialData }: TestimonialFormProps) {
         setError(null)
 
         try {
+            const payload = testimonialSchema.parse({
+                name: formData.name,
+                role: formData.role,
+                company: formData.company,
+                content: formData.content,
+                avatar_url: formData.avatar_url,
+                rating: formData.rating,
+            })
+
             const { error } = initialData?.id
                 ? await supabase
                     .from("testimonials")
-                    .update(formData)
+                    .update(payload)
                     .eq("id", initialData.id)
-                : await supabase.from("testimonials").insert([formData])
+                : await supabase.from("testimonials").insert([payload])
 
             if (error) throw error
 
             router.push("/admin/testimonials")
             router.refresh()
         } catch (err) {
-            setError(err instanceof Error ? err.message : "Failed to save testimonial")
+            if (err instanceof Error) {
+                setError(err.message)
+            } else {
+                setError("Validation failed. Please check your inputs.")
+            }
         } finally {
             setLoading(false)
         }
